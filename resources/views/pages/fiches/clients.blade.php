@@ -380,7 +380,7 @@
                                     <button class="nav-link active" id="order-tab" data-bs-toggle="tab"
                                         data-bs-target="#order-tab-pane" type="button" role="tab"
                                         aria-controls="home-tab-pane" aria-selected="true"><i
-                                            class="ri-gift-line me-1 align-middle"></i>Principales infos</button>
+                                            class="ri-gift-line me-1 align-middle"></i>Infos principales</button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="confirmed-tab" data-bs-toggle="tab"
@@ -414,6 +414,7 @@
                                 </li>
                             </ul>
                             <div class="tab-content" id="myTabContent">
+                                {{-- Infos principales --}}
                                 <div class="tab-pane fade show active text-muted bg-tabs" id="order-tab-pane" role="tabpanel"
                                     aria-labelledby="home-tab" tabindex="0">
                                     <div class="row">
@@ -453,66 +454,47 @@
                                             <p class="mb-2 text-muted">Tournée :</p>
                                             <input type="text" class="form-control" id="input-label">
                                         </div>
-                                        <div class="col-xl-3 mb-2">
-                                            <p class="mb-2 text-muted">Numéro RC:</p>
-                                            <input type="text" class="form-control" id="input-label">
-                                        </div>
-                                        <div class="col-xl-3 mb-2">
-                                            <p class="mb-2 text-muted">Numéro CC :</p>
-                                            <input type="text" class="form-control" id="input-label">
-                                        </div>
-                                        <div class="col-xl-3 mb-2">
-                                            <p class="mb-2 text-muted">N° compte tierce :</p>
-                                            <input type="text" class="form-control" id="input-label">
-                                        </div>
-                                        <div class="col-xl-3 mb-2">
-                                            <p class="mb-2 text-muted">N° compte tierce ristourne:</p>
-                                            <input type="text" class="form-control" id="input-label">
-                                        </div>
-                                        <div class="col-xl-3 mb-2">
-                                            <p class="mb-2 text-muted">N° compte tierce escompte:</p>
-                                            <input type="text" class="form-control" id="input-label">
-                                        </div>
                                     </div>
                                 </div>
 
+                                {{-- Coordonnées --}}
                                 <div class="tab-pane fade text-muted bg-tabs" id="coordonne-tab-pane" role="tabpanel"
                                     aria-labelledby="profile-tab" tabindex="0">
                                     <div class="row">
                                         <div class="col-xl-3 mb-2">
-                                            <label for="input-label" class="form-label">Situation géographique</label>
+                                            <p class="mb-2 text-muted">Situation géographique</p>
                                             <input type="text" class="form-control" id="input-label">
                                         </div>
                                         <div class="col-xl-3 mb-2">
-                                            <label for="input-label" class="form-label">Adresse postale</label>
+                                            <p class="mb-2 text-muted">Adresse postale</p>
                                             <input type="text" class="form-control" id="input-label">
                                         </div>
                                         <div class="col-xl-3 mb-2">
-                                            <label for="input-label" class="form-label">Longitude</label>
+                                            <p class="mb-2 text-muted">Longitude</label>
                                             <input type="text" class="form-control" id="input-label">
                                         </div>
                                         <div class="col-xl-3 mb-2">
-                                            <label for="input-label" class="form-label">Latitude</label>
+                                            <p class="mb-2 text-muted">Latitude</p>
                                             <input type="text" class="form-control" id="input-label">
                                         </div>
                                         <div class="col-xl-4 mb-2">
-                                            <label for="input-label" class="form-label">Téléphone fixe</label>
+                                            <p class="mb-2 text-muted">Téléphone fixe</p>
                                             <input type="text" class="form-control" id="input-label">
                                         </div>
                                         <div class="col-xl-4 mb-2">
-                                            <label for="input-label" class="form-label">Téléphone mobile</label>
+                                            <p class="mb-2 text-muted">Téléphone mobile</p>
                                             <input type="text" class="form-control" id="input-label">
                                         </div>
                                         <div class="col-xl-4 mb-2">
-                                            <label for="input-label" class="form-label">N° téléphone commande</label>
+                                            <p class="mb-2 text-muted">N° téléphone commande</p>
                                             <input type="text" class="form-control" id="input-label">
                                         </div>
                                         <div class="col-xl-4">
-                                            <label for="input-label" class="form-label">Email</label>
+                                            <p class="mb-2 text-muted">Email</p>
                                             <input type="text" class="form-control" id="input-label">
                                         </div>
                                         <div class="col-xl-4">
-                                            <label for="input-label" class="form-label">Ville</label>
+                                            <p class="mb-2 text-muted">Ville</p>
                                             <select class="form-control" data-trigger name="choices-single-default" id="choices-single">
                                                 <option value="">Selectionner la ville</option>
                                                 <option value="Choice 1">Choice 1</option>
@@ -521,7 +503,7 @@
                                             </select>
                                         </div>
                                         <div class="col-xl-4">
-                                            <label for="input-label" class="form-label">Secteur</label>
+                                            <p class="mb-2 text-muted">Secteur</p>
                                             <select class="form-control" data-trigger name="choices-single-default" id="choices-single">
                                                 <option value="">Selectionner le secteur</option>
                                                 <option value="Choice 1">Choice 1</option>
@@ -531,8 +513,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{-- Debut commercial --}}
 
+                                {{-- Commercial --}}
                                 <div class="tab-pane fade text-muted bg-tabs" id="shipped-tab-pane" role="tabpanel"
                                     aria-labelledby="contact-tab" tabindex="0" >
                                     <div class=" row ">
@@ -551,6 +533,7 @@
                                             <p for="input-label" class="mb-2 text-muted">Code agence : </p>
                                             <input type="text" class="form-control p-input" id="input-label">
                                         </div>
+
                                         <div class="col-xl-7 mb-2">
                                             <p for="input-label" class="mb-2 text-muted">Numéro de compte et Clé RIB : </p>
                                             <input type="text" class="form-control p-input" id="input-label">
@@ -565,7 +548,6 @@
                                                 <option value="Choice 3">Choice 3</option>
                                             </select>
                                         </div>
-
 
                                         <div class="col-xl-2 mb-2">
                                             <p for="input-label" class="mb-2 text-muted">Intent° Cmde : </p>
@@ -584,7 +566,7 @@
 
                                         <div class="col-xl-3 mb-2">
                                             <p for="input-label" class="mb-2 text-muted">&nbsp;</p>
-                                            <input type="text" class="form-control p-input text-center" id="input-label" value="EXCOMPTE" readonly>
+                                            <input type="text" class="form-control p-input text-center" id="input-label" value="ESCOMPTE" readonly>
                                         </div>
 
                                         <div class="col-xl-4 mb-2">
@@ -662,131 +644,161 @@
                                             <p class="mb-2 text-muted ">Crédit max:</p>
                                             <input type="text" class="form-control p-input" id="input-label">
                                         </div>
+
                                         <div class="col-xl-3 mb-2">
                                             <p class="mb-2 text-muted ">Crédit max Exp. :</p>
                                             <input type="text" class="form-control p-input" id="input-label">
                                         </div>
-                                    </div>
-                                    <div class=" row  mt-2">
-                                        <div class="col-xl-4">
-                                            <div class=" card">
-                                                <div class="card-body">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked" checked>
-                                                        <label class="form-check-label" for="flexCheckChecked">
-                                                           Liste positive
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-4">
-                                            <div class=" card">
-                                                <div class="card-body">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked" checked>
-                                                        <label class="form-check-label" for="flexCheckChecked">
-                                                            Remise commerciale
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                        <div class="col-xl-4">
-                                            <div class=" card">
-                                                <div class="card-body">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked" checked>
-                                                        <label class="form-check-label" for="flexCheckChecked">
-                                                            Minimum sur le total de la journée
-                                                        </label>
+                                        <div class="row mt-2">
+                                            <div class="col-xl-6">
+                                                <div class="row">
+                                                    <div class="col-xl-6">
+                                                        <div class=" card">
+                                                            <div class="card-body">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="checkbox" value=""
+                                                                        id="flexCheckChecked" checked>
+                                                                    <label class="form-check-label" for="flexCheckChecked">
+                                                                       Liste positive
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <div class=" card">
+                                                            <div class="card-body">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="checkbox" value=""
+                                                                        id="flexCheckChecked" checked>
+                                                                    <label class="form-check-label" for="flexCheckChecked">
+                                                                        Remise commerciale
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <div class=" card">
+                                                            <div class="card-body">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="checkbox" value=""
+                                                                        id="flexCheckChecked" checked>
+                                                                    <label class="form-check-label" for="flexCheckChecked">
+                                                                        Grille spéciale Escompte / Ristourne
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <div class=" card">
+                                                            <div class="card-body">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="checkbox" value=""
+                                                                        id="flexCheckChecked" checked>
+                                                                    <label class="form-check-label" for="flexCheckChecked">
+                                                                        Valider AVOIR mannuellement
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-12">
+                                                        <div class=" card">
+                                                            <div class="card-body">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="checkbox" value=""
+                                                                        id="flexCheckChecked" checked>
+                                                                    <label class="form-check-label" for="flexCheckChecked">
+                                                                        Minimum sur le total de la journée
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xl-4">
-                                            <div class=" card">
-                                                <div class="card-body">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked" checked>
-                                                        <label class="form-check-label" for="flexCheckChecked">
-                                                            Valider AVOIR mannuellement
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-4">
-                                            <div class=" card">
-                                                <div class="card-body">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked" checked>
-                                                        <label class="form-check-label" for="flexCheckChecked">
-                                                            Grille spéciale Escompte / Ristourne
-                                                        </label>
-                                                    </div>
-                                                </div>
+                                            <div class="col-xl-6">
+                                                <table class="table table-striped w-100">
+                                                    <thead class="bg-thead-second">
+                                                        <tr>
+                                                            <th class="text-center">Période</th>
+                                                            <th class="text-center">Montant</th>
+                                                            <th class="text-center">Tx réalisation</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <label class="d-flex">Prévisionnel&nbsp;S1</label>
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" class="form-control">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" class="form-control">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <label class="d-flex">Prévisionnel&nbsp;S2</label>
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" class="form-control">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" class="form-control">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <label class="d-flex">Annuel</label>
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" class="form-control">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" class="form-control">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                {{--  fin commercial --}}
+
+                                {{-- Exploitation --}}
                                 <div class="tab-pane fade text-muted bg-tabs" id="delivered-tab-pane" role="tabpanel"
                                     tabindex="0">
-                                    <ul class="list-unstyled mb-0">
-                                        <li>A Latin professor at Hampden-Sydney College in Virginia, looked up one
-                                            of the more obscure Latin words, consectetur, from a Lorem Ipsum
-                                            passage, and going through the cites of the word in classical
-                                            literature.</li>
-                                    </ul>
-                                </div>
-                                {{-- Debut comptabilité --}}
-                                <div class="tab-pane fade text-muted bg-tabs" id="compta-tab-pane" role="tabpanel"
-                                    tabindex="0">
-                                    <ul class="list-unstyled mb-0">
-                                        <li>A Latin professor at Hampden-Sydney College in Virginia, looked up one
-                                            of the more obscure Latin words, consectetur, from a Lorem Ipsum
-                                            passage, and going through the cites of the word in classical
-                                            literature.</li>
-                                    </ul>
-                                </div>
-                                {{-- Fin Comptabilité --}}
-                                {{-- Debut Divers --}}
-                                <div class="tab-pane fade text-muted bg-tabs" id="divers-tab-pane" role="tabpanel"
-                                    tabindex="0">
-                                    <div class=" row">
-                                        <div class="col-xl-3">
-                                            <div class=" card">
-                                                <div class="card-body">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked" checked>
-                                                        <label class="form-check-label" for="flexCheckChecked">
-                                                            Imprimer etiquette facture
-                                                        </label>
-                                                    </div>
+                                    <div class="row"><div class="col-xl-3">
+                                        <div class=" card">
+                                            <div class="card-body">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value=""
+                                                        id="flexCheckChecked" checked>
+                                                    <label class="form-check-label" for="flexCheckChecked">
+                                                        Imprimer étiquette facture
+                                                    </label>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-xl-3">
-                                            <div class=" card">
-                                                <div class="card-body">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked" checked>
-                                                        <label class="form-check-label" for="flexCheckChecked">
-                                                            Abonné etiquette
-                                                        </label>
-                                                    </div>
+                                    </div>
+                                    <div class="col-xl-3">
+                                        <div class=" card">
+                                            <div class="card-body">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value=""
+                                                        id="flexCheckChecked" checked>
+                                                    <label class="form-check-label" for="flexCheckChecked">
+                                                        Abonné recapitulatif BLV
+                                                    </label>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
                                         <div class="col-xl-3">
                                             <div class=" card">
                                                 <div class="card-body">
@@ -794,33 +806,7 @@
                                                         <input class="form-check-input" type="checkbox" value=""
                                                             id="flexCheckChecked" checked>
                                                         <label class="form-check-label" for="flexCheckChecked">
-                                                            Compte tiers unqiue
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3">
-                                            <div class=" card">
-                                                <div class="card-body">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked" checked>
-                                                        <label class="form-check-label" for="flexCheckChecked">
-                                                            Abonné recapitulatif BLV
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3">
-                                            <div class=" card">
-                                                <div class="card-body">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked" checked>
-                                                        <label class="form-check-label" for="flexCheckChecked">
-                                                            Ne pas fusionner mes commandes
+                                                            Ne pas fusionner cdes
                                                         </label>
                                                     </div>
                                                 </div>
@@ -854,7 +840,92 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{-- Fin Divers --}}
+
+                                {{-- Comptabilité --}}
+                                <div class="tab-pane fade text-muted bg-tabs" id="compta-tab-pane" role="tabpanel"
+                                    tabindex="0">
+                                    <div class="row">
+
+                                        <div class="col-xl-3 mb-2">
+                                            <p class="mb-2 text-muted">Numéro RC:</p>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+
+                                        <div class="col-xl-3 mb-2">
+                                            <p class="mb-2 text-muted">Numéro CC :</p>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+
+                                        <div class="col-xl-3 mb-2">
+                                            <p class="mb-2 text-muted">N° compte tierce :</p>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+
+                                        <div class="col-xl-3 mb-2">
+                                            <p class="mb-2 text-muted">N° compte tierce ristourne:</p>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+
+                                        <div class="col-xl-3 mb-2">
+                                            <p class="mb-2 text-muted">N° compte tierce escompte:</p>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+
+                                        <div class="col-xl-3 mb-2">
+                                            <p class="mb-2 text-muted">Montant assis. Médiciel :</p>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+
+                                        <div class="col-xl-3 pt-1">
+                                            <div class="form-check mt-4">
+                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                <label class="form-check-label" for="flexCheckChecked">
+                                                    Assistance Médiciel
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- Divers --}}
+                                <div class="tab-pane fade text-muted bg-tabs" id="divers-tab-pane" role="tabpanel"
+                                    tabindex="0">
+                                    <div class=" row">
+
+                                        <div class="col-xl-3">
+                                            <div class=" card">
+                                                <div class="card-body">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked" checked>
+                                                        <label class="form-check-label" for="flexCheckChecked">
+                                                            Abonné etiquette
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3">
+                                            <div class=" card">
+                                                <div class="card-body">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked" checked>
+                                                        <label class="form-check-label" for="flexCheckChecked">
+                                                            Compte tiers unqiue
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <p class="mb-2 text-muted"> Commentaire</p>
+                                            <textarea class="form-control w-100" name="" id="" cols="30" rows="4"></textarea>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                
                             </div>
                             {{-- </div> --}}
                         </div>

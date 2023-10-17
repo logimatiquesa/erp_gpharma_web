@@ -206,3 +206,7 @@ label{
 .bg-tabs{
     background: rgb(201 183 240 / 11%);
 }
+
+.bg-thead-second{
+    background: #4E575C;
+}
