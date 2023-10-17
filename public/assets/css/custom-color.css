@@ -1,0 +1,13 @@
+:root{
+
+    --table-header-primary : #845adfc8
+}
+
+.texte-primary{
+    color : #906ED9;
+}
+.table > .table-header-primary{
+    background-color : #845adfc8 !important;
+    color: #906ED9;
+}
+

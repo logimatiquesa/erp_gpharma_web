@@ -1,0 +1,917 @@
+@extends('models')
+
+@section('content-body')
+    <!-- Start::app-content -->
+
+
+    <!-- Page Header -->
+    <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+        <h1 class="page-title fw-semibold fs-18 mb-0">Clients</h1>
+        <div class="ms-md-1 ms-0">
+            <nav>
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Fiches</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Client</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header Close -->
+
+
+
+
+    <!-- Start:: row-7 -->
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card custom-card">
+                <div class="card-body">
+                    <div class="d-flex flex-wrap justify-content-between">
+                        <div class="col-xl-3 col-lg-3 col-sm-3 col-6 mt-3 d-flex align-items-center">
+                            <div class="me-2">
+                                <span class="avatar avatar-rounded bg-primary-transparent text-primary"><i
+                                        class="ri-user-3-line fs-16"></i></span>
+                            </div>
+                            <div class="flex-fill">
+                                <p class="fs-18 mb-0 text-primary fw-semibold">25,350</p>
+                                <span class="text-muted fs-12">Nbre client</span>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-sm-3 col-6 mt-3 d-flex align-items-center">
+                            <div class="me-2">
+                                <span class="avatar avatar-rounded bg-light text-default"><i
+                                        class="ri-user-3-line fs-16"></i></span>
+                            </div>
+                            <div class="flex-fill">
+                                <p class="fs-18 mb-0 fw-semibold">19,200</p>
+                                <span class="text-muted fs-12">Total en cours</span>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-sm-3 col-12 mt-3 d-flex align-items-center">
+                            <div class="me-2">
+                                <span class="avatar avatar-rounded bg-success-transparent"><i
+                                        class="ri-user-3-line fs-16"></i></span>
+                            </div>
+                            <div class="flex-fill">
+                                <p class="fs-18 mb-0 text-success fw-semibold">1,24,890</p>
+                                <span class="text-muted fs-12">Total crédit max</span>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-sm-3 col-12 mt-3 d-flex align-items-center">
+                            <div class="row w-100">
+                                <div class="col-xl-7 col-lg-6 col-sm-6 col-6">
+                                    <button type="button" class="btn btn-secondary-light btn-wave"
+                                        data-bs-effect="effect-slide-in-right" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModalScrollable2">
+                                        <i class=" ri ri-add-circle-line"></i> Nouveau client
+                                    </button>
+                                </div>
+                                <div class="col-xl-5 col-lg-6 col-sm-6 col-6">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary-light dropdown-toggle"
+                                            data-bs-toggle="dropdown" data-bs-auto-close="inside" aria-expanded="false">
+                                            Action
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <div class="dropdown1">
+                                                    <button class="dropbtn1 text-start dropdown-toggle">Imprimer les
+                                                        étiquettes</button>
+                                                    <div class="dropdown-content1">
+                                                        <a href="#">Format classique</a>
+                                                        <a href="#">Format Bac</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="javascript:void(0);">
+                                                    Générer Code PIN Livraison
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="javascript:void(0);">
+                                                    Générer les clés Pharma-ML
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End:: row-7 -->
+
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card custom-card">
+                <div class="card-header"
+                    style="background: rgb(231,220,236); background: linear-gradient(90deg, rgba(231,220,236,0.8184523809523809) 4%, rgba(194,160,226,0.8016456582633054) 32%, rgba(196,13,232,0.33665966386554624) 58%);">
+                    <div class="row w-100">
+                        <div class="col-md-3 col-xl-3 d-flex">
+                            <span class=" badge bg-light text-dark pt-3 "
+                                style="border-radius:5px 0px 0px 5px">Garde&nbsp;:</span>
+                            <input type="text" class="form-control text-center" name="daterange" value="01/01/2018 - 01/15/2018"
+                                style="border-radius:0px 5px 5px 0px" />
+                        </div>
+                        <div class="offset-md-5 offset-sm-6 offset-xl-7 col-md-4 col-sm-3 col-xl-2 d-flex justify-content-between"
+                            style="margin-top : -14px">
+                            <span class="badge bg-light mt-3 pt-2" style="width:60px;">
+                                <i class="ri-printer-line text-dark" style="font-size:20px; cursor:pointer;"></i>
+                            </span>
+                            <div class="dropdown mt-3">
+                                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Plus de menus
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="javascript:void(0);">Historique des ventes</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0);">Réclamation du client</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0);">Compte du client</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0);">Compte extranet</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0);">Horaires d'appel</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+
+                    <div class="row g-3">
+                        <div class="col-md-2">
+                            <label>Code ou non du client</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                        <div class="col-md-2">
+                            <label>Type de client</label>
+                            <select class="form-select">
+                                <option value="paul">Paul</option>
+                            </select>
+                        </div>
+                        <div class="col-md-1">
+                            <label>Notation</label>
+                            <select class="form-select">
+                                <option value="paul">Paul</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label>Etat du compte</label>
+                            <select class="form-select">
+                                <option value="paul">Paul</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label>Commercial</label>
+                            <select class="form-select">
+                                <option value="paul">Paul</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label>Tournée</label>
+                            <select class="form-select">
+                                <option value="paul">Paul</option>
+                            </select>
+                        </div>
+                        <div class="col-md-1">
+                            <!-- <i class="fe fe-search" style="font-size:3rem"></i> -->
+
+
+                            <button type="button" class="btn btn-primary btn-wave mt-3">
+                                <i class="ri-search-line" style="font-size:13px; cursor:pointer;"></i>
+                            </button>
+                        </div>
+                    </div><br>
+                    <div class="table-responsive">
+                        <table class="table table-striped text-nowrap w-100" id="tableclient">
+                            <thead class="bg-primary">
+                                <tr class="text-light">
+                                    <th>
+                                        <input class="form-check-input mx-1" type="checkbox" id="checkboxNoLabel1"
+                                            value="" aria-label="...">
+                                        Actions
+                                    </th>
+                                    <th>Code client</th>
+                                    <th>Raison sociale</th>
+                                    {{-- <th>Représentant légal</th>
+                                    <th>Garde</th>
+                                    <th>Etat du compte</th>
+                                    <th>Téléphone Fixe</th>
+                                    <th>Téléphone Mobile</th>
+                                    <th>Forme Juridique</th>
+                                    <th>Email</th>
+                                    <th>Crédit max</th>
+                                    <th>Crédit Max Exploitation</th>
+                                    <th>Encours</th>
+                                    <th>Encours Théorique</th>
+                                    <th>Solde Facture</th>
+                                    <th>Solde Dispo.</th>
+                                    <th>Mode de paiement</th>
+                                    <th>Délais de Paiement</th>
+                                    <th>Tournée</th>
+                                    <th>Etiquette</th>
+                                    <th>Abonné Recap. BLV</th>
+                                    <th>N° Compte tiers</th>
+                                    <th>N° Compte tiers escompte</th>
+                                    <th>N° Compte tiers Ristourne</th>
+                                    <th>N° RC</th>
+                                    <th>N° CC</th>
+                                    <th>Etiquette Facture</th>
+                                    <th>Remise Commerciale</th>
+                                    <th>Ville</th>
+                                    <th>Agence</th>
+                                    <th>Liste Positive</th>
+                                    <th>Notation</th>
+                                    <th>Intention Commande</th>
+                                    <th>Taux BIC</th>
+                                    <th>Commercial</th>
+                                    <th>Previsionnel S1</th>
+                                    <th>CA Semestre 1</th>
+                                    <th>Taux S1</th>
+                                    <th>Previsionnel S2</th>
+                                    <th>CA Semestre 2</th>
+                                    <th>Taux S2</th>
+                                    <th>CA Annuel</th>
+                                    <th>Previsionnel Annuel</th>
+                                    <th>Taux Annuel</th>
+                                    <th>Régime fiscal</th>
+                                    <th>Division fiscale</th> --}}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel1"
+                                            value="" aria-label="..."></td>
+                                    <td>Paul</td>
+                                    <td>Christ</td>
+                                </tr>
+                                <tr>
+                                    <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel1"
+                                            value="" aria-label="..."></td>
+                                    <td>Paul</td>
+                                    <td>Christ</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End::app-content -->
+
+    {{-- Section modal --}}
+    <div class="modal fade" id="exampleModalScrollable2" tabindex="-1" aria-labelledby="exampleModalScrollable2"
+        data-bs-keyboard="false" aria-hidden="true">
+        <!-- Scrollable modal -->
+        <div class="modal-dialog  modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="staticBackdropLabel2">Fiche client</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Start::row-4 -->
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="card custom-card">
+                                <div class="card-body p-0">
+                                    <div class="row g-0">
+                                        <div class="col-xl-2 border-end border-inline-end-dashed">
+                                            <div class="d-flex flex-wrap align-items-top p-2">
+                                                <div class="me-3 lh-1">
+                                                    <span class="avatar avatar-md avatar-rounded bg-primary shadow-sm">
+                                                        <i class="ti ti-package fs-18"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="flex-fill">
+                                                    <h5 class="fw-semibold mb-1">45,280</h5>
+                                                    <p class="text-muted mb-0 fs-12">En cours</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 border-end border-inline-end-dashed">
+                                            <div class="d-flex flex-wrap align-items-top p-2">
+                                                <div class="me-3 lh-1">
+                                                    <span class="avatar avatar-md avatar-rounded bg-secondary shadow-sm">
+                                                        <i class="ti ti-rocket fs-18"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="flex-fill">
+                                                    <h5 class="fw-semibold mb-1">10,500</h5>
+                                                    <p class="text-muted mb-0 fs-12">Solde facture</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 border-end border-inline-end-dashed">
+                                            <div class="d-flex flex-wrap align-items-top p-2">
+                                                <div class="me-3 lh-1">
+                                                    <span class="avatar avatar-md avatar-rounded bg-success shadow-sm">
+                                                        <i class="ti ti-wallet fs-18"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="flex-fill">
+                                                    <h5 class="fw-semibold mb-1">$69,270</h5>
+                                                    <p class="text-muted mb-0 fs-12">Solde total</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 border-end border-inline-end-dashed">
+                                            <div class="d-flex flex-wrap align-items-top p-2">
+                                                <div class="me-3 lh-1">
+                                                    <span class="avatar avatar-md avatar-rounded bg-warning shadow-sm">
+                                                        <i class="ti ti-packge-import fs-18"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="flex-fill">
+                                                    <h5 class="fw-semibold mb-1">12,088</h5>
+                                                    <p class="text-muted mb-0 fs-12">Solde proto.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 border-end border-inline-end-dashed">
+                                            <div class="d-flex flex-wrap align-items-top p-2">
+                                                <div class="me-3 lh-1">
+                                                    <span class="avatar avatar-md avatar-rounded bg-warning shadow-sm">
+                                                        <i class="ti ti-packge-import fs-18"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="flex-fill">
+                                                    <h5 class="fw-semibold mb-1">12,088</h5>
+                                                    <p class="text-muted mb-0 fs-12">Solde global</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2">
+                                            <div class="d-flex flex-wrap align-items-top p-2">
+                                                <div class="me-3 lh-1">
+                                                    <span class="avatar avatar-md avatar-rounded bg-warning shadow-sm">
+                                                        <i class="ti ti-packge-import fs-18"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="flex-fill">
+                                                    <h5 class="fw-semibold mb-1">12,088</h5>
+                                                    <p class="text-muted mb-0 fs-12">Disponible</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End::row-4 -->
+
+                    <div class="row">
+                        <div class="">
+                            {{-- <div class="card-body"> --}}
+                            <ul class="nav nav-tabs tab-style-2 nav-justified mb-3 d-sm-flex d-block" id="myTab1"
+                                role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="order-tab" data-bs-toggle="tab"
+                                        data-bs-target="#order-tab-pane" type="button" role="tab"
+                                        aria-controls="home-tab-pane" aria-selected="true"><i
+                                            class="ri-gift-line me-1 align-middle"></i>Principales infos</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="confirmed-tab" data-bs-toggle="tab"
+                                        data-bs-target="#coordonne-tab-pane" type="button" role="tab"
+                                        aria-controls="profile-tab-pane" aria-selected="false"><i
+                                            class="ri-check-double-line me-1 align-middle"></i>Coordonnées</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="shipped-tab" data-bs-toggle="tab"
+                                        data-bs-target="#shipped-tab-pane" type="button" role="tab"
+                                        aria-controls="contact-tab-pane" aria-selected="false"><i
+                                            class="ri-shopping-bag-3-line me-1 align-middle"></i>Commerciales</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="delivered-tab" data-bs-toggle="tab"
+                                        data-bs-target="#delivered-tab-pane" type="button" role="tab"
+                                        aria-selected="false"><i
+                                            class="ri-truck-line me-1 align-middle"></i>Exploitation</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="compta-tab" data-bs-toggle="tab"
+                                        data-bs-target="#compta-tab-pane" type="button" role="tab"
+                                        aria-selected="false"><i
+                                            class="ri-settings-5-line me-1 align-middle"></i>Comptabilité</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="divers-tab" data-bs-toggle="tab"
+                                        data-bs-target="#divers-tab-pane" type="button" role="tab"
+                                        aria-selected="false"><i
+                                            class="ri-settings-5-line me-1 align-middle"></i>Divers</button>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active text-muted" id="order-tab-pane" role="tabpanel"
+                                    aria-labelledby="home-tab" tabindex="0">
+                                    <div class="row">
+                                        <div class="col-xl-2 mb-2">
+                                            <p class="mb-2 text-muted">Code client :</p>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+                                        <div class="col-xl-4 mb-2">
+                                            <p class="mb-2 text-muted">Raison sociale :</p>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+                                        <div class="col-xl-3 mb-2">
+                                            <p class="mb-2 text-muted">Type de client :</p>
+                                            <select class="form-select" name="choices-single-default" id="choices-single">
+                                                <option value="1">PHARMACIE</option>
+                                                <option value="2">PARAPHARMACE</option>
+                                                <option value="3">CENTRE MEDICAL</option>
+                                                <option value="4">LABORATOIRE</option>
+                                                <option value="5">AUTRE</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xl-3 mb-2">
+                                            <p class="mb-2 text-muted">Forme juridique :</p>
+                                            <select class="form-select" name="choices-single-default" id="choices-single">
+                                                <option value="1">SELECTIONNER LA FORME</option>
+                                                <option value="2">PARAPHARMACE</option>
+                                                <option value="3">CENTRE MEDICAL</option>
+                                                <option value="4">LABORATOIRE</option>
+                                                <option value="5">AUTRE</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xl-6 mb-2">
+                                            <p class="mb-2 text-muted">Représentant légal :</p>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+                                        <div class="col-xl-3 mb-2">
+                                            <p class="mb-2 text-muted">Tournée :</p>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+                                        <div class="col-xl-3 mb-2">
+                                            <p class="mb-2 text-muted">Numéro RC:</p>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+                                        <div class="col-xl-3 mb-2">
+                                            <p class="mb-2 text-muted">Numéro CC :</p>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+                                        <div class="col-xl-3 mb-2">
+                                            <p class="mb-2 text-muted">N° compte tierce :</p>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+                                        <div class="col-xl-3 mb-2">
+                                            <p class="mb-2 text-muted">N° compte tierce ristourne:</p>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+                                        <div class="col-xl-3 mb-2">
+                                            <p class="mb-2 text-muted">N° compte tierce escompte:</p>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade text-muted" id="coordonne-tab-pane" role="tabpanel"
+                                    aria-labelledby="profile-tab" tabindex="0">
+                                    <div class="row">
+                                        <div class="col-xl-3 mb-2">
+                                            <label for="input-label" class="form-label">Situation géographique</label>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+                                        <div class="col-xl-3 mb-2">
+                                            <label for="input-label" class="form-label">Adresse postale</label>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+                                        <div class="col-xl-3 mb-2">
+                                            <label for="input-label" class="form-label">Longitude</label>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+                                        <div class="col-xl-3 mb-2">
+                                            <label for="input-label" class="form-label">Latitude</label>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+                                        <div class="col-xl-4 mb-2">
+                                            <label for="input-label" class="form-label">Téléphone fixe</label>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+                                        <div class="col-xl-4 mb-2">
+                                            <label for="input-label" class="form-label">Téléphone mobile</label>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+                                        <div class="col-xl-4 mb-2">
+                                            <label for="input-label" class="form-label">N° téléphone commande</label>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <label for="input-label" class="form-label">Email</label>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <label for="input-label" class="form-label">Ville</label>
+                                            <select class="form-control" data-trigger name="choices-single-default" id="choices-single">
+                                                <option value="">Selectionner la ville</option>
+                                                <option value="Choice 1">Choice 1</option>
+                                                <option value="Choice 2">Choice 2</option>
+                                                <option value="Choice 3">Choice 3</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <label for="input-label" class="form-label">Secteur</label>
+                                            <select class="form-control" data-trigger name="choices-single-default" id="choices-single">
+                                                <option value="">Selectionner le secteur</option>
+                                                <option value="Choice 1">Choice 1</option>
+                                                <option value="Choice 2">Choice 2</option>
+                                                <option value="Choice 3">Choice 3</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- Debut commercial --}}
+                                <div class="tab-pane fade text-muted" id="shipped-tab-pane" role="tabpanel"
+                                    aria-labelledby="contact-tab" tabindex="0" style=" background : rgb(245, 245, 245)">
+                                    <div class=" row ">
+
+                                        <div class="col-xl-3 mb-2">
+                                            <label for="input-label" class="form-label">Banque : </label>
+                                            <select class="form-control" data-trigger name="choices-single-default" id="choices-single">
+                                                <option value="">Selectionner la banque</option>
+                                                <option value="Choice 1">Choice 1</option>
+                                                <option value="Choice 2">Choice 2</option>
+                                                <option value="Choice 3">Choice 3</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-xl-2 mb-2">
+                                            <label for="input-label" class="form-label">Code agence : </label>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+                                        <div class="col-xl-7 mb-2">
+                                            <label for="input-label" class="form-label">Numéro de compte et Clé RIB : </label>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+
+                                        <div class="col-xl-3 mb-2">
+                                            <label for="input-label" class="form-label">Mode de règlement préféré : </label>
+                                            <select class="form-control" data-trigger name="choices-single-default" id="choices-single">
+                                                <option value="">Selectionner la ville</option>
+                                                <option value="Choice 1">Choice 1</option>
+                                                <option value="Choice 2">Choice 2</option>
+                                                <option value="Choice 3">Choice 3</option>
+                                            </select>
+                                        </div>
+
+                                        
+                                        <div class="col-xl-2 mb-2">
+                                            <label for="input-label" class="form-label">Intent° Cmde : </label>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+
+                                        <div class="col-xl-4 mb-2">
+                                            <label for="input-label" class="form-label">Délai de paiement : </label>
+                                            <select class="form-control form-select" name="choices-single-default" id="choices-single">
+                                                <option value="">Selectionner le délai</option>
+                                                <option value="Choice 1">Choice 1</option>
+                                                <option value="Choice 2">Choice 2</option>
+                                                <option value="Choice 3">Choice 3</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-xl-3 mb-2">
+                                            <label for="input-label" class="form-label"></label>
+                                            <input type="text" class="form-control" id="input-label" value="EXCOMPTE" readonly>
+                                        </div>
+
+                                        <div class="col-xl-4 mb-2">
+                                            <label for="input-label" class="form-label">Délai de paiement ristourne : </label>
+                                            <select class="form-select" name="choices-single-default" id="choices-single">
+                                                <option value="">Selectionner le délai</option>
+                                                <option value="Choice 1">Choice 1</option>
+                                                <option value="Choice 2">Choice 2</option>
+                                                <option value="Choice 3">Choice 3</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-xl-4 mb-2">
+                                            <label for="input-label" class="form-label">Notation : </label>
+                                            <select class="form-select" name="choices-single-default" id="choices-single">
+                                                <option value="">Selectionner le délai</option>
+                                                <option value="Choice 1">Choice 1</option>
+                                                <option value="Choice 2">Choice 2</option>
+                                                <option value="Choice 3">Choice 3</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-xl-4 mb-2">
+                                            <label for="input-label" class="form-label">Commercial : </label>
+                                            <select class="form-control" data-trigger name="choices-single-default" id="choices-single">
+                                                <option value="">Selectionner le délai</option>
+                                                <option value="Choice 1">Choice 1</option>
+                                                <option value="Choice 2">Choice 2</option>
+                                                <option value="Choice 3">Choice 3</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-xl-4 mb-2">
+                                            <label for="input-label" class="form-label">Regime fiscal : </label>
+                                            <select class="form-select" name="choices-single-default" id="choices-single">
+                                                <option value="">Selectionner le délai</option>
+                                                <option value="Choice 1">Choice 1</option>
+                                                <option value="Choice 2">Choice 2</option>
+                                                <option value="Choice 3">Choice 3</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-xl-4 mb-2">
+                                            <label for="input-label" class="form-label">Divison fiscale : </label>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+
+                                        <div class="col-xl-4 mb-2 ">
+                                            <div class=" row">
+                                                <div class="col-xl-5">
+                                                    <label for="input-label" class="form-label">Clé pharma-ML : </label>
+                                                    <input type="text" class="form-control" id="input-label">
+                                                </div>
+                                                <div class="col-xl-2">
+                                                    <button class=" btn btn-primary">B</button>
+                                                </div>
+                                                <div class="col-xl-5">
+                                                    <label for="input-label" class="form-label">Code PIN livraison : </label>
+                                                    <input type="text" class="form-control" id="input-label">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 mb-2">
+                                            <label for="input-label" class="form-label">Taux de BIC : </label>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+
+                                        <div class="col-xl-3 mb-2">
+                                            <div class=" card">
+                                                <div class="card-body">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked" checked>
+                                                        <label class="form-check-label" for="flexCheckChecked">
+                                                            Abonné etiquette
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 mb-2">
+                                            <div class=" card">
+                                                <div class="card-body">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked" checked>
+                                                        <label class="form-check-label" for="flexCheckChecked">
+                                                            Abonné etiquette
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-xl-3 mb-2">
+                                            <label for="input-label" class="form-label">Mini. de commande</label>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+
+                                        <div class="col-xl-3 mb-2">
+                                            <div class=" card">
+                                                <div class="card-body">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked" checked>
+                                                        <label class="form-check-label" for="flexCheckChecked">
+                                                            Abonné etiquette
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 mb-2">
+                                            <div class=" card">
+                                                <div class="card-body">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked" checked>
+                                                        <label class="form-check-label" for="flexCheckChecked">
+                                                            Abonné etiquette
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 mb-2">
+                                            <p class="mb-2 text-muted">Crédit max:</p>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+                                        <div class="col-xl-3 mb-2">
+                                            <p class="mb-2 text-muted">Crédit max Exp. :</p>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+                                        <div class="col-xl-3">
+                                            <div class=" card">
+                                                <div class="card-body">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked" checked>
+                                                        <label class="form-check-label" for="flexCheckChecked">
+                                                            Grille spéciale Escompte / Ristourne
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{--  fin commercial --}}
+                                <div class="tab-pane fade text-muted" id="delivered-tab-pane" role="tabpanel"
+                                    tabindex="0">
+                                    <ul class="list-unstyled mb-0">
+                                        <li>A Latin professor at Hampden-Sydney College in Virginia, looked up one
+                                            of the more obscure Latin words, consectetur, from a Lorem Ipsum
+                                            passage, and going through the cites of the word in classical
+                                            literature.</li>
+                                    </ul>
+                                </div>
+                                {{-- Debut comptabilité --}}
+                                <div class="tab-pane fade text-muted" id="compta-tab-pane" role="tabpanel"
+                                    tabindex="0">
+                                    <ul class="list-unstyled mb-0">
+                                        <li>A Latin professor at Hampden-Sydney College in Virginia, looked up one
+                                            of the more obscure Latin words, consectetur, from a Lorem Ipsum
+                                            passage, and going through the cites of the word in classical
+                                            literature.</li>
+                                    </ul>
+                                </div>
+                                {{-- Fin Comptabilité --}}
+                                {{-- Debut Divers --}}
+                                <div class="tab-pane fade text-muted" id="divers-tab-pane" role="tabpanel"
+                                    tabindex="0">
+                                    <div class=" row">
+                                        <div class="col-xl-3">
+                                            <div class=" card">
+                                                <div class="card-body">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked" checked>
+                                                        <label class="form-check-label" for="flexCheckChecked">
+                                                            Imprimer etiquette facture
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3">
+                                            <div class=" card">
+                                                <div class="card-body">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked" checked>
+                                                        <label class="form-check-label" for="flexCheckChecked">
+                                                            Abonné etiquette
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3">
+                                            <div class=" card">
+                                                <div class="card-body">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked" checked>
+                                                        <label class="form-check-label" for="flexCheckChecked">
+                                                            Compte tiers unqiue
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3">
+                                            <div class=" card">
+                                                <div class="card-body">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked" checked>
+                                                        <label class="form-check-label" for="flexCheckChecked">
+                                                            Abonné recapitulatif BLV
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3">
+                                            <div class=" card">
+                                                <div class="card-body">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked" checked>
+                                                        <label class="form-check-label" for="flexCheckChecked">
+                                                            Ne pas fusionner mes commandes
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3">
+                                            <div class=" card">
+                                                <div class="card-body">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked" checked>
+                                                        <label class="form-check-label" for="flexCheckChecked">
+                                                            Récupère ses commandes
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3">
+                                            <div class=" card">
+                                                <div class="card-body">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked" checked>
+                                                        <label class="form-check-label" for="flexCheckChecked">
+                                                            Client à l'escompte
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- Fin Divers --}}
+                            </div>
+                            {{-- </div> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+
+            $('table-header-primary').css({
+                'background': '#845adfc8'
+            })
+
+            var table = $("#tableclient").DataTable({
+                language: {
+                    dom: 'Bfrtip',
+                    processing: false,
+
+                    lengthMenu: "Afficher :&nbsp; _MENU_ &eacute;l&eacute;ments",
+                    info: "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+                    infoEmpty: "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+                    infoFiltered: "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                    infoPostFix: "",
+                    loadingRecords: "Chargement en cours...",
+                    zeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher",
+                    emptyTable: "Aucune donnée disponible dans le tableau",
+
+                    paginate: {
+                        first: "",
+                        previous: "Pr&eacute;c&eacute;dent",
+                        next: "Suivant",
+                        last: ""
+                    },
+                    aria: {
+                        sortAscending: ": activer pour trier la colonne par ordre croissant",
+                        sortDescending: ": activer pour trier la colonne par ordre décroissant"
+                    },
+                    search: "Rechercher&nbsp;:",
+                },
+                // pagingType: 'full_numbers',
+                pageLength: 10,
+
+            })
+        })
+    </script>
+    <script>
+        $(function() {
+            $('input[name="daterange"]').daterangepicker({
+                opens: 'center'
+            }, function(start, end, label) {
+                console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end
+                    .format('YYYY-MM-DD'));
+            });
+        });
+    </script>
+@endsection
