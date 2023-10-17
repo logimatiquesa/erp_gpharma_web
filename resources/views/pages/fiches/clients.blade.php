@@ -414,7 +414,7 @@
                                 </li>
                             </ul>
                             <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active text-muted" id="order-tab-pane" role="tabpanel"
+                                <div class="tab-pane fade show active text-muted bg-tabs" id="order-tab-pane" role="tabpanel"
                                     aria-labelledby="home-tab" tabindex="0">
                                     <div class="row">
                                         <div class="col-xl-2 mb-2">
@@ -475,7 +475,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade text-muted" id="coordonne-tab-pane" role="tabpanel"
+
+                                <div class="tab-pane fade text-muted bg-tabs" id="coordonne-tab-pane" role="tabpanel"
                                     aria-labelledby="profile-tab" tabindex="0">
                                     <div class="row">
                                         <div class="col-xl-3 mb-2">
@@ -531,12 +532,13 @@
                                     </div>
                                 </div>
                                 {{-- Debut commercial --}}
-                                <div class="tab-pane fade text-muted" id="shipped-tab-pane" role="tabpanel"
-                                    aria-labelledby="contact-tab" tabindex="0" style=" background : rgb(245, 245, 245)">
+
+                                <div class="tab-pane fade text-muted bg-tabs" id="shipped-tab-pane" role="tabpanel"
+                                    aria-labelledby="contact-tab" tabindex="0" >
                                     <div class=" row ">
 
                                         <div class="col-xl-3 mb-2">
-                                            <label for="input-label" class="form-label">Banque : </label>
+                                            <p for="input-label" class="mb-2 text-muted">Banque : </p>
                                             <select class="form-control" data-trigger name="choices-single-default" id="choices-single">
                                                 <option value="">Selectionner la banque</option>
                                                 <option value="Choice 1">Choice 1</option>
@@ -546,16 +548,16 @@
                                         </div>
 
                                         <div class="col-xl-2 mb-2">
-                                            <label for="input-label" class="form-label">Code agence : </label>
-                                            <input type="text" class="form-control" id="input-label">
+                                            <p for="input-label" class="mb-2 text-muted">Code agence : </p>
+                                            <input type="text" class="form-control p-input" id="input-label">
                                         </div>
                                         <div class="col-xl-7 mb-2">
-                                            <label for="input-label" class="form-label">Numéro de compte et Clé RIB : </label>
-                                            <input type="text" class="form-control" id="input-label">
+                                            <p for="input-label" class="mb-2 text-muted">Numéro de compte et Clé RIB : </p>
+                                            <input type="text" class="form-control p-input" id="input-label">
                                         </div>
 
                                         <div class="col-xl-3 mb-2">
-                                            <label for="input-label" class="form-label">Mode de règlement préféré : </label>
+                                            <p for="input-label" class="mb-2 text-muted">Mode de règlement préféré : </p>
                                             <select class="form-control" data-trigger name="choices-single-default" id="choices-single">
                                                 <option value="">Selectionner la ville</option>
                                                 <option value="Choice 1">Choice 1</option>
@@ -564,15 +566,15 @@
                                             </select>
                                         </div>
 
-                                        
+
                                         <div class="col-xl-2 mb-2">
-                                            <label for="input-label" class="form-label">Intent° Cmde : </label>
-                                            <input type="text" class="form-control" id="input-label">
+                                            <p for="input-label" class="mb-2 text-muted">Intent° Cmde : </p>
+                                            <input type="text" class="form-control p-input" id="input-label">
                                         </div>
 
                                         <div class="col-xl-4 mb-2">
-                                            <label for="input-label" class="form-label">Délai de paiement : </label>
-                                            <select class="form-control form-select" name="choices-single-default" id="choices-single">
+                                            <p for="input-label" class="mb-2 text-muted">Délai de paiement : </p>
+                                            <select class="form-control form-select p-select" name="choices-single-default" id="choices-single">
                                                 <option value="">Selectionner le délai</option>
                                                 <option value="Choice 1">Choice 1</option>
                                                 <option value="Choice 2">Choice 2</option>
@@ -581,13 +583,13 @@
                                         </div>
 
                                         <div class="col-xl-3 mb-2">
-                                            <label for="input-label" class="form-label"></label>
-                                            <input type="text" class="form-control" id="input-label" value="EXCOMPTE" readonly>
+                                            <p for="input-label" class="mb-2 text-muted">&nbsp;</p>
+                                            <input type="text" class="form-control p-input text-center" id="input-label" value="EXCOMPTE" readonly>
                                         </div>
 
                                         <div class="col-xl-4 mb-2">
-                                            <label for="input-label" class="form-label">Délai de paiement ristourne : </label>
-                                            <select class="form-select" name="choices-single-default" id="choices-single">
+                                            <p for="input-label" class="mb-2 text-muted">Délai de paiement ristourne : </p>
+                                            <select class="form-select p-select" name="choices-single-default" id="choices-single">
                                                 <option value="">Selectionner le délai</option>
                                                 <option value="Choice 1">Choice 1</option>
                                                 <option value="Choice 2">Choice 2</option>
@@ -596,8 +598,8 @@
                                         </div>
 
                                         <div class="col-xl-4 mb-2">
-                                            <label for="input-label" class="form-label">Notation : </label>
-                                            <select class="form-select" name="choices-single-default" id="choices-single">
+                                            <p for="input-label" class="mb-2 text-muted">Notation : </p>
+                                            <select class="form-select p-select" name="choices-single-default" id="choices-single">
                                                 <option value="">Selectionner le délai</option>
                                                 <option value="Choice 1">Choice 1</option>
                                                 <option value="Choice 2">Choice 2</option>
@@ -606,8 +608,8 @@
                                         </div>
 
                                         <div class="col-xl-4 mb-2">
-                                            <label for="input-label" class="form-label">Commercial : </label>
-                                            <select class="form-control" data-trigger name="choices-single-default" id="choices-single">
+                                            <p for="input-label" class="mb-2 text-muted">Commercial : </p>
+                                            <select class="form-control " data-trigger name="choices-single-default" id="choices-single">
                                                 <option value="">Selectionner le délai</option>
                                                 <option value="Choice 1">Choice 1</option>
                                                 <option value="Choice 2">Choice 2</option>
@@ -616,8 +618,8 @@
                                         </div>
 
                                         <div class="col-xl-4 mb-2">
-                                            <label for="input-label" class="form-label">Regime fiscal : </label>
-                                            <select class="form-select" name="choices-single-default" id="choices-single">
+                                            <p for="input-label" class="mb-2 text-muted">Regime fiscal : </p>
+                                            <select class="form-select p-select" name="choices-single-default" id="choices-single">
                                                 <option value="">Selectionner le délai</option>
                                                 <option value="Choice 1">Choice 1</option>
                                                 <option value="Choice 2">Choice 2</option>
@@ -626,97 +628,100 @@
                                         </div>
 
                                         <div class="col-xl-4 mb-2">
-                                            <label for="input-label" class="form-label">Divison fiscale : </label>
-                                            <input type="text" class="form-control" id="input-label">
+                                            <p for="input-label" class="mb-2 text-muted">Divison fiscale : </p>
+                                            <input type="text" class="form-control p-input" id="input-label">
                                         </div>
 
                                         <div class="col-xl-4 mb-2 ">
                                             <div class=" row">
-                                                <div class="col-xl-5">
-                                                    <label for="input-label" class="form-label">Clé pharma-ML : </label>
-                                                    <input type="text" class="form-control" id="input-label">
+                                                <div class="col-5">
+                                                    <p for="input-label" class="mb-2 text-muted">Clé pharma-ML : </p>
+                                                    <input type="text" class="form-control p-input" id="input-label">
                                                 </div>
-                                                <div class="col-xl-2">
+                                                <div class="col-2" style=" margin-top:7%">
                                                     <button class=" btn btn-primary">B</button>
                                                 </div>
-                                                <div class="col-xl-5">
-                                                    <label for="input-label" class="form-label">Code PIN livraison : </label>
-                                                    <input type="text" class="form-control" id="input-label">
+                                                <div class="col-5">
+                                                    <p for="input-label" class="mb-2 text-muted">Code PIN livraison : </p>
+                                                    <input type="text" class="form-control p-input" id="input-label">
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xl-3 mb-2">
-                                            <label for="input-label" class="form-label">Taux de BIC : </label>
-                                            <input type="text" class="form-control" id="input-label">
                                         </div>
 
                                         <div class="col-xl-3 mb-2">
-                                            <div class=" card">
-                                                <div class="card-body">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked" checked>
-                                                        <label class="form-check-label" for="flexCheckChecked">
-                                                            Abonné etiquette
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 mb-2">
-                                            <div class=" card">
-                                                <div class="card-body">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked" checked>
-                                                        <label class="form-check-label" for="flexCheckChecked">
-                                                            Abonné etiquette
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-xl-3 mb-2">
-                                            <label for="input-label" class="form-label">Mini. de commande</label>
-                                            <input type="text" class="form-control" id="input-label">
+                                            <p for="input-label" class="mb-2 text-muted">Taux de BIC : </p>
+                                            <input type="text" class="form-control p-input" id="input-label">
                                         </div>
 
                                         <div class="col-xl-3 mb-2">
+                                            <p for="input-label" class=" mb-2 text-muted">Mini. de commande</p>
+                                            <input type="text" class="form-control p-input" id="input-label">
+                                        </div>
+
+                                        <div class="col-xl-3 mb-2">
+                                            <p class="mb-2 text-muted ">Crédit max:</p>
+                                            <input type="text" class="form-control p-input" id="input-label">
+                                        </div>
+                                        <div class="col-xl-3 mb-2">
+                                            <p class="mb-2 text-muted ">Crédit max Exp. :</p>
+                                            <input type="text" class="form-control p-input" id="input-label">
+                                        </div>
+                                    </div>
+                                    <div class=" row  mt-2">
+                                        <div class="col-xl-4">
                                             <div class=" card">
                                                 <div class="card-body">
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" value=""
                                                             id="flexCheckChecked" checked>
                                                         <label class="form-check-label" for="flexCheckChecked">
-                                                            Abonné etiquette
+                                                           Liste positive
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-xl-3 mb-2">
+                                        <div class="col-xl-4">
                                             <div class=" card">
                                                 <div class="card-body">
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" value=""
                                                             id="flexCheckChecked" checked>
                                                         <label class="form-check-label" for="flexCheckChecked">
-                                                            Abonné etiquette
+                                                            Remise commerciale
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-xl-3 mb-2">
-                                            <p class="mb-2 text-muted">Crédit max:</p>
-                                            <input type="text" class="form-control" id="input-label">
+
+                                        <div class="col-xl-4">
+                                            <div class=" card">
+                                                <div class="card-body">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked" checked>
+                                                        <label class="form-check-label" for="flexCheckChecked">
+                                                            Minimum sur le total de la journée
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-xl-3 mb-2">
-                                            <p class="mb-2 text-muted">Crédit max Exp. :</p>
-                                            <input type="text" class="form-control" id="input-label">
+                                        <div class="col-xl-4">
+                                            <div class=" card">
+                                                <div class="card-body">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked" checked>
+                                                        <label class="form-check-label" for="flexCheckChecked">
+                                                            Valider AVOIR mannuellement
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-xl-3">
+                                        <div class="col-xl-4">
                                             <div class=" card">
                                                 <div class="card-body">
                                                     <div class="form-check">
@@ -732,7 +737,7 @@
                                     </div>
                                 </div>
                                 {{--  fin commercial --}}
-                                <div class="tab-pane fade text-muted" id="delivered-tab-pane" role="tabpanel"
+                                <div class="tab-pane fade text-muted bg-tabs" id="delivered-tab-pane" role="tabpanel"
                                     tabindex="0">
                                     <ul class="list-unstyled mb-0">
                                         <li>A Latin professor at Hampden-Sydney College in Virginia, looked up one
@@ -742,7 +747,7 @@
                                     </ul>
                                 </div>
                                 {{-- Debut comptabilité --}}
-                                <div class="tab-pane fade text-muted" id="compta-tab-pane" role="tabpanel"
+                                <div class="tab-pane fade text-muted bg-tabs" id="compta-tab-pane" role="tabpanel"
                                     tabindex="0">
                                     <ul class="list-unstyled mb-0">
                                         <li>A Latin professor at Hampden-Sydney College in Virginia, looked up one
@@ -753,7 +758,7 @@
                                 </div>
                                 {{-- Fin Comptabilité --}}
                                 {{-- Debut Divers --}}
-                                <div class="tab-pane fade text-muted" id="divers-tab-pane" role="tabpanel"
+                                <div class="tab-pane fade text-muted bg-tabs" id="divers-tab-pane" role="tabpanel"
                                     tabindex="0">
                                     <div class=" row">
                                         <div class="col-xl-3">
@@ -856,8 +861,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save Changes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="ri-close-circle-line"></i> Fermer</button>
+                    <button type="button" class="btn btn-primary"><i class="ri-checkbox-circle-line"></i> Enregistrer </button>
                 </div>
             </div>
         </div>

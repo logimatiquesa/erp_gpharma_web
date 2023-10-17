@@ -196,3 +196,13 @@ label{
     font-weight: bold;
 }
 /* .dropdown1:hover .dropbtn1 {background-color: #3e8e41;} */
+
+.p-input{
+    padding: 8px;
+}
+.p-select{
+    padding: 10px;
+}
+.bg-tabs{
+    background: rgb(201 183 240 / 11%);
+}
