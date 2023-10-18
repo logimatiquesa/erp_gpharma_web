@@ -21,6 +21,4 @@ Route::get('/', function () {
 Route::get('/fiches.produits', function () {
     return view('pages.fiches.produits');
 });
-Route::get('/fiches.clients', function () {
-    return view('pages.fiches.clients');
-});
+

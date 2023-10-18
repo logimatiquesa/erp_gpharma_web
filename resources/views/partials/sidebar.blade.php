@@ -43,6 +43,51 @@
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">
                                 <i class="bx bx-home side-menu__icon"></i>
+                                <span class="side-menu__label">Client </span>
+                                <i class="fe fe-chevron-right side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide side-menu__label1">
+                                    <a href="javascript:void(0)">Client</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="{{ url("client/listing") }}" class="side-menu__item">Listing client</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="index-1.html" class="side-menu__item">Client de garde</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="index-2.html" class="side-menu__item">Prospection</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- End::slide -->
+
+                        <!-- Start::slide -->
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="bx bx-home side-menu__icon"></i>
+                                <span class="side-menu__label">Produit</span>
+                                <i class="fe fe-chevron-right side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide side-menu__label1">
+                                    <a href="javascript:void(0)">Produit</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="{{ url("/fiches.produits") }}" class="side-menu__item">Catalogue produit</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="index-1.html" class="side-menu__item">Historique de stock</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- End::slide -->
+
+                        <!-- Start::slide -->
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="bx bx-home side-menu__icon"></i>
                                 <span class="side-menu__label">Fiches </span>
                                 <i class="fe fe-chevron-right side-menu__angle"></i>
                             </a>
@@ -61,9 +106,6 @@
                                 </li>
                                 <li class="slide">
                                     <a href="index-3.html" class="side-menu__item">Historique de stock</a>
-                                </li>
-                                <li class="slide">
-                                    <a href="{{ url("/fiches.clients") }}" class="side-menu__item">Clients</a>
                                 </li>
                                 <li class="slide">
                                     <a href="index-5.html" class="side-menu__item">Clients de garde</a>

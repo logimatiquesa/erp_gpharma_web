@@ -202,7 +202,7 @@
                                     </th>
                                     <th>Code client</th>
                                     <th>Raison sociale</th>
-                                    {{-- <th>Représentant légal</th>
+                                    <th>Représentant légal</th>
                                     <th>Garde</th>
                                     <th>Etat du compte</th>
                                     <th>Téléphone Fixe</th>
@@ -244,23 +244,9 @@
                                     <th>Previsionnel Annuel</th>
                                     <th>Taux Annuel</th>
                                     <th>Régime fiscal</th>
-                                    <th>Division fiscale</th> --}}
+                                    <th>Division fiscale</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel1"
-                                            value="" aria-label="..."></td>
-                                    <td>Paul</td>
-                                    <td>Christ</td>
-                                </tr>
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel1"
-                                            value="" aria-label="..."></td>
-                                    <td>Paul</td>
-                                    <td>Christ</td>
-                                </tr>
-                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -941,45 +927,68 @@
 @endsection
 
 @section('script')
+
+    {{-- Script executé au chargement de la page --}}
     <script>
-        $(document).ready(function() {
 
-            $('table-header-primary').css({
-                'background': '#845adfc8'
-            })
+        var tableClient
 
-            var table = $("#tableclient").DataTable({
-                language: {
-                    dom: 'Bfrtip',
-                    processing: false,
+        function chargerTableListingClient(){
 
-                    lengthMenu: "Afficher :&nbsp; _MENU_ &eacute;l&eacute;ments",
-                    info: "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
-                    infoEmpty: "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
-                    infoFiltered: "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
-                    infoPostFix: "",
-                    loadingRecords: "Chargement en cours...",
-                    zeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher",
-                    emptyTable: "Aucune donnée disponible dans le tableau",
+            $.ajax({
 
-                    paginate: {
-                        first: "",
-                        previous: "Pr&eacute;c&eacute;dent",
-                        next: "Suivant",
-                        last: ""
-                    },
-                    aria: {
-                        sortAscending: ": activer pour trier la colonne par ordre croissant",
-                        sortDescending: ": activer pour trier la colonne par ordre décroissant"
-                    },
-                    search: "Rechercher&nbsp;:",
+                url : '{{ route('listingClient')}}',
+                type : 'GET',
+                data : {
+
                 },
-                // pagingType: 'full_numbers',
-                pageLength: 10,
+                dataType : 'json',
+                success : function(response){
 
+                    obj = response.data
+
+                    tableClient = $("#tableclient").DataTable({
+
+                        language: {
+                            dom: 'Bfrtip',
+                            processing: false,
+
+                            lengthMenu: "Afficher :&nbsp; _MENU_ &eacute;l&eacute;ments",
+                            info: "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+                            infoEmpty: "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+                            infoFiltered: "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                            infoPostFix: "",
+                            loadingRecords: "Chargement en cours...",
+                            zeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher",
+                            emptyTable: "Aucune donnée disponible dans le tableau",
+
+                            paginate: {
+                                first: "",
+                                previous: "Pr&eacute;c&eacute;dent",
+                                next: "Suivant",
+                                last: ""
+                            },
+                            aria: {
+                                sortAscending: ": activer pour trier la colonne par ordre croissant",
+                                sortDescending: ": activer pour trier la colonne par ordre décroissant"
+                            },
+                            search: "Rechercher&nbsp;:",
+                        },
+                        pageLength: 10,
+
+                    })
+                },
+                error : function(response){
+                    console.log(response)
+                }
+                
             })
-        })
+        }
+
+        chargerTableListingClient()
     </script>
+
+    
     <script>
         $(function() {
             $('input[name="daterange"]').daterangepicker({
