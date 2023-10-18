@@ -5,20 +5,103 @@
 
 
     <!-- Page Header -->
-    <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
-        <h1 class="page-title fw-semibold fs-18 mb-0">Clients</h1>
-        <div class="ms-md-1 ms-0">
-            <nav>
-                <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="javascript:void(0);">Fiches</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Client</li>
-                </ol>
-            </nav>
-        </div>
+    <div class="d-md-flex d-block align-items-center justify-content-between mt-4 page-header-breadcrumb">
+        <!-- Start:: row-7 -->
+        {{-- <div class="row"> --}}
+            <div class="col-xl-12 col-12">
+                <div class="card custom-card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-6 col-md-4 mt-2">
+                                <nav>
+                                    <ol class="breadcrumb mb-0">
+                                        <li class="breadcrumb-item text-light"><a href="javascript:void(0);">Client</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Listing client</li>
+                                    </ol>
+                                </nav>
+                            </div>
+
+                            <div class="col-xl-6 col-md-8">
+                                <div class="row">
+                                    <div class="col-xl-6 col-md-8">
+                                        <div class="row">
+                                            <div class="col-xl-8 col-lg-6 col-sm-6 col-6">
+                                                <button type="button" class="btn btn-secondary-light btn-wave"
+                                                    data-bs-effect="effect-slide-in-right" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModalScrollable2">
+                                                    <i class=" ri ri-add-circle-line"></i> Nouveau client
+                                                </button>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-6 col-sm-6 col-6">
+                                                <div class="btn-group" style="margin-top : 1px;">
+                                                    <button type="button" class="btn btn-primary-light dropdown-toggle"
+                                                        data-bs-toggle="dropdown" data-bs-auto-close="inside" aria-expanded="false">
+                                                        Action
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <div class="dropdown1">
+                                                                <button class="dropbtn1 text-start dropdown-toggle">Imprimer les
+                                                                    étiquettes</button>
+                                                                <div class="dropdown-content1">
+                                                                    <a href="#">Format classique</a>
+                                                                    <a href="#">Format Bac</a>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <hr class="dropdown-divider">
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item" href="javascript:void(0);">
+                                                                Générer Code PIN Livraison
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <hr class="dropdown-divider">
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item" href="javascript:void(0);">
+                                                                Générer les clés Pharma-ML
+                                                            </a>
+                                                        </li>
+        
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-md-4">
+                                        <div class=" d-flex justify-content-end">
+                                            <span class="badge bg-light pt-2" style="width:40px;">
+                                                <i class="ri-printer-line text-dark" style="font-size:20px; cursor:pointer;"></i>
+                                            </span>
+                                            <div class="dropdown">
+                                                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Plus de menus
+                                                </button>
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                    <li><a class="dropdown-item" href="javascript:void(0);">Historique des ventes</a></li>
+                                                    <li><a class="dropdown-item" href="javascript:void(0);">Réclamation du client</a></li>
+                                                    <li><a class="dropdown-item" href="javascript:void(0);">Compte du client</a></li>
+                                                    <li><a class="dropdown-item" href="javascript:void(0);">Compte extranet</a></li>
+                                                    <li><a class="dropdown-item" href="javascript:void(0);">Horaires d'appel</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{-- </div> --}}
+        <!-- End:: row-7 -->
+        {{-- <h1 class="page-title fw-semibold fs-18 mb-0">Clients</h1> --}}
     </div>
     <!-- Page Header Close -->
-
-
 
 
     <!-- Start:: row-7 -->
@@ -26,8 +109,8 @@
         <div class="col-xl-12">
             <div class="card custom-card">
                 <div class="card-body">
-                    <div class="d-flex flex-wrap justify-content-between">
-                        <div class="col-xl-3 col-lg-3 col-sm-3 col-6 mt-3 d-flex align-items-center">
+                    <div class="row px-4">
+                        <div class="col-xl-4 col-lg-4 col-sm-4 col-6 d-flex align-items-center">
                             <div class="me-2">
                                 <span class="avatar avatar-rounded bg-primary-transparent text-primary"><i
                                         class="ri-user-3-line fs-16"></i></span>
@@ -37,17 +120,17 @@
                                 <span class="text-muted fs-12">Nbre client</span>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-lg-3 col-sm-3 col-6 mt-3 d-flex align-items-center">
+                        <div class="col-xl-4 col-lg-4 col-sm-4 col-6 d-flex align-items-center">
                             <div class="me-2">
                                 <span class="avatar avatar-rounded bg-light text-default"><i
                                         class="ri-user-3-line fs-16"></i></span>
                             </div>
                             <div class="flex-fill">
                                 <p class="fs-18 mb-0 fw-semibold">19,200</p>
-                                <span class="text-muted fs-12">Total en cours</span>
+                                <span class="text-muted fs-12">Total encours</span>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-lg-3 col-sm-3 col-12 mt-3 d-flex align-items-center">
+                        <div class="col-xl-4 col-lg-4 col-sm-4 col-1 d-flex align-items-center">
                             <div class="me-2">
                                 <span class="avatar avatar-rounded bg-success-transparent"><i
                                         class="ri-user-3-line fs-16"></i></span>
@@ -55,54 +138,6 @@
                             <div class="flex-fill">
                                 <p class="fs-18 mb-0 text-success fw-semibold">1,24,890</p>
                                 <span class="text-muted fs-12">Total crédit max</span>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-sm-3 col-12 mt-3 d-flex align-items-center">
-                            <div class="row w-100">
-                                <div class="col-xl-7 col-lg-6 col-sm-6 col-6">
-                                    <button type="button" class="btn btn-secondary-light btn-wave"
-                                        data-bs-effect="effect-slide-in-right" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModalScrollable2">
-                                        <i class=" ri ri-add-circle-line"></i> Nouveau client
-                                    </button>
-                                </div>
-                                <div class="col-xl-5 col-lg-6 col-sm-6 col-6">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary-light dropdown-toggle"
-                                            data-bs-toggle="dropdown" data-bs-auto-close="inside" aria-expanded="false">
-                                            Action
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <div class="dropdown1">
-                                                    <button class="dropbtn1 text-start dropdown-toggle">Imprimer les
-                                                        étiquettes</button>
-                                                    <div class="dropdown-content1">
-                                                        <a href="#">Format classique</a>
-                                                        <a href="#">Format Bac</a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="javascript:void(0);">
-                                                    Générer Code PIN Livraison
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="javascript:void(0);">
-                                                    Générer les clés Pharma-ML
-                                                </a>
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -115,85 +150,78 @@
     <div class="row">
         <div class="col-xl-12">
             <div class="card custom-card">
-                <div class="card-header"
-                    style="background: rgb(231,220,236); background: linear-gradient(90deg, rgba(231,220,236,0.8184523809523809) 4%, rgba(194,160,226,0.8016456582633054) 32%, rgba(196,13,232,0.33665966386554624) 58%);">
+                <div class="card-header pe-0 pe-0">
                     <div class="row w-100">
-                        <div class="col-md-3 col-xl-3 d-flex">
-                            <span class=" badge bg-light text-dark pt-3 "
-                                style="border-radius:5px 0px 0px 5px">Garde&nbsp;:</span>
-                            <input type="text" class="form-control text-center" name="daterange" value="01/01/2018 - 01/15/2018"
-                                style="border-radius:0px 5px 5px 0px" />
+                        <div class="col-md-3 mb-2">
+                            <p class="mb-0 text-muted">Code ou non du client</p>
+                            <input type="text" class="form-control" />
                         </div>
-                        <div class="offset-md-5 offset-sm-6 offset-xl-7 col-md-4 col-sm-3 col-xl-2 d-flex justify-content-between"
-                            style="margin-top : -14px">
-                            <span class="badge bg-light mt-3 pt-2" style="width:60px;">
-                                <i class="ri-printer-line text-dark" style="font-size:20px; cursor:pointer;"></i>
-                            </span>
-                            <div class="dropdown mt-3">
-                                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Plus de menus
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="javascript:void(0);">Historique des ventes</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0);">Réclamation du client</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0);">Compte du client</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0);">Compte extranet</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0);">Horaires d'appel</a></li>
-                                </ul>
+                        <div class="col-xl-3 col-md-3">
+                            <p class="mb-0 text-muted">Période de garde&nbsp;:</p>
+                            <input type="text" class="form-control text-center" name="daterange" value="01/01/2018 - 01/15/2018"/>
+                        </div>
+                        <div class="col-xl-3 col-md-1 mb-2">
+                            <p class="mb-0 text-muted">Notation</p>
+                            <select class="form-select">
+                                <option value="paul">Paul</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-3 col-md-2 mb-0">
+                            <p class="mb-0 text-muted">Tournée</p>
+                            <select class="form-select">
+                                <option value="paul">Paul</option>
+                            </select>
+                        </div>
+                        <div class="accordion accordion-flush mt-2" id="accordionFlushExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingOne">
+                                    <button class="accordion-button collapsed pb-2" type="button" style="background: #FFD7DA;font-size : .78rem;" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                        Autres options de filtre
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body bg-tabs">
+
+                                        <div class="row">
+                                            
+                                            <div class="col-xl-4 col-md-2 mb-2">
+                                                <p class="mb-0 text-muted">Type de client</p>
+                                                <select class="form-select">
+                                                    <option value="paul">Paul</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-xl-4 col-md-2 mb-2">
+                                                <p class="mb-0 text-muted">Etat du compte</p>
+                                                <select class="form-select">
+                                                    <option value="paul">Paul</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-xl-4 col-md-2 mb-2">
+                                                <p class="mb-0 text-muted">Commercial</p>
+                                                <select class="form-select">
+                                                    <option value="paul">Paul</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-xl-3 col-md-2 mb-2 pt-1">
+                                                <button type="button" class="btn btn-primary btn-wave mt-2">
+                                                    <i class="ri-search-line" style="font-size:13px; cursor:pointer;"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-
-                    <div class="row g-3">
-                        <div class="col-md-2">
-                            <label>Code ou non du client</label>
-                            <input type="text" class="form-control" />
-                        </div>
-                        <div class="col-md-2">
-                            <label>Type de client</label>
-                            <select class="form-select">
-                                <option value="paul">Paul</option>
-                            </select>
-                        </div>
-                        <div class="col-md-1">
-                            <label>Notation</label>
-                            <select class="form-select">
-                                <option value="paul">Paul</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2">
-                            <label>Etat du compte</label>
-                            <select class="form-select">
-                                <option value="paul">Paul</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2">
-                            <label>Commercial</label>
-                            <select class="form-select">
-                                <option value="paul">Paul</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2">
-                            <label>Tournée</label>
-                            <select class="form-select">
-                                <option value="paul">Paul</option>
-                            </select>
-                        </div>
-                        <div class="col-md-1">
-                            <!-- <i class="fe fe-search" style="font-size:3rem"></i> -->
-
-
-                            <button type="button" class="btn btn-primary btn-wave mt-3">
-                                <i class="ri-search-line" style="font-size:13px; cursor:pointer;"></i>
-                            </button>
-                        </div>
-                    </div><br>
                     <div class="table-responsive">
-                        <table class="table table-striped text-nowrap w-100" id="tableclient">
-                            <thead class="bg-primary">
+                        <table class="table table-striped text-nowrap" id="tableclient">
+                            <thead style="background: #182c37">
                                 <tr class="text-light">
                                     <th>
                                         <input class="form-check-input mx-1" type="checkbox" id="checkboxNoLabel1"
@@ -975,7 +1003,31 @@
                             search: "Rechercher&nbsp;:",
                         },
                         pageLength: 10,
+                        "data" : obj,
+                        'columns' : [
 
+                            {
+                                data : 'action'
+                            },
+                            {
+                                data : 'CodeClient'
+                            },
+                            {
+                                data : 'NomClient'
+                            },
+                            {
+                                data : 'stockReel'
+                            },
+                            {
+                                data : 'qteAchat'
+                            },
+                            {
+                                data : 'qteCde'
+                            },
+                            {
+                                data : 'stockATerme'
+                            }
+                        ]
                     })
                 },
                 error : function(response){

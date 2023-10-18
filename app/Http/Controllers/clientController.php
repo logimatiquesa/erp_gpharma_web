@@ -17,30 +17,23 @@ class clientController extends Controller
         try {
 
             // Paramètres (remplacez ces valeurs par les valeurs réelles)
-            $typSelect = 'valeur_typSelect';
-            $commercialSelect = 'valeur_commercialSelect';
-            $tournSelect = 'valeur_tournSelect';
-            $noteSelect = 'valeur_noteSelect';
-            $etatCompSelect = 'valeur_etatCompSelect';
-            $codNomClientRech = 'valeur_codNomClientRech';
+            $typSelect = '';
+            $commercialSelect = '';
+            $tournSelect = '';
+            $noteSelect = '';
+            $etatCompSelect = '';
+            $codNomClientRech = '';
+
+            $btnAction = '<input class="form-check-input mx-1" type="checkbox" id="checkboxNoLabel1"
+            value="" aria-label="..."><a><i class="bx bxs-trash"></i></a><a><i class="bx bxs-edit"></i></a><a><i class="bx bx-dots-horizontal-rounded" ></i></a>';
 
             // Exécution de la requête avec le Query Builder
-            $resultats = DB::table('CLIENT')
+            $query = DB::table('CLIENT')
                 ->leftJoin('DELAI_PAIEMENT', 'DELAI_PAIEMENT.IDDELAI_PAIEMENT', '=', 'CLIENT.IDDELAI_PAIEMENT')
                 ->leftJoin('MODEPAIEMENT', 'CLIENT.IDMODEPAIEMENT', '=', 'MODEPAIEMENT.IDMODEPAIEMENT')
                 ->leftJoin('TOURNEE', 'CLIENT.IDTOURNEE', '=', 'TOURNEE.IDTOURNEE')
                 ->leftJoin('AGENCE', 'TOURNEE.IDAGENCE', '=', 'AGENCE.IDAGENCE')
                 ->leftJoin('REGIME_FISCAL', 'CLIENT.IDREGIME_FISCAL', '=', 'REGIME_FISCAL.IDREGIME_FISCAL')
-                ->where('CLIENT.TypeClient', '=', $typSelect)
-                ->where('CLIENT.IDPERSONNEL', '=', $commercialSelect)
-                ->where('CLIENT.IDTOURNEE', '=', $tournSelect)
-                ->where('CLIENT.NotationClient', '=', $noteSelect)
-                ->where('CLIENT.EtatCompteClient', '=', $etatCompSelect)
-                ->where(function($query) use ($codNomClientRech) {
-                    $query->where('CLIENT.CodeClient', '=', $codNomClientRech)
-                        ->orWhere('CLIENT.NomClient', 'LIKE', '%' . $codNomClientRech . '%');
-                })
-                ->orderBy('NomClient', 'asc')
                 ->select([
                     'CLIENT.IDCLIENT as IDCLIENT',
                     'CLIENT.TypeClient as TypeClient',
@@ -90,12 +83,35 @@ class clientController extends Controller
                     'CLIENT.NumeroCompte as NumeroCompte',
                     'CLIENT.DivisionFiscale as DivisionFiscale',
                     'CLIENT.TamponNumerique1 as TamponNumerique1',
-                    'REGIME_FISCAL.NomRegimeFiscal as NomRegimeFiscal'
-                ])
-                ->get();
+                    'REGIME_FISCAL.NomRegimeFiscal as NomRegimeFiscal',
+                    DB::raw("'".$btnAction."' as action")
+                ]);
 
-                // Traiter les résultats ici
-                dd($resultats);
+            // Ajouter des clauses WHERE uniquement si les valeurs ne sont pas vides ou nulles
+            if ($typSelect) {
+                $query->where('CLIENT.TypeClient', '=', $typSelect);
+            }
+            if ($commercialSelect) {
+                $query->where('CLIENT.IDPERSONNEL', '=', $commercialSelect);
+            }
+            if ($tournSelect) {
+                $query->where('CLIENT.IDTOURNEE', '=', $tournSelect);
+            }
+            if ($noteSelect) {
+                $query->where('CLIENT.NotationClient', '=', $noteSelect);
+            }
+            if ($etatCompSelect) {
+                $query->where('CLIENT.EtatCompteClient', '=', $etatCompSelect);
+            }
+            if ($codNomClientRech) {
+                $query->where(function($query) use ($codNomClientRech) {
+                    $query->where('CLIENT.CodeClient', '=', $codNomClientRech)
+                        ->orWhere('CLIENT.NomClient', 'LIKE', '%' . $codNomClientRech . '%');
+                });
+            }
+
+            // Exécutez la requête et récupérez les résultats
+            $client = $query->orderBy('NomClient', 'asc')->get();
 
             echo json_encode(array('success' => 1, 'error' => false, 'data' => $client));
         } catch (\Throwable $th) {

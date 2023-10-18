@@ -1,8 +1,8 @@
         <!-- Start::app-sidebar -->
-        <aside class="app-sidebar sticky" id="sidebar">
+        <aside class="app-sidebar sticky" id="sidebar" style="background: #182c37">
 
             <!-- Start::main-sidebar-header -->
-            <div class="main-sidebar-header">
+            <div class="main-sidebar-header" style="background: #182c37">
                 <a href="index.html" class="header-logo">
                     <img src="../assets/images/brand-logos/desktop-logo.png" alt="logo" class="desktop-logo">
                     <img src="../assets/images/brand-logos/toggle-logo.png" alt="logo" class="toggle-logo">
