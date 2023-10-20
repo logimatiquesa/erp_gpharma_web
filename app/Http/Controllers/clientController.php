@@ -1,19 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class clientController extends Controller
 {
-    public function listingView(){
-
+    public function listingView()
+    {
         return view('pages.clients.clients');
     }
 
-    public function listingClient(){
-        
+    public function listingClient()
+    {
+
         try {
 
             // Paramètres (remplacez ces valeurs par les valeurs réelles)
@@ -59,6 +61,16 @@ class clientController extends Controller
                 ->leftJoin('FORMEJURIDIQUE_CLIENT', 'CLIENT.IDFORMEJURIDIQUE_CLIENT', '=', 'FORMEJURIDIQUE_CLIENT.IDFORMEJURIDIQUE_CLIENT')
                 ->leftJoin('VILLES', 'CLIENT.IDVILLES', '=', 'VILLES.IDVILLES')
                 ->leftJoin('PERSONNEL', 'CLIENT.IDPERSONNEL', '=', 'PERSONNEL.IDPERSONNEL')
+                ->where('CLIENT.TypeClient', '=', $typSelect)
+                ->where('CLIENT.IDPERSONNEL', '=', $commercialSelect)
+                ->where('CLIENT.IDTOURNEE', '=', $tournSelect)
+                ->where('CLIENT.NotationClient', '=', $noteSelect)
+                ->where('CLIENT.EtatCompteClient', '=', $etatCompSelect)
+                ->where(function ($query) use ($codNomClientRech) {
+                    $query->where('CLIENT.CodeClient', '=', $codNomClientRech)
+                        ->orWhere('CLIENT.NomClient', 'LIKE', '%' . $codNomClientRech . '%');
+                })
+                ->orderBy('NomClient', 'asc')
                 ->select([
                     'CLIENT.IDCLIENT as IDCLIENT',
                     'CLIENT.TypeClient as TypeClient',
@@ -307,13 +319,143 @@ class clientController extends Controller
                 $client[$key] -> ConsommationSemestre1 = number_format($value -> ConsommationSemestre1, 0, '', ' ');
                 $client[$key] -> ConsommationSemestre2 = number_format($value -> ConsommationSemestre2, 0, '', ' ');
             }
+            // Traiter les résultats ici
 
-            echo json_encode(array('success' => 1, 'error' => false, 'data' => $client));
+            // echo json_encode(array('success' => 1, 'error' => false, 'data' => $client));
         } catch (\Throwable $th) {
 
             // echo json_encode(array('error' => true, 'message' => getMessageErreur($th -> getCode())));
-            echo json_encode(array('error' => true, 'message' => $th -> getMessage()));
+            echo json_encode(array('error' => true, 'message' => $th->getMessage()));
+        }
+    }
 
+    // Client garde
+
+
+    public function clientGarde()
+    {
+
+        session()->put("idUser",1);
+        session()->put("NomUser","Anderson");
+        session()->put("mdpUser","andi");
+
+        $resultats = DB::table('CLIENT')
+            ->select("CLIENT.IDCLIENT", "CLIENT.NomClient")
+            ->get();
+        return view('pages.clients.clientsgarde', ["listeClient" => $resultats]);
+    }
+
+    public function listeClientGarde(Request $request)
+    {
+
+        try {
+
+            $resultats = DB::table('GARDECLIENT')
+                ->select("GARDECLIENT.IDGARDECLIENT", "GARDECLIENT.DateDebutGarde", "GARDECLIENT.DateFinGarde", "CLIENT.NomClient", "CLIENT.IDCLIENT")
+                ->leftJoin("CLIENT", "GARDECLIENT.IDCLIENT", "CLIENT.IDCLIENT")
+                ->whereBetween("GARDECLIENT.DateDebutGarde", [$request->date["dateDebut"] == null ? date("Y-m-d") : $request->date["dateDebut"],  $request->date["dateFin"] == null ? date("Y-m-d") :  $request->date["dateFin"]])
+                ->whereBetween("GARDECLIENT.DateFinGarde", [$request->date["dateDebut"] == null ? date("Y-m-d") : $request->date["dateDebut"],  $request->date["dateFin"] == null ? date("Y-m-d") :  $request->date["dateFin"]])
+
+                ->get();
+
+            echo json_encode(array('error' => false, 'data' => $resultats, "date" => $request->all()));
+        } catch (\Throwable $th) {
+
+            echo json_encode(array('error' => true, 'messages' => $th->getMessage(), 'message' => getMessageErreur($th->getCode())));
+
+            // echo json_encode(array('error' => true, 'message' => $th->getMessage()));
+        }
+    }
+
+    public function listeClient()
+    {
+        try {
+
+            $resultats = DB::table('CLIENT')
+                ->select("CLIENT.IDCLIENT", "CLIENT.NomClient")
+                ->get();
+
+            echo json_encode(array('error' => false, 'data' => $resultats));
+        } catch (\Throwable $th) {
+
+            echo json_encode(array('error' => true, 'message' => getMessageErreur($th->getCode())));
+
+            // echo json_encode(array('error' => true, 'message' => $th->getMessage()));
+        }
+    }
+
+    public function addClientGarde(Request $request)
+    {
+
+        // dd($request->all());
+        if (isset($request->dateInterval)) {
+            $resultats = [];
+
+            $dateDebut = date_format(date_create($request->dateInterval['dateDebut']), "Y-m-d");
+            $dateFin = date_format(date_create($request->dateInterval['dateFin']), "Y-m-d");
+
+            try {
+                foreach ($request->clients as $value) {
+
+                    $count = DB::table("GARDECLIENT")
+                        ->whereBetween("DateDebutGarde", [$dateDebut, $dateFin])
+                        ->whereBetween("DateFinGarde", [$dateDebut, $dateFin])
+                        ->where("IDCLIENT", $value)
+                        ->count();
+
+                    if ($count == 0) {
+                        $resultats = DB::table("GARDECLIENT")->insert(["DateDebutGarde" => $dateDebut, "DateFinGarde" => $dateFin, "IDCLIENT" => $value]);
+                    }
+                }
+                echo json_encode(array('error' => false, 'data' => $resultats));
+            } catch (\Throwable $th) {
+                echo json_encode(array('error' => true, 'message' => getMessageErreur($th->getCode())));
+            }
+        }
+    }
+
+    public function updateClientGarde(Request $request)
+    {
+
+        // dd($request->all());
+        if (isset($request->dateInterval)) {
+            $resultats = [];
+
+            $dateDebut = date_format(date_create($request->dateInterval['dateDebut']), "Y-m-d");
+            $dateFin = date_format(date_create($request->dateInterval['dateFin']), "Y-m-d");
+
+            try {
+                foreach ($request->clients as $value) {
+
+                    $count = DB::table("GARDECLIENT")
+                        ->whereBetween("DateDebutGarde", [$dateDebut, $dateFin])
+                        ->whereBetween("DateFinGarde", [$dateDebut, $dateFin])
+                        ->where("IDCLIENT", $value)
+                        ->count();
+
+                    if ($count == 0) {
+                        $resultats = DB::table("GARDECLIENT")
+                        ->where("IDCLIENT" ,$value)
+                        ->update(["DateDebutGarde" => $dateDebut, "DateFinGarde" => $dateFin]);
+                    }
+                }
+                echo json_encode(array('error' => false, 'data' => $resultats));
+            } catch (\Throwable $th) {
+                echo json_encode(array('error' => true, 'message' => getMessageErreur($th->getCode())));
+            }
+        }
+    }
+
+    public function deleteClientGarde(Request $request)
+    {
+        try {
+            $count = DB::table("GARDECLIENT")
+                ->where("IDGARDECLIENT", $request->idClientGarde)
+                ->delete();
+
+            echo json_encode(array('error' => false, 'data' => $count));
+        } catch (\Throwable $th) {
+            echo json_encode(array('error' => true, 'message' => getMessageErreur($th->getCode())));
         }
     }
 

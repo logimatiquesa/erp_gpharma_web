@@ -126,8 +126,8 @@
                         </div>
                         <div class="col-xl-4 col-lg-4 col-sm-4 col-1 d-flex align-items-center">
                             <div class="me-2">
-                                <span class="avatar avatar-rounded bg-success-transparent"><i
-                                        class="ri-user-3-line fs-16"></i></span>
+                                <span class="avatar avatar-rounded bg-success-transparent">
+                                    <i class="ri-user-3-line fs-16"></i></span>
                             </div>
                             <div class="flex-fill">
                                 <p class="fs-18 mb-0 text-success fw-semibold">1,24,890</p>
@@ -942,6 +942,93 @@
                                     
                                 </div>
                             </form>
+
+                                {{-- Comptabilité --}}
+                                <div class="tab-pane fade text-muted bg-tabs" id="compta-tab-pane" role="tabpanel"
+                                    tabindex="0">
+                                    <div class="row">
+
+                                        <div class="col-xl-3 mb-2">
+                                            <p class="mb-2 text-muted">Numéro RC:</p>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+
+                                        <div class="col-xl-3 mb-2">
+                                            <p class="mb-2 text-muted">Numéro CC :</p>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+
+                                        <div class="col-xl-3 mb-2">
+                                            <p class="mb-2 text-muted">N° compte tierce :</p>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+
+                                        <div class="col-xl-3 mb-2">
+                                            <p class="mb-2 text-muted">N° compte tierce ristourne:</p>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+
+                                        <div class="col-xl-3 mb-2">
+                                            <p class="mb-2 text-muted">N° compte tierce escompte:</p>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+
+                                        <div class="col-xl-3 mb-2">
+                                            <p class="mb-2 text-muted">Montant assis. Médiciel :</p>
+                                            <input type="text" class="form-control" id="input-label">
+                                        </div>
+
+                                        <div class="col-xl-3 pt-1">
+                                            <div class="form-check mt-4">
+                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                <label class="form-check-label" for="flexCheckChecked">
+                                                    Assistance Médiciel
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- Divers --}}
+                                <div class="tab-pane fade text-muted bg-tabs" id="divers-tab-pane" role="tabpanel"
+                                    tabindex="0">
+                                    <div class=" row">
+
+                                        <div class="col-xl-3">
+                                            <div class=" card">
+                                                <div class="card-body">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked" checked>
+                                                        <label class="form-check-label" for="flexCheckChecked">
+                                                            Abonné etiquette
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3">
+                                            <div class=" card">
+                                                <div class="card-body">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked" checked>
+                                                        <label class="form-check-label" for="flexCheckChecked">
+                                                            Compte tiers unqiue
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <p class="mb-2 text-muted"> Commentaire</p>
+                                            <textarea class="form-control w-100" name="" id="" cols="30" rows="4"></textarea>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- </div> --}}
                         </div>
                     </div>
                 </div>
@@ -1221,6 +1308,21 @@
 
             $('#modalFicheClient').modal('show')
         })
+        $(function() {
+            $('input[name="daterange"]').daterangepicker({
+                opens: 'center'
+            }, function(start, end, label) {
+                console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end
+                    .format('YYYY-MM-DD'));
+            });
+
+
+            function getClient(){
+                $.ajax({
+
+                })
+            }
+        });
     </script>
 
     {{-- Script de modification du client --}}
