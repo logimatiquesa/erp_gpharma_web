@@ -21,4 +21,3 @@ Route::get('/', function () {
 Route::get('/fiches.produits', function () {
     return view('pages.fiches.produits');
 });
-

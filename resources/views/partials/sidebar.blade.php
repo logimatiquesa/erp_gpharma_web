@@ -54,7 +54,7 @@
                                     <a href="{{ url("client/listing") }}" class="side-menu__item">Listing client</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="index-1.html" class="side-menu__item">Client de garde</a>
+                                    <a href="{{ url('client/clientsgarde') }}" class="side-menu__item">Client de garde</a>
                                 </li>
                                 <li class="slide">
                                     <a href="index-2.html" class="side-menu__item">Prospection</a>
@@ -108,7 +108,7 @@
                                     <a href="index-3.html" class="side-menu__item">Historique de stock</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="index-5.html" class="side-menu__item">Clients de garde</a>
+                                    <a href="" class="side-menu__item">Clients de garde</a>
                                 </li>
                                 <li class="slide">
                                     <a href="index-6.html" class="side-menu__item">Fournisseurs</a>
@@ -466,7 +466,7 @@
                                     <a href="index-2.html" class="side-menu__item">Rayon réserve</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="index-6.html" class="side-menu__item">Factures / Avoir clients</a>
+                                    <a href="index-6.html" class="side-menu__item">Fentactures / Avoir clients</a>
                                 </li>
                                 <li class="slide">
                                     <a href="index-7.html" class="side-menu__item">Relevé de factures</a>

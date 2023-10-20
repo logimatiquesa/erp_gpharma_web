@@ -49,8 +49,8 @@
                         </div>
                         <div class="col-xl-3 col-lg-3 col-sm-3 col-12 mt-3 d-flex align-items-center">
                             <div class="me-2">
-                                <span class="avatar avatar-rounded bg-success-transparent"><i
-                                        class="ri-user-3-line fs-16"></i></span>
+                                <span class="avatar avatar-rounded bg-success-transparent">
+                                    <i class="ri-user-3-line fs-16"></i></span>
                             </div>
                             <div class="flex-fill">
                                 <p class="fs-18 mb-0 text-success fw-semibold">1,24,890</p>
@@ -908,10 +908,9 @@
                                             <p class="mb-2 text-muted"> Commentaire</p>
                                             <textarea class="form-control w-100" name="" id="" cols="30" rows="4"></textarea>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
-                                
                             </div>
                             {{-- </div> --}}
                         </div>
@@ -997,6 +996,13 @@
                 console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end
                     .format('YYYY-MM-DD'));
             });
+
+
+            function getClient(){
+                $.ajax({
+
+                })
+            }
         });
     </script>
 @endsection
