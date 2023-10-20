@@ -158,7 +158,7 @@
                         </div>
                         <div class="col-xl-3 col-md-3">
                             <p class="mb-0 text-muted">Période de garde&nbsp;:</p>
-                            <input type="text" class="form-control text-center" name="daterange" value="01/01/2018 - 01/15/2018"/>
+                            <input type="text" class="form-control text-center" name="daterange"/>
                         </div>
                         <div class="col-xl-3 col-md-1 mb-2">
                             <p class="mb-0 text-muted">Notation</p>
@@ -245,7 +245,7 @@
                                     <th>Solde Dispo.</th>
                                     <th>Mode de paiement</th>
                                     <th>Délais de Paiement</th>
-                                    <th>Tournée</th>
+                                    <th>Abonné tournée</th>
                                     <th>Etiquette</th>
                                     <th>Abonné Recap. BLV</th>
                                     <th>N° Compte tiers</th>
@@ -952,6 +952,7 @@
             </div>
         </div>
     </div>
+
 @endsection
 
 @section('script')
@@ -960,6 +961,52 @@
     <script>
 
         var tableClient
+
+        $(function() {
+
+            console.log( new Date())
+            document.querySelector('input[name="daterange"]').value = new Date()+' '+new Date()
+            $('input[name="daterange"]').daterangepicker({
+                "locale": {
+                    "format": "DD/MM/YYYY",
+                    "separator": " - ",
+                    "applyLabel": "Appliquer",
+                    "cancelLabel": "Annuler",
+                    "fromLabel": "From",
+                    "toLabel": "To",
+                    "customRangeLabel": "Custom",
+                    "weekLabel": "W",
+                    "daysOfWeek": [
+                        "Dim",
+                        "Lun",
+                        "Mar",
+                        "Mer",
+                        "Jeu",
+                        "Ven",
+                        "Sam"
+                    ],
+                    "monthNames": [
+                        "Janvier",
+                        "Fevrier",
+                        "Mars",
+                        "Avril",
+                        "Mai",
+                        "Juin",
+                        "Juillet",
+                        "Août",
+                        "Septembre",
+                        "Octobre",
+                        "Novembre",
+                        "Decembre"
+                    ],
+                    "firstDay": 2
+                },
+                opens: 'center'
+            }, function(start, end, label) {
+                console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end
+                    .format('YYYY-MM-DD'));
+            })
+        })
 
         function chargerTableListingClient(){
 
@@ -976,11 +1023,11 @@
                     obj = response.data
 
                     tableClient = $("#tableclient").DataTable({
-
+                        
+                        bFilter : false,
                         language: {
-                            dom: 'Bfrtip',
+                            // dom: 'Bfrtip',
                             processing: false,
-
                             lengthMenu: "Afficher :&nbsp; _MENU_ &eacute;l&eacute;ments",
                             info: "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
                             infoEmpty: "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
@@ -1016,16 +1063,133 @@
                                 data : 'NomClient'
                             },
                             {
-                                data : 'stockReel'
+                                data : 'RepresentantLegalClient'
                             },
                             {
-                                data : 'qteAchat'
+                                data : 'garde'
                             },
                             {
-                                data : 'qteCde'
+                                data : 'EtatCompteClient'
                             },
                             {
-                                data : 'stockATerme'
+                                data : 'TelephoneFixeClient'
+                            },
+                            {
+                                data : 'TelephoneMobileClient'
+                            },
+                            {
+                                data : 'LibelleFormeJuridiqueClient'
+                            },
+                            {
+                                data : 'AdresseEmailClient'
+                            },
+                            {
+                                data : 'PlafondCreditClient'
+                            },
+                            {
+                                data : 'CreditMaxExploitaton'
+                            },
+                            {
+                                data : 'EncoursClient'
+                            },
+                            {
+                                data : 'EncoursClientTheoriq'
+                            },
+                            {
+                                data : 'SoldeFactureClient'
+                            },
+                            {
+                                data : 'SoldeDispo'
+                            },
+                            {
+                                data : 'LibelleModePaiement'
+                            },
+                            {
+                                data : 'DelaiPaiement'
+                            },
+                            {
+                                data : 'LibelleTournee'
+                            },
+                            {
+                                data : 'AbonneEtiquette'
+                            },
+                            {
+                                data : 'TamponNumerique1'
+                            },
+                            {
+                                data : 'NumeroCompteTiers'
+                            },
+                            {
+                                data : 'NumeroCompteTiersEscompte'
+                            },
+                            {
+                                data : 'NumeroCompteTiersRistourne'
+                            },
+                            {
+                                data : 'NumeroRC'
+                            },
+                            {
+                                data : 'NumeroCC'
+                            },
+                            {
+                                data : 'EtiquetteIntegrationBL'
+                            },
+                            {
+                                data : 'RemiseCommercial'
+                            },
+                            {
+                                data : 'NomVille'
+                            },
+                            {
+                                data : 'NomAgence'
+                            },
+                            {
+                                data : 'SoldeProtocoleStock'
+                            },
+                            {
+                                data : 'NotationClient'
+                            },
+                            {
+                                data : 'IntentionCommande'
+                            },
+                            {
+                                data : 'TauxBICClient'
+                            },
+                            {
+                                data : 'NomPrenomPersonnel'
+                            },
+                            {
+                                data : 'previsionnelS1'
+                            },
+                            {
+                                data : 'ConsommationSemestre1'
+                            },
+                            {
+                                data : 'tauxS1'
+                            },
+                            {
+                                data : 'previsionnelS2'
+                            },
+                            {
+                                data : 'ConsommationSemestre2'
+                            },
+                            {
+                                data : 'tauxS2'
+                            },
+                            {
+                                data : 'CAAnnuel'
+                            },
+                            {
+                                data : 'previsionnelAnnuel'
+                            },
+                            {
+                                data : 'tauxAnnuel'
+                            },
+                            {
+                                data : 'NomRegimeFiscal'
+                            },
+                            {
+                                data : 'DivisionFiscale'
                             }
                         ]
                     })
@@ -1033,22 +1197,10 @@
                 error : function(response){
                     console.log(response)
                 }
-                
             })
         }
 
         chargerTableListingClient()
     </script>
 
-    
-    <script>
-        $(function() {
-            $('input[name="daterange"]').daterangepicker({
-                opens: 'center'
-            }, function(start, end, label) {
-                console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end
-                    .format('YYYY-MM-DD'));
-            });
-        });
-    </script>
 @endsection
