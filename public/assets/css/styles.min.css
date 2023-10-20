@@ -10120,7 +10120,7 @@ caption {
     padding: .75rem;
     vertical-align: middle;
     line-height: 1.462;
-    font-size: .813rem;
+    font-size: .78rem;
     font-weight: 500;
     
 }
@@ -17383,7 +17383,7 @@ table.dataTable tfoot td,
 table.dataTable tfoot th,
 table.dataTable thead td,
 table.dataTable thead th {
-    text-align: start !important
+    text-align: start ;
 }
 
 table.table-bordered.dataTable td:first-child,

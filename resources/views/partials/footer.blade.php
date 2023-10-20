@@ -35,9 +35,6 @@
     <!-- Chartjs Chart JS -->
     <script src="{{ asset('assets/libs/chart.js/chart.min.js')}}"></script>
 
-    <!-- CRM-Dashboard -->
-    {{-- <script src="assets/js/crm-dashboard.js"></script> --}}
-
     <!-- Custom JS -->
     <script src="{{ asset('assets/js/custom.js')}}"></script>
 
@@ -46,8 +43,11 @@
     <script src="{{ asset('assets/js/custom-switcher.min.js')}}"></script>
 
     <script src="{{ asset('assets/js/jquery-3.6.1.min.js')}}" ></script>
-    <!-- Date pickerRange -->
+
+    <!-- Bootstrap Tables js -->
+    {{-- <script src="{{ asset('assets/libs/bootstrap-table/bootstrap-table.min.js') }}"></script> --}}
     
+    <!-- Date pickerRange -->
     <script type="text/javascript" src="{{ asset('assets/js/moment.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/daterangepicker.min.js')}}"></script>
 

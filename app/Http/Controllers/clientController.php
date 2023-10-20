@@ -26,8 +26,25 @@ class clientController extends Controller
             $etatCompSelect = '';
             $codNomClientRech = '';
 
-            $btnAction = '<input class="form-check-input mx-1" type="checkbox" id="checkboxNoLabel1"
-            value="" aria-label="..."><a><i class="bx bxs-trash"></i></a><a><i class="bx bxs-edit"></i></a><a><i class="bx bx-dots-horizontal-rounded" ></i></a>';
+            function coloneOption($identifiant){
+
+                $btnAction = '<div class="">
+                            <input class="form-check-input mx-1" data-id="'.$identifiant.'" type="checkbox" id="checkboxNoLabel1" value="" aria-label="..." style="height : 19px; width:19px;cursor : pointer;">
+                            <a class="btn btn-sm btn-icon btn-outline-danger" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-primary" data-bs-placement="top" title="Supprimer ce client">
+                                <i class="bx bxs-trash" data-id="'.$identifiant.'" style="font-size : 14px;cursor : pointer;"></i>
+                            </a>
+                            <a class="btn btn-sm btn-icon btn-outline-warning" id="editClient" data-id="'.$identifiant.'"  data-bs-toggle="tooltip" data-bs-custom-class="tooltip-primary" data-bs-placement="top" title="Modifier ce client">
+                                <i class="bx bxs-edit" style="font-size : 17px;cursor : pointer;"></i>
+                            </a>
+                            <a class="btn btn-sm btn-icon btn-outline-dark" id="editClient" data-id="'.$identifiant.'"  data-bs-toggle="tooltip" data-bs-custom-class="tooltip-primary" data-bs-placement="top" title="Modifier ce client">
+                                <i class="bx bx-dots-vertical-rounded " data-id="'.$identifiant.'" style="font-size : 17px;cursor : pointer;" ></i>
+                            </a>
+                        </div>';
+
+                return $btnAction;
+            }
+
+            
 
             // $verifGarde = 'SELECT COALESCE(COUNT(GARDECLIENT.IDGARDECLIENT), 0) AS nbreGarde FROM GARDECLIENT WHERE GARDECLIENT.IDCLIENT = 1 AND ((GARDECLIENT.DateDebutGarde >= '.$dateDebut.' AND GARDECLIENT.DateFinGarde >= '.$dateDebut.') OR (GARDECLIENT.DateDebutGarde >= "2022-12-01" AND GARDECLIENT.DateFinGarde >= "2022-12-01"))';
             $verifGarde = '(SELECT COALESCE(COUNT(GARDECLIENT.IDGARDECLIENT), 0) FROM GARDECLIENT WHERE GARDECLIENT.IDCLIENT = CLIENT.IDCLIENT AND ( GARDECLIENT.DateDebutGarde <= "'.$dateDebut.'" AND GARDECLIENT.DateFinGarde >= "'.$dateFin.'" )) AS nbreGarde';
@@ -96,7 +113,7 @@ class clientController extends Controller
                     'TOURNEE.LibelleTournee as LibelleTournee',
                     'VILLES.NomVille as NomVille',
                     'PERSONNEL.NomPrenomPersonnel as NomPrenomPersonnel',
-                    DB::raw("'".$btnAction."' as action, 0 as garde")
+                    DB::raw("0 as garde")
                     // DB::raw($verifGarde)
                 ]);
 
@@ -143,6 +160,9 @@ class clientController extends Controller
 
             foreach ($client as $key => $value) {
 
+                // option de colonne
+                $client[$key] -> action = coloneOption($value -> IDCLIENT);
+
                 // LibelleFormeJuridique
                 if ($value -> LibelleFormeJuridiqueClient == null) {
                     
@@ -168,10 +188,10 @@ class clientController extends Controller
                 // EtatCompteClient
                 if ($value -> EtatCompteClient != 1) {
                     
-                    $client[$key] -> EtatCompteClient = 'BLOQUÉ';
+                    $client[$key] -> EtatCompteClient = '<span class="badge bg-danger-transparent" style="font-size:.78rem">BLOQUÉ</span>';
                 }else{
 
-                    $client[$key] -> EtatCompteClient = 'ACTIF';
+                    $client[$key] -> EtatCompteClient = '<span class="badge bg-success-transparent px-3" style="font-size:.78rem">ACTIF</span>';
                 }
 
                 // AbonneEtiquette
@@ -286,7 +306,6 @@ class clientController extends Controller
                 $client[$key] -> CAAnnuel = $value -> ConsommationSemestre1 + $value -> ConsommationSemestre2;
                 $client[$key] -> ConsommationSemestre1 = number_format($value -> ConsommationSemestre1, 0, '', ' ');
                 $client[$key] -> ConsommationSemestre2 = number_format($value -> ConsommationSemestre2, 0, '', ' ');
-                
             }
 
             echo json_encode(array('success' => 1, 'error' => false, 'data' => $client));
@@ -295,6 +314,18 @@ class clientController extends Controller
             // echo json_encode(array('error' => true, 'message' => getMessageErreur($th -> getCode())));
             echo json_encode(array('error' => true, 'message' => $th -> getMessage()));
 
+        }
+    }
+
+    public function infoClient(Request $request){
+
+        try {
+            
+            $client = DB::table('CLIENT') -> where('IDCLIENT', $request -> IDCLIENT) -> first();
+
+            echo json_encode(array('success' => 1, 'data' => $client));
+        } catch (\Throwable $th) {
+            //throw $th;
         }
     }
 }
