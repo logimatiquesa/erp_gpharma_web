@@ -113,9 +113,9 @@ class clientController extends Controller
     public function clientGarde()
     {
 
-        session()->put("idUser",1);
-        session()->put("NomUser","Anderson");
-        session()->put("mdpUser","andi");
+        session()->put("idUser", 1);
+        session()->put("NomUser", "Anderson");
+        session()->put("mdpUser", "andi");
 
         $resultats = DB::table('CLIENT')
             ->select("CLIENT.IDCLIENT", "CLIENT.NomClient")
@@ -182,7 +182,8 @@ class clientController extends Controller
                         ->count();
 
                     if ($count == 0) {
-                        $resultats = DB::table("GARDECLIENT")->insert(["DateDebutGarde" => $dateDebut, "DateFinGarde" => $dateFin, "IDCLIENT" => $value]);
+                        $resultats = DB::table("GARDECLIENT")
+                        ->insert(["DateDebutGarde" => $dateDebut, "DateFinGarde" => $dateFin, "IDCLIENT" => $value, "CreePar"=>session()->get("idUser")]);
                     }
                 }
                 echo json_encode(array('error' => false, 'data' => $resultats));
@@ -208,16 +209,22 @@ class clientController extends Controller
                     $count = DB::table("GARDECLIENT")
                         ->whereBetween("DateDebutGarde", [$dateDebut, $dateFin])
                         ->whereBetween("DateFinGarde", [$dateDebut, $dateFin])
-                        ->where("IDCLIENT", $value)
+                        ->where("IDCLIENT","=" ,$value)
+                        ->where("IDGARDECLIENT","<>" ,$request->garde)
                         ->count();
 
                     if ($count == 0) {
                         $resultats = DB::table("GARDECLIENT")
-                        ->where("IDCLIENT" ,$value)
-                        ->update(["DateDebutGarde" => $dateDebut, "DateFinGarde" => $dateFin]);
+                            ->where("IDCLIENT", $value)
+                            ->where("IDGARDECLIENT","=" ,$request->garde)
+                            ->update(["DateDebutGarde" => $dateDebut, "DateFinGarde" => $dateFin, "updated_at"=>Carbon::now(), "ModifiePar"=>session()->get("")]);
+
+                        echo json_encode(['error' => false, 'edit'=> true, 'data' => $resultats]);
+                        return;
                     }
+
+                    echo json_encode(['error' => false, 'edit'=> false, 'data' => $resultats, "nbr"=>$count]);
                 }
-                echo json_encode(array('error' => false, 'data' => $resultats));
             } catch (\Throwable $th) {
                 echo json_encode(array('error' => true, 'message' => getMessageErreur($th->getCode())));
             }
@@ -226,14 +233,31 @@ class clientController extends Controller
 
     public function deleteClientGarde(Request $request)
     {
-        try {
-            $count = DB::table("GARDECLIENT")
-                ->where("IDGARDECLIENT", $request->idClientGarde)
-                ->delete();
+        // echo json_encode($request->all());
+        // return;
 
-            echo json_encode(array('error' => false, 'data' => $count));
-        } catch (\Throwable $th) {
-            echo json_encode(array('error' => true, 'message' => getMessageErreur($th->getCode())));
+        if ($this->compareMdp($request->mdp)) {
+            try {
+                $count = DB::table("GARDECLIENT")
+                    ->where("IDGARDECLIENT", $request->idClientGarde)
+                    ->delete();
+
+                echo json_encode(['error' => false, 'data' => $count]);
+                return;
+            } catch (\Throwable $th) {
+                echo json_encode(['error' => true, 'message' => getMessageErreur($th->getCode()), "messages" => $th->getMessage()]);
+                return;
+            }
         }
+
+        echo json_encode(['error' => false, 'ok' => false]);
+    }
+
+    public function compareMdp(String $mdp)
+    {
+        if ($mdp == session()->get("mdpUser")) {
+            return true;
+        }
+        return false;
     }
 }

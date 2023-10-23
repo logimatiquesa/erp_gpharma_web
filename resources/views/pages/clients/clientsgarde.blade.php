@@ -1,7 +1,8 @@
 @extends('models')
 
 @section('content-body')
-    <div class="modal fade" id="exampleModalLg" tabindex="-1" aria-labelledby="exampleModalLgLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModalLg" data-bs-focus="false" tabindex="-1" aria-labelledby="exampleModalLgLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
 
             <div class="modal-content">
@@ -36,13 +37,15 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-xl-2 mb-2 float-end " style="padding-top: 1.2rem; padding-left: 4rem ;" id="zoneAdd">
+                        <div class="col-xl-2 mb-2 float-end " style="padding-top: 1.2rem; padding-left: 4rem ;"
+                            id="zoneAdd">
                             {{-- <button class=" btn btn-primary" id=""><i class="ri-restart-line"></i></i></button> --}}
                             <button class=" btn btn-secondary pb-1" id="addGarde" title=" Ajouter un client de garde"><i
                                     class='bx bx-plus-medical'></i></button>
 
                         </div>
-                        <div class="col-xl-2 mb-2 float-end d-none" style="padding-top: 1.2rem; padding-left: 1rem ;" id="zoneUpdate">
+                        <div class="col-xl-2 mb-2 float-end d-none" style="padding-top: 1.2rem; padding-left: 1rem ;"
+                            id="zoneUpdate">
                             {{-- <button class=" btn btn-primary" id=""><i class="ri-restart-line"></i></i></button> --}}
                             <span class=" d-flex justify-content-between">
                                 <button class=" btn btn-warning pb-1" id="updateGarde"
@@ -89,8 +92,9 @@
 
     </div>
 
+
     {{-- Toastr --}}
-    <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
+    <div class="toast-container position-fixed top-0 end-0 p-3">
         <div id="notification" class="toast colored-toast " role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header text-fixed-white" id="notif-header">
                 <img class="bd-placeholder-img rounded me-2" src="../assets/images/brand-logos/toggle-dark.png"
@@ -159,6 +163,7 @@
                 $("#notif-body").text("")
             })
 
+            // select2 parameter
             $('.js-example-basic-multiple').select2({
                 dropdownParent: $("#exampleModalLg")
             });
@@ -201,6 +206,7 @@
             var dateDebut = ""
             var dateFin = ""
             var types = ""
+            var idGarde = ""
 
             // CHAREMENT DE LA LISTE DANS LE MODAL
             listeGarde(dateConstruct($('input[name="daterange"]').val()))
@@ -247,108 +253,93 @@
             })
 
             $("#tableclient tbody").on("click", ".btn-trash", function(evt) {
-                var id = evt.target.id.split("-")[1]
+                var id = $(this)[0].id.split("-")[1]
 
-                // console.log(evt.target.id)
+                alert(id, alertAjax)
+            })
 
-                const swalWithBootstrapButtons = Swal.mixin({
-                    customClass: {
-                        confirmButton: 'btn btn-success ms-2',
-                        cancelButton: 'btn btn-danger'
-                    },
-                    buttonsStyling: false
-                })
-
+            function alert(id, callback) {
                 Swal.fire({
-                    title: 'Submit your Github username',
-                    input: 'text',
+                    title: 'Saisissez votre mot de passe pour supprimer ',
+                    input: 'password',
                     icon: 'warning',
-                    inputAttributes: {
-                        autocapitalize: 'off'
-                    },
                     showCancelButton: true,
                     confirmButtonText: 'Oui je supprime !',
-                    showLoaderOnConfirm: true,
+                    // showLoaderOnConfirm: true,
                     reverseButtons: true,
                     cancelButtonText: 'Annuler',
-                    text: "Cette action est irrersible !",
-                    preConfirm: (login) => {
-                        return fetch(`{{ route('compareMdp') }}`)
-                            .then(response => {
-                                if (!response.ok) {
-                                    throw new Error(response.statusText)
-                                }
-                                return response.json()
-                            })
-                            .catch(error => {
-                                Swal.showValidationMessage(
-                                    `Request failed: ${error}`
-                                )
-                            })
-                    },
-                    // allowOutsideClick: () => !Swal.isLoading()
+                    text: "Cette action est irreversible !",
+                    customClass: {
+                        input: 'border-black border-1 text-center',
+                    }
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        Swal.fire({
-                            title: `${result.value.login}'s avatar`,
-                            imageUrl: result.value.avatar_url
-                        })
+                        if ($.trim(document.getElementById('swal2-input').value) != "") {
+                            callback(id)
+                            return
+                        }
+                        notif("warning", "Information !",
+                            "Veuillez entrer votre mot de passe pour continuer !!")
                     }
                 })
 
-                // swalWithBootstrapButtons.fire({
-                //     title: 'Êtes vous sûre ?',
-                //     text: "Cette action est irrersible !",
-                //     icon: 'warning',
-                //     showCancelButton: true,
-                //     confirmButtonText: 'Oui je supprime !',
-                //     cancelButtonText: 'Annuler',
-                //     reverseButtons: true
-                // }).then((result) => {
-                //     if (result.isConfirmed) {
+            }
 
-                //         $.ajax({
-                //             url: "{{ route('deleteClientGarde') }}",
-                //             method: "post",
-                //             dataType: "json",
-                //             data: {
-                //                 _token: '{{ csrf_token() }}',
-                //                 idClientGarde: id,
-                //             },
-                //             success: function(response, statut) {
-                //                 // console.log(response)
-                //                 Swal.close()
-                //                 if (response.error != false) {
-                //                     notif("danger", "Attention",
-                //                         "Erreur lors de la suppression")
-                //                     return 0
-                //                 }
+            function alertAjax(id) {
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('deleteClientGarde') }}',
+                    dataType: 'json',
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        mdp: document.getElementById('swal2-input').value,
+                        idClientGarde: id
+                    },
+                    success: function(response) {
+                        console.log(response)
+                        if (response.error == false) {
+                            if (response.ok == false) {
+                                Swal.fire(
+                                    'Vous n\'avez pas le droit de suppression !',
+                                    '', 'warning')
+                                return 0;
+                            }
 
-                //                 notif("success", "Success !!",
-                //                     "Suppression éffectuée avec success")
-                //                 listeGarde(dateConstruct($('input[name="daterange"]')
-                //                     .val()))
-                //             },
-                //             error: function(response, statut) {
-                //                 console.log(response)
-                //             }
-                //         })
+                            if (response.data == 0) {
+                                notif("warning", "Attention !",
+                                    "Suppression non éffectuée !!")
+                                return 0;
+                            }
 
-                //     } else {
-                //         /* Read more about handling dismissals below */
-                //         // result.dismiss === Swal.DismissReason.cancel
-                //         Swal.close()
-                //     }
-                // })
-            })
+                            listeGarde(dateConstruct($(
+                                    'input[name="daterange"]')
+                                .val()))
+                            notif("success", "Success !",
+                                "Suppression éffectuée avec success !!")
+                            return 0;
+                        }
+
+                        notif("danger", "Attention !",
+                            "Une erreur est survénue !!")
+                    },
+                    error: function(response) {
+                        console.log(response)
+                    }
+                })
+            }
 
             $("#tableclient tbody").on("click", ".btn-edit", function(evt) {
-                var id = evt.target.id.split(" - ")[1]
+
+                var id = $(this)[0].id.split("-")[1]
 
                 var idclient = $(this).attr("data_id")
+                    idGarde = $(this).attr("data_id2")
                 dateDebut = $("#debut-" + id).text()
                 dateFin = $("#fin-" + id).text()
+
+                // console.log(dateDebut, dateFin)
                 document.querySelector('input[name="daterange"]').value = dateDebut + ' - ' + dateFin
+                $('input[name="daterange"]').trigger("change")
                 $(".js-example-basic-multiple").val(idclient).trigger('change');
 
                 $("#zoneAdd").addClass("d-none")
@@ -364,13 +355,19 @@
                     data: {
                         _token: '{{ csrf_token() }}',
                         dateInterval: dateConstruct($('input[name="daterange"]').val()),
-                        clients: $("#listeClient").val()
+                        clients: $("#listeClient").val(),
+                        garde : idGarde
                     },
                     success: function(response, statut) {
                         // console.log(response)
 
                         if (response.error != false) {
                             notif("danger", "Attention", "Erreur lors de l'enregistrement")
+                            return 0
+                        }
+
+                        if (response.edit == false) {
+                            notif("danger", "Attention", "Modification non éffectuée !")
                             return 0
                         }
 
@@ -381,7 +378,7 @@
                         $(".select2-selection__rendered").html("")
 
                         $("#zoneAdd").removeClass("d-none")
-                $("#zoneUpdate").addClass("d-none")
+                        $("#zoneUpdate").addClass("d-none")
                     },
                     error: function(response, statut) {
                         console.log(response)
@@ -420,11 +417,11 @@
                                 `<button class=" btn btn-sm btn-outline-danger btn-icon btn-trash" id="trash-${value.IDGARDECLIENT}">
                                     <i class='bx bxs-trash' style='font-size:14px'></i>
                                 </button> &nbsp; &nbsp;
-                                <button class=" btn btn-sm btn-outline-warning btn-edit btn-icon" id="edit-${value.key}" data_id="${value.IDCLIENT}">
+                                <button class=" btn btn-sm btn-outline-warning btn-edit btn-icon" id="edit-${key}" data_id="${value.IDCLIENT}" data_id2="${value.IDGARDECLIENT}">
                                     <i class='bx bxs-edit' style='font-size:14px'></i>
                                 </button>`,
-                                `<span id="debut-${value.key}">${explodeDate(value.DateDebutGarde)}</span>`,
-                                `<span id="fin-${value.key}">${explodeDate(value.DateFinGarde)}</span>`,
+                                `<span id="debut-${key}">${explodeDate(value.DateDebutGarde)}</span>`,
+                                `<span id="fin-${key}">${explodeDate(value.DateFinGarde)}</span>`,
                                 `${value.NomClient}`
                             ])
                         })
