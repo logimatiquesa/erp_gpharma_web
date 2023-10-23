@@ -210,3 +210,7 @@ label{
 .bg-thead-second{
     background: #4E575C;
 }
+
+p {
+    font-size: .75rem;
+}

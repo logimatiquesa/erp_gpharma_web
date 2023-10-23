@@ -19,4 +19,7 @@ Route::prefix('client')->group(function () {
 
     // a revoir
     Route::post('/verifMdp', [loginController::class,'compareMdp']) -> name('compareMdp');
+
+    Route::get('/listing/listingClient', [clientController::class,'listingClient']) -> name('listingClient');
+    Route::get('/listing/infoClient', [clientController::class,'infoClient']) -> name('infoClient');
 });

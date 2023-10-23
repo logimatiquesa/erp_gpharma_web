@@ -6401,7 +6401,7 @@
     border-color: var(--input-border);
     color: var(--default-text-color);
     background-color: var(--form-control-bg);
-    font-size: .875rem;
+    font-size: .78rem;
     font-weight: var(--default-font-weight);
     line-height: 1.6;
     border-radius: .35rem
@@ -10120,14 +10120,14 @@ caption {
     padding: .75rem;
     vertical-align: middle;
     line-height: 1.462;
-    font-size: .813rem;
+    font-size: .78rem;
     font-weight: 500;
     
 }
 
 .table thead tr th {
-    font-weight: 600;
-    font-size: .85rem;
+    /* font-weight: 600; */
+    font-size: .75rem;
     color:#fff;
 }
 
@@ -17383,7 +17383,7 @@ table.dataTable tfoot td,
 table.dataTable tfoot th,
 table.dataTable thead td,
 table.dataTable thead th {
-    text-align: start !important
+    text-align: start ;
 }
 
 table.table-bordered.dataTable td:first-child,

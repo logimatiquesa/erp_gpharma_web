@@ -5360,7 +5360,8 @@ fieldset:disabled .btn {
     flex-wrap: wrap;
     padding: var(--bs-breadcrumb-padding-y) var(--bs-breadcrumb-padding-x);
     margin-bottom: var(--bs-breadcrumb-margin-bottom);
-    font-size: var(--bs-breadcrumb-font-size);
+    /* font-size: var(--bs-breadcrumb-font-size); */
+    font-size: .85rem;
     list-style: none;
     background-color: var(--bs-breadcrumb-bg);
     border-radius: var(--bs-breadcrumb-border-radius)
@@ -5384,7 +5385,7 @@ fieldset:disabled .btn {
 .pagination {
     --bs-pagination-padding-x: 0.75rem;
     --bs-pagination-padding-y: 0.375rem;
-    --bs-pagination-font-size: 1rem;
+    --bs-pagination-font-size: .78rem;
     --bs-pagination-color: var(--bs-link-color);
     --bs-pagination-bg: var(--bs-body-bg);
     --bs-pagination-border-width: var(--bs-border-width);

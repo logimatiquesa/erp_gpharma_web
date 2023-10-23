@@ -33,9 +33,6 @@
     <!-- Chartjs Chart JS -->
     <script src="{{ asset('assets/libs/chart.js/chart.min.js')}}"></script>
 
-    <!-- CRM-Dashboard -->
-    {{-- <script src="assets/js/crm-dashboard.js"></script> --}}
-
     <!-- Custom JS -->
     <script src="{{ asset('assets/js/custom.js')}}"></script>
 
