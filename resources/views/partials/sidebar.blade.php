@@ -111,7 +111,7 @@
                                     <a href="" class="side-menu__item">Clients de garde</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="index-6.html" class="side-menu__item">Fournisseurs</a>
+                                    <a href="{{ url('fiches/fournisseur') }}" class="side-menu__item">Fournisseurs</a>
                                 </li>
                                 <li class="slide">
                                     <a href="index-7.html" class="side-menu__item">Bureau d'achat</a>

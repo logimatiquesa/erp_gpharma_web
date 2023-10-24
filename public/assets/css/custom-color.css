@@ -7,7 +7,12 @@
     color : #906ED9;
 }
 .table > .table-header-primary{
-    background-color : #845adfc8 !important;
-    color: #906ED9;
+    background-color : #182c37 !important;
+    /* color: #906ED9; */
+}
+
+.fs-select2{
+
+    font-size: .75rem;
 }
 

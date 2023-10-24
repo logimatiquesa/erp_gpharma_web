@@ -16,3 +16,8 @@ function explodeDate(param, date = "") {
     }
     return param;
   }
+
+function separateurMilliers(nombre) {
+      
+  return nombre.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}

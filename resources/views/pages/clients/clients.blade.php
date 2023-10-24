@@ -215,10 +215,10 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-striped text-nowrap" id="tableclient">
-                            <thead style="background: #182c37">
+                            <thead class="table-header-primary">
                                 <tr>
-                                    <th class="text-center">
-                                        <input class="form-check-input mx-1" type="checkbox" id="checkboxNoLabel1"
+                                    <th>
+                                        <input class="form-check-input me-4" type="checkbox" id="checkboxNoLabel1"
                                             value="" aria-label="...">
                                         Actions
                                     </th>
@@ -303,8 +303,8 @@
                                                     </span>
                                                 </div>
                                                 <div class="flex-fill">
-                                                    <h5 class="fw-semibold mb-1">45,280</h5>
-                                                    <p class="text-muted mb-0 fs-12">En cours</p>
+                                                    <h5 class="fw-semibold mb-1 fs-14" id="valEnCour"></h5>
+                                                    <p class="text-muted mb-0 fs-12">Encours</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -316,7 +316,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="flex-fill">
-                                                    <h5 class="fw-semibold mb-1">10,500</h5>
+                                                    <h5 class="fw-semibold mb-1 fs-14" id="valSoldeFactureClient"></h5>
                                                     <p class="text-muted mb-0 fs-12">Solde facture</p>
                                                 </div>
                                             </div>
@@ -329,7 +329,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="flex-fill">
-                                                    <h5 class="fw-semibold mb-1">$69,270</h5>
+                                                    <h5 class="fw-semibold mb-1 fs-14" id="valSoldeTotal"></h5>
                                                     <p class="text-muted mb-0 fs-12">Solde total</p>
                                                 </div>
                                             </div>
@@ -342,7 +342,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="flex-fill">
-                                                    <h5 class="fw-semibold mb-1">12,088</h5>
+                                                    <h5 class="fw-semibold mb-1 fs-14" id="valSoldeProto"></h5>
                                                     <p class="text-muted mb-0 fs-12">Solde proto.</p>
                                                 </div>
                                             </div>
@@ -355,7 +355,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="flex-fill">
-                                                    <h5 class="fw-semibold mb-1">12,088</h5>
+                                                    <h5 class="fw-semibold mb-1 fs-14" id="valSoldeGlobal"></h5>
                                                     <p class="text-muted mb-0 fs-12">Solde global</p>
                                                 </div>
                                             </div>
@@ -368,7 +368,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="flex-fill">
-                                                    <h5 class="fw-semibold mb-1">12,088</h5>
+                                                    <h5 class="fw-semibold mb-1 fs-14" id="valSoldeDispo"></h5>
                                                     <p class="text-muted mb-0 fs-12">Disponible</p>
                                                 </div>
                                             </div>
@@ -422,51 +422,50 @@
                                 </li>
                             </ul>
                             <form id="formClient">
+                                @csrf
                                 <div class="tab-content" id="myTabContent">
                                     {{-- Infos principales --}}
                                     <div class="tab-pane fade show active text-muted bg-tabs" id="order-tab-pane" role="tabpanel"
                                         aria-labelledby="home-tab" tabindex="0">
                                         <div class="row">
-                                            <div class="col-xl-2 d-none mb-2">
-                                                <p class="mb-2 text-muted">Identifiant :</p>
-                                                <input type="text" class="form-control" id="IDCLIENT">
+                                            <div class="col-xl-2 mb-2 d-none">
+                                                <p class="mb-0 text-muted">Identifiant :</p>
+                                                <input type="text" class="form-control" id="IDCLIENT" name="IDCLIENT">
                                             </div>
                                             <div class="col-xl-2 mb-2">
-                                                <p class="mb-2 text-muted">Code client :</p>
-                                                <input type="text" class="form-control" id="CodeClient" name="CodeClient">
+                                                <p class="mb-0 text-muted">Code client :</p>
+                                                <input type="text" class="form-control" id="CodeClient" name="CodeClient" style="text-transform: uppercase;">
                                             </div>
                                             <div class="col-xl-4 mb-2">
-                                                <p class="mb-2 text-muted">Raison sociale :</p>
-                                                <input type="text" class="form-control" id="NomClient" name="NomClient">
+                                                <p class="mb-0 text-muted">Raison sociale :</p>
+                                                <input type="text" class="form-control" id="NomClient" name="NomClient" style="text-transform: uppercase;">
                                             </div>
                                             <div class="col-xl-3 mb-2">
-                                                <p class="mb-2 text-muted">Type de client :</p>
+                                                <p class="mb-0 text-muted">Type de client :</p>
                                                 <select class="form-select" name="TypeClient" id="TypeClient">
                                                     <option class="optionTypeClient" value="0">SELECTIONNER LE TYPE</option>
                                                     <option class="optionTypeClient" value="1">PHARMACIE</option>
-                                                    <option class="optionTypeClient" value="2">PARAPHARMACE</option>
+                                                    <option class="optionTypeClient" value="2">PARAPHARMACIE</option>
                                                     <option class="optionTypeClient" value="3">CENTRE MEDICAL</option>
                                                     <option class="optionTypeClient" value="4">LABORATOIRE</option>
                                                     <option class="optionTypeClient" value="5">AUTRE</option>
                                                 </select>
                                             </div>
                                             <div class="col-xl-3 mb-2">
-                                                <p class="mb-2 text-muted">Forme juridique :</p>
-                                                <select class="form-select" name="choices-single-default" id="choices-single">
-                                                    <option value="1">SELECTIONNER LA FORME</option>
-                                                    <option value="2">PARAPHARMACE</option>
-                                                    <option value="3">CENTRE MEDICAL</option>
-                                                    <option value="4">LABORATOIRE</option>
-                                                    <option value="5">AUTRE</option>
+                                                <p class="mb-0 text-muted">Forme juridique :</p>
+                                                <select class="form-select" name="IDFORMEJURIDIQUE_CLIENT" id="selectFormeJuridique">
+
                                                 </select>
                                             </div>
                                             <div class="col-xl-6 mb-2">
-                                                <p class="mb-2 text-muted">Représentant légal :</p>
-                                                <input type="text" class="form-control" id="RepresentantLegalClient" name="RepresentantLegalClient">
+                                                <p class="mb-0 text-muted">Représentant légal :</p>
+                                                <input type="text" class="form-control" id="RepresentantLegalClient" name="RepresentantLegalClient" style="text-transform: uppercase;">
                                             </div>
                                             <div class="col-xl-3 mb-2">
-                                                <p class="mb-2 text-muted">Tournée :</p>
-                                                <input type="text" class="form-control" id="input-label">
+                                                <p class="mb-0 text-muted">Tournée :</p>
+                                                <select class="js-example-basic-single fs-select2" name="IDTOURNEE" id="selectTourne">
+
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -476,53 +475,47 @@
                                         aria-labelledby="profile-tab" tabindex="0">
                                         <div class="row">
                                             <div class="col-xl-3 mb-2">
-                                                <p class="mb-2 text-muted">Situation géographique</p>
-                                                <input type="text" class="form-control" id="AdresseGeoClient" name="AdresseGeoClient">
+                                                <p class="mb-0 text-muted">Situation géographique</p>
+                                                <input type="text" class="form-control" id="AdresseGeoClient" name="AdresseGeoClient" style="text-transform: uppercase;">
                                             </div>
                                             <div class="col-xl-3 mb-2">
-                                                <p class="mb-2 text-muted">Adresse postale</p>
-                                                <input type="text" class="form-control" id="AdressePostaleClient" name="AdressePostaleClient">
+                                                <p class="mb-0 text-muted">Adresse postale</p>
+                                                <input type="text" class="form-control" id="AdressePostaleClient" name="AdressePostaleClient" style="text-transform: uppercase;">
                                             </div>
                                             <div class="col-xl-3 mb-2">
-                                                <p class="mb-2 text-muted">Longitude</label>
-                                                <input type="text" class="form-control" id="PositionLongitude" name="PositionLongitude">
+                                                <p class="mb-0 text-muted">Longitude</label>
+                                                <input type="text" class="form-control" id="PositionLongitude" name="PositionLongitude" style="text-transform: uppercase;">
                                             </div>
                                             <div class="col-xl-3 mb-2">
-                                                <p class="mb-2 text-muted">Latitude</p>
-                                                <input type="text" class="form-control" id="PositionLatitude" name="PositionLatitude">
+                                                <p class="mb-0 text-muted">Latitude</p>
+                                                <input type="text" class="form-control" id="PositionLatitude" name="PositionLatitude" style="text-transform: uppercase;">
                                             </div>
                                             <div class="col-xl-4 mb-2">
-                                                <p class="mb-2 text-muted">Téléphone fixe</p>
-                                                <input type="text" class="form-control" id="TelephoneFixeClient" name="TelephoneFixeClient">
+                                                <p class="mb-0 text-muted">Téléphone fixe</p>
+                                                <input type="text" class="form-control" id="TelephoneFixeClient" name="TelephoneFixeClient" style="text-transform: uppercase;">
                                             </div>
                                             <div class="col-xl-4 mb-2">
-                                                <p class="mb-2 text-muted">Téléphone mobile</p>
-                                                <input type="text" class="form-control" id="TelephoneMobileClient" name="TelephoneMobileClient">
+                                                <p class="mb-0 text-muted">Téléphone mobile</p>
+                                                <input type="text" class="form-control" id="TelephoneMobileClient" name="TelephoneMobileClient" style="text-transform: uppercase;">
                                             </div>
                                             <div class="col-xl-4 mb-2">
-                                                <p class="mb-2 text-muted">N° téléphone commande</p>
-                                                <input type="text" class="form-control" id="TelephoneTelemarketiste" name="TelephoneTelemarketiste">
+                                                <p class="mb-0 text-muted">N° téléphone commande</p>
+                                                <input type="text" class="form-control" id="TelephoneTelemarketiste" name="TelephoneTelemarketiste" style="text-transform: uppercase;">
                                             </div>
                                             <div class="col-xl-4">
-                                                <p class="mb-2 text-muted">Email</p>
-                                                <input type="text" class="form-control" id="AdresseEmailClient" name="AdresseEmailClient">
+                                                <p class="mb-0 text-muted">Email</p>
+                                                <input type="text" class="form-control" id="AdresseEmailClient" name="AdresseEmailClient" style="text-transform: uppercase;">
                                             </div>
                                             <div class="col-xl-4">
-                                                <p class="mb-2 text-muted">Ville</p>
-                                                <select class="form-control" data-trigger name="choices-single-default" id="choices-single">
-                                                    <option value="">Selectionner la ville</option>
-                                                    <option value="Choice 1">Choice 1</option>
-                                                    <option value="Choice 2">Choice 2</option>
-                                                    <option value="Choice 3">Choice 3</option>
+                                                <p class="mb-0 text-muted">Ville</p>
+                                                <select class="js-example-basic-single" name="IDVILLES" id="selectVille">
+                                                    
                                                 </select>
                                             </div>
                                             <div class="col-xl-4">
-                                                <p class="mb-2 text-muted">Secteur</p>
-                                                <select class="form-control" data-trigger name="choices-single-default" id="choices-single">
-                                                    <option value="">Selectionner le secteur</option>
-                                                    <option value="Choice 1">Choice 1</option>
-                                                    <option value="Choice 2">Choice 2</option>
-                                                    <option value="Choice 3">Choice 3</option>
+                                                <p class="mb-0 text-muted">Secteur</p>
+                                                <select class="js-example-basic-single" name="IDSECTEUR" id="selectSecteur">
+                                                    
                                                 </select>
                                             </div>
                                         </div>
@@ -534,134 +527,120 @@
                                         <div class=" row ">
 
                                             <div class="col-xl-3 mb-2">
-                                                <p for="input-label" class="mb-2 text-muted">Banque : </p>
-                                                <select class="form-control" data-trigger name="choices-single-default" id="choices-single">
-                                                    <option value="">Selectionner la banque</option>
-                                                    <option value="Choice 1">Choice 1</option>
-                                                    <option value="Choice 2">Choice 2</option>
-                                                    <option value="Choice 3">Choice 3</option>
+                                                <p for="input-label" class="mb-0 text-muted">Banque : </p>
+                                                <select class="js-example-basic-single" name="IDBANQUE" id="selectBanque">
+                                                    
                                                 </select>
                                             </div>
 
                                             <div class="col-xl-2 mb-2">
-                                                <p for="input-label" class="mb-2 text-muted">Code agence : </p>
-                                                <input type="text" class="form-control p-input" id="CodeAgenceBanque" name="CodeAgenceBanque">
+                                                <p for="input-label" class="mb-0 text-muted">Code agence : </p>
+                                                <input type="text" class="form-control p-input" id="CodeAgenceBanque" name="CodeAgenceBanque" style="text-transform: uppercase;">
                                             </div>
 
                                             <div class="col-xl-7 mb-2">
-                                                <p for="input-label" class="mb-2 text-muted">Numéro de compte et Clé RIB : </p>
-                                                <input type="text" class="form-control p-input" id="NumeroCompte" name="NumeroCompte">
+                                                <p for="input-label" class="mb-0 text-muted">Numéro de compte et Clé RIB : </p>
+                                                <input type="text" class="form-control p-input" id="NumeroCompte" name="NumeroCompte" style="text-transform: uppercase;">
                                             </div>
 
                                             <div class="col-xl-3 mb-2">
-                                                <p for="input-label" class="mb-2 text-muted">Mode de règlement préféré : </p>
-                                                <select class="form-control" data-trigger name="choices-single-default" id="choices-single">
-                                                    <option value="">Selectionner la ville</option>
-                                                    <option value="Choice 1">Choice 1</option>
-                                                    <option value="Choice 2">Choice 2</option>
-                                                    <option value="Choice 3">Choice 3</option>
+                                                <p for="input-label" class="mb-0 text-muted">Mode de règlement préféré : </p>
+                                                <select class="js-example-basic-single" name="IDMODEPAIEMENT" id="selectModePaiement">
+                                                    
                                                 </select>
                                             </div>
 
                                             <div class="col-xl-2 mb-2">
-                                                <p for="input-label" class="mb-2 text-muted">Intent° Cmde : </p>
-                                                <input type="text" class="form-control p-input" id="IntentionCommande" name="IntentionCommande">
+                                                <p for="input-label" class="mb-0 text-muted">Intent° Cmde : </p>
+                                                <input type="text" class="form-control p-input" id="IntentionCommande" name="IntentionCommande" style="text-transform: uppercase;">
                                             </div>
 
                                             <div class="col-xl-4 mb-2">
-                                                <p for="input-label" class="mb-2 text-muted">Délai de paiement : </p>
-                                                <select class="form-control form-select p-select" name="choices-single-default" id="choices-single">
-                                                    <option value="">Selectionner le délai</option>
-                                                    <option value="Choice 1">Choice 1</option>
-                                                    <option value="Choice 2">Choice 2</option>
-                                                    <option value="Choice 3">Choice 3</option>
+                                                <p for="input-label" class="mb-0 text-muted">Délai de paiement : </p>
+                                                <select class="js-example-basic-single" name="IDDELAI_PAIEMENT" id="selectDelaiPaiement">
+                                                    
                                                 </select>
                                             </div>
 
                                             <div class="col-xl-3 mb-2">
-                                                <p for="input-label" class="mb-2 text-muted">&nbsp;</p>
-                                                <input type="text" class="form-control p-input text-center" id="input-label" value="ESCOMPTE" readonly>
+                                                <p for="input-label" class="mb-0 text-muted">&nbsp;</p>
+                                                <input type="text" class="form-control p-input text-center" id="labelEscompte" disabled>
                                             </div>
 
                                             <div class="col-xl-4 mb-2">
-                                                <p for="input-label" class="mb-2 text-muted">Délai de paiement ristourne : </p>
-                                                <select class="form-select p-select" name="choices-single-default" id="choices-single">
-                                                    <option value="">Selectionner le délai</option>
-                                                    <option value="Choice 1">Choice 1</option>
-                                                    <option value="Choice 2">Choice 2</option>
-                                                    <option value="Choice 3">Choice 3</option>
+                                                <p for="input-label" class="mb-0 text-muted">Délai de paiement ristourne : </p>
+                                                <select class="form-control form-select" name="ModeGestionEscompteRistourne" id="selectDelaiPaiementRistourne">
+                                                    <option value="0">SELECTIONNER DELAI RISTOURNE</option>
+                                                    <option value="1">PAIEMENT IMMEDIAT</option>
+                                                    <option value="2">PAIEMENT DIFFERE</option>
+                                                    <option value="3">REGLEMENT FACTURE</option>
                                                 </select>
                                             </div>
 
                                             <div class="col-xl-4 mb-2">
-                                                <p for="input-label" class="mb-2 text-muted">Notation : </p>
-                                                <select class="form-select p-select" name="choices-single-default" id="choices-single">
-                                                    <option value="">Selectionner le délai</option>
-                                                    <option value="Choice 1">Choice 1</option>
-                                                    <option value="Choice 2">Choice 2</option>
-                                                    <option value="Choice 3">Choice 3</option>
+                                                <p for="input-label" class="mb-0 text-muted">Notation : </p>
+                                                <select class="form-select p-select" name="NotationClient" id="selectNotation">
+                                                    <option value="0"></option>
+                                                    <option value="1">A</option>
+                                                    <option value="2">B</option>
+                                                    <option value="3">C</option>
+                                                    <option value="3">D</option>
                                                 </select>
                                             </div>
 
                                             <div class="col-xl-4 mb-2">
-                                                <p for="input-label" class="mb-2 text-muted">Commercial : </p>
-                                                <select class="form-control " data-trigger name="choices-single-default" id="choices-single">
-                                                    <option value="">Selectionner le délai</option>
-                                                    <option value="Choice 1">Choice 1</option>
-                                                    <option value="Choice 2">Choice 2</option>
-                                                    <option value="Choice 3">Choice 3</option>
+                                                <p for="input-label" class="mb-0 text-muted">Commercial : </p>
+                                                <select class="js-example-basic-single" name="IDPERSONNEL" id="selectCommercial">
+                                                    
                                                 </select>
                                             </div>
 
                                             <div class="col-xl-4 mb-2">
-                                                <p for="input-label" class="mb-2 text-muted">Regime fiscal : </p>
-                                                <select class="form-select p-select" name="choices-single-default" id="choices-single">
-                                                    <option value="">Selectionner le délai</option>
-                                                    <option value="Choice 1">Choice 1</option>
-                                                    <option value="Choice 2">Choice 2</option>
-                                                    <option value="Choice 3">Choice 3</option>
+                                                <p for="input-label" class="mb-0 text-muted">Regime fiscal : </p>
+                                                <select class="js-example-basic-single" name="IDREGIME_FISCAL" id="selectRegimeFiscal">
+                                                    
                                                 </select>
                                             </div>
 
                                             <div class="col-xl-4 mb-2">
-                                                <p for="input-label" class="mb-2 text-muted">Divison fiscale : </p>
-                                                <input type="text" class="form-control p-input" id="DivisionFiscale" name="DivisionFiscale">
+                                                <p for="input-label" class="mb-0 text-muted">Divison fiscale : </p>
+                                                <input type="text" class="form-control p-input" id="DivisionFiscale" name="DivisionFiscale" style="text-transform: uppercase;">
                                             </div>
 
                                             <div class="col-xl-4 mb-2 ">
                                                 <div class=" row">
                                                     <div class="col-5">
-                                                        <p for="input-label" class="mb-2 text-muted">Clé pharma-ML : </p>
-                                                        <input type="text" class="form-control p-input" id="ClePharmaML" name="ClePharmaML">
+                                                        <p for="input-label" class="mb-0 text-muted">Clé pharma-ML : </p>
+                                                        <input type="text" class="form-control p-input" id="ClePharmaML" name="ClePharmaML" style="text-transform: uppercase;">
                                                     </div>
-                                                    <div class="col-2" style=" margin-top:7%">
+                                                    <div class="col-2 mt-3">
                                                         <button class=" btn btn-primary">G</button>
                                                     </div>
                                                     <div class="col-5">
-                                                        <p for="input-label" class="mb-2 text-muted">Code PIN livraison : </p>
-                                                        <input type="text" class="form-control p-input" id="CodeSecretLivraison" name="CodeSecretLivraison">
+                                                        <p for="input-label" class="mb-0 text-muted">Code PIN livraison : </p>
+                                                        <input type="text" class="form-control p-input text-center" id="CodeSecretLivraison" name="CodeSecretLivraison" style="text-transform: uppercase;">
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-xl-3 mb-2">
-                                                <p for="input-label" class="mb-2 text-muted">Taux de BIC : </p>
-                                                <input type="text" class="form-control p-input" id="TauxBICClient" name="TauxBICClient">
+                                                <p for="input-label" class="mb-0 text-muted">Taux de BIC : </p>
+                                                <input type="number" class="form-control text-center p-input" id="TauxBICClient" name="TauxBICClient">
                                             </div>
 
                                             <div class="col-xl-3 mb-2">
-                                                <p for="input-label" class=" mb-2 text-muted">Mini. de commande</p>
-                                                <input type="text" class="form-control p-input" id="MiniCommandeClient" name="MiniCommandeClient">
+                                                <p for="input-label" class="mb-0 text-muted">Mini. de commande</p>
+                                                <input type="number" class="form-control text-center p-input" id="MiniCommandeClient" name="MiniCommandeClient">
                                             </div>
 
                                             <div class="col-xl-3 mb-2">
-                                                <p class="mb-2 text-muted ">Crédit max:</p>
-                                                <input type="text" class="form-control p-input" id="PlafondCreditClient" name="PlafondCreditClient">
+                                                <p class="mb-0 text-muted ">Crédit max:</p>
+                                                <input type="number" class="form-control text-end p-input" id="PlafondCreditClient" name="PlafondCreditClient">
                                             </div>
 
                                             <div class="col-xl-3 mb-2">
-                                                <p class="mb-2 text-muted ">Crédit max Exp. :</p>
-                                                <input type="text" class="form-control p-input" id="CreditMaxExploitaton" name="CreditMaxExploitaton">
+                                                <p class="mb-0 text-muted ">Crédit max Exp. :</p>
+                                                <input type="number" class="form-control text-end p-input" id="CreditMaxExploitaton" name="CreditMaxExploitaton">
                                             </div>
 
                                             <div class="row mt-2">
@@ -672,8 +651,8 @@
                                                                 <div class="card-body">
                                                                     <div class="form-check">
                                                                         <input class="form-check-input" type="checkbox" value=""
-                                                                            id="flexCheckChecked" checked>
-                                                                        <label class="form-check-label" for="flexCheckChecked">
+                                                                            id="ProtocoleStock" checked>
+                                                                        <label class="form-check-label" for="ProtocoleStock">
                                                                         Liste positive
                                                                         </label>
                                                                     </div>
@@ -685,8 +664,8 @@
                                                                 <div class="card-body">
                                                                     <div class="form-check">
                                                                         <input class="form-check-input" type="checkbox" value=""
-                                                                            id="flexCheckChecked" checked>
-                                                                        <label class="form-check-label" for="flexCheckChecked">
+                                                                            id="RemiseCommercial" checked>
+                                                                        <label class="form-check-label" for="RemiseCommercial">
                                                                             Remise commerciale
                                                                         </label>
                                                                     </div>
@@ -698,8 +677,8 @@
                                                                 <div class="card-body">
                                                                     <div class="form-check">
                                                                         <input class="form-check-input" type="checkbox" value=""
-                                                                            id="flexCheckChecked" checked>
-                                                                        <label class="form-check-label" for="flexCheckChecked">
+                                                                            id="ClientGrilleSpeciale" checked>
+                                                                        <label class="form-check-label" for="ClientGrilleSpeciale">
                                                                             Grille spéciale Escompte / Ristourne
                                                                         </label>
                                                                     </div>
@@ -711,8 +690,8 @@
                                                                 <div class="card-body">
                                                                     <div class="form-check">
                                                                         <input class="form-check-input" type="checkbox" value=""
-                                                                            id="flexCheckChecked" checked>
-                                                                        <label class="form-check-label" for="flexCheckChecked">
+                                                                            id="MiseEnAttenteRetour" checked>
+                                                                        <label class="form-check-label" for="MiseEnAttenteRetour">
                                                                             Valider AVOIR mannuellement
                                                                         </label>
                                                                     </div>
@@ -724,8 +703,8 @@
                                                                 <div class="card-body">
                                                                     <div class="form-check">
                                                                         <input class="form-check-input" type="checkbox" value=""
-                                                                            id="flexCheckChecked" checked>
-                                                                        <label class="form-check-label" for="flexCheckChecked">
+                                                                            id="MiniCommandeClientsurLaJournee" checked>
+                                                                        <label class="form-check-label" for="MiniCommandeClientsurLaJournee">
                                                                             Minimum sur le total de la journée
                                                                         </label>
                                                                     </div>
@@ -749,10 +728,10 @@
                                                                     <label class="d-flex">Prévisionnel&nbsp;S1</label>
                                                                 </td>
                                                                 <td>
-                                                                    <input type="text" class="form-control">
+                                                                    <input type="number" class="form-control text-end" name="montantPrevisionnel1" id="montantPrevisionnel1">
                                                                 </td>
                                                                 <td>
-                                                                    <input type="text" class="form-control">
+                                                                    <input type="number" class="form-control text-center" name="tauxPrevisionnel1" id="tauxPrevisionnel1">
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -760,10 +739,10 @@
                                                                     <label class="d-flex">Prévisionnel&nbsp;S2</label>
                                                                 </td>
                                                                 <td>
-                                                                    <input type="text" class="form-control">
+                                                                    <input type="number" class="form-control text-end" name="montantPrevisionnel2" id="montantPrevisionnel2">
                                                                 </td>
                                                                 <td>
-                                                                    <input type="text" class="form-control">
+                                                                    <input type="number" class="form-control text-center" name="tauxPrevisionnel2" id="tauxPrevisionnel2">
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -771,10 +750,10 @@
                                                                     <label class="d-flex">Annuel</label>
                                                                 </td>
                                                                 <td>
-                                                                    <input type="text" class="form-control">
+                                                                    <input type="number" class="form-control text-end" name="montantAnnuel" id="montantAnnuel">
                                                                 </td>
                                                                 <td>
-                                                                    <input type="text" class="form-control">
+                                                                    <input type="number" class="form-control text-center" name="tauxAnnuel" id="tauxAnnuel">
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -787,39 +766,40 @@
                                     {{-- Exploitation --}}
                                     <div class="tab-pane fade text-muted bg-tabs" id="delivered-tab-pane" role="tabpanel"
                                         tabindex="0">
-                                        <div class="row"><div class="col-xl-3">
-                                            <div class=" card">
-                                                <div class="card-body">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked" checked>
-                                                        <label class="form-check-label" for="flexCheckChecked">
-                                                            Etiquette integration BL
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3">
-                                            <div class=" card">
-                                                <div class="card-body">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckChecked" checked>
-                                                        <label class="form-check-label" for="flexCheckChecked">
-                                                            Abonné recapitulatif BLV
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <div class="row">
                                             <div class="col-xl-3">
                                                 <div class=" card">
                                                     <div class="card-body">
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" value=""
-                                                                id="flexCheckChecked" checked>
-                                                            <label class="form-check-label" for="flexCheckChecked">
+                                                                id="EtiquetteIntegrationBL" name="EtiquetteIntegrationBL" checked>
+                                                            <label class="form-check-label" for="EtiquetteIntegrationBL">
+                                                                Etiquette integration BL
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3">
+                                                <div class=" card">
+                                                    <div class="card-body">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value=""
+                                                                id="AbonneEtatRecapitulatifBLV" name="AbonneEtatRecapitulatifBLV" checked>
+                                                            <label class="form-check-label" for="AbonneEtatRecapitulatifBLV">
+                                                                Abonné recapitulatif BLV
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3">
+                                                <div class=" card">
+                                                    <div class="card-body">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value=""
+                                                                id="NePasFusionnerCommande" name="NePasFusionnerCommande" checked>
+                                                            <label class="form-check-label" for="NePasFusionnerCommande">
                                                                 Ne pas fusionner cdes
                                                             </label>
                                                         </div>
@@ -831,8 +811,8 @@
                                                     <div class="card-body">
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" value=""
-                                                                id="flexCheckChecked" checked>
-                                                            <label class="form-check-label" for="flexCheckChecked">
+                                                                id="ClientRecupereCommande" name="ClientRecupereCommande" checked>
+                                                            <label class="form-check-label" for="ClientRecupereCommande">
                                                                 Récupère ses commandes
                                                             </label>
                                                         </div>
@@ -844,8 +824,8 @@
                                                     <div class="card-body">
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" value=""
-                                                                id="flexCheckChecked" checked>
-                                                            <label class="form-check-label" for="flexCheckChecked">
+                                                                id="ClientEscompte" name="ClientEscompte" checked>
+                                                            <label class="form-check-label" for="ClientEscompte">
                                                                 Client à l'escompte
                                                             </label>
                                                         </div>
@@ -893,7 +873,7 @@
                                             <div class="col-xl-3 pt-1">
                                                 <div class="form-check mt-4">
                                                     <input class="form-check-input" type="checkbox" value="" id="AssistanceMediciel" name="AssistanceMediciel">
-                                                    <label class="form-check-label" for="flexCheckChecked">
+                                                    <label class="form-check-label" for="AssistanceMediciel">
                                                         Assistance Médiciel
                                                     </label>
                                                 </div>
@@ -911,8 +891,8 @@
                                                     <div class="card-body">
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" value=""
-                                                                id="flexCheckChecked" checked>
-                                                            <label class="form-check-label" for="flexCheckChecked">
+                                                                id="AbonneEtiquette" name="AbonneEtiquette" checked>
+                                                            <label class="form-check-label" for="AbonneEtiquette">
                                                                 Abonné etiquette
                                                             </label>
                                                         </div>
@@ -924,8 +904,8 @@
                                                     <div class="card-body">
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" value=""
-                                                                id="flexCheckChecked" checked>
-                                                            <label class="form-check-label" for="flexCheckChecked">
+                                                                id="CompteTiersUnique" name="CompteTiersUnique" checked>
+                                                            <label class="form-check-label" for="CompteTiersUnique">
                                                                 Compte tiers unqiue
                                                             </label>
                                                         </div>
@@ -934,12 +914,11 @@
                                             </div>
                                             <div class="col-xl-12">
                                                 <p class="mb-2 text-muted"> Commentaire</p>
-                                                <textarea class="form-control w-100" name="" id="" cols="30" rows="4"></textarea>
+                                                <textarea class="form-control w-100" name="ObservationsClient" id="ObservationsClient" cols="30" rows="4"></textarea>
                                             </div>
                                             
                                         </div>
                                     </div>
-                                    
                                 </div>
                             </form>
                         </div>
@@ -947,7 +926,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="ri-close-circle-line"></i> Fermer</button>
-                    <button type="button" class="btn btn-primary"><i class="ri-checkbox-circle-line"></i> Enregistrer </button>
+                    <button type="button" class="btn btn-primary" id="btnNewClient"><i class="bx bx-plus fs-6 me-1"></i>Ajouter</button>
+                    <button type="button" class="btn btn-warning" id="btnEditClient"><i class="bx bx-edit fs-6 me-1"></i>Modifier</button>
                 </div>
             </div>
         </div>
@@ -984,20 +964,6 @@
                         "Jeu",
                         "Ven",
                         "Sam"
-                    ],
-                    "monthNames": [
-                        "Janvier",
-                        "Fevrier",
-                        "Mars",
-                        "Avril",
-                        "Mai",
-                        "Juin",
-                        "Juillet",
-                        "Août",
-                        "Septembre",
-                        "Octobre",
-                        "Novembre",
-                        "Decembre"
                     ],
                     "firstDay": 2
                 },
@@ -1049,7 +1015,7 @@
                             },
                             search: "Rechercher&nbsp;:",
                         },
-                        pageLength: 10,
+                        pageLength: 25,
                         "data" : obj,
                         'columns' : [
 
@@ -1210,6 +1176,123 @@
             }
         }
 
+        function chargerSelect(){
+
+            $.ajax({
+
+                url : '{{ route('chargerSelect')}}',
+                type : 'GET',
+                dataType : 'json',
+                success : function(response){
+
+                    // Select forme juridique ...
+                    $('#selectFormeJuridique').html('')
+                    $('#selectFormeJuridique').append('<option class="optionFormeJuridique" value="0">SELECTIONNER FORME</>')
+                    $.each(response.listeFormeJuridique, function(key, value){
+                        
+                        $('#selectFormeJuridique').append('<option class="optionFormeJuridique" value="'+value['IDFORMEJURIDIQUE_CLIENT']+'">'+value['LibelleFormeJuridiqueClient']+'</option>')
+                    })
+
+                    // Select des tournées...
+                    $('#selectTourne').html('')
+                    $('#selectTourne').append('<option class="optionTourne" value="0">SELECTIONNER TOURNÉE</>')
+                    $.each(response.listeTourne, function(key, value){
+                        
+                        $('#selectTourne').append('<option class="optionTourne" value="'+value['IDTOURNEE']+'">'+value['LibelleTournee']+'</option>')
+                    })
+
+                    $('#selectTourne').select2({
+                        dropdownParent: $("#modalFicheClient")
+                    })
+
+                    // Select des villes ....
+                    $('#selectVille').html('')
+                    $('#selectVille').append('<option class="optionVille" value="0">SELECTIONNER VILLE</>')
+                    $.each(response.listeVille, function(key, value){
+                        
+                        $('#selectVille').append('<option class="optionVille" value="'+value['IDVILLES']+'">'+value['NomVille']+'</option>')
+                    })
+
+                    $('#selectVille').select2({
+                        dropdownParent: $("#modalFicheClient")
+                    })
+
+                    // Select secteur ....
+                    $('#selectSecteur').html('')
+                    $('#selectSecteur').append('<option class="optionSecteur" value="0">SELECTIONNER SECTEUR</>')
+                    $.each(response.listeSecteur, function(key, value){
+                        
+                        $('#selectSecteur').append('<option class="optionSecteur" value="'+value['IDSECTEUR']+'">'+value['NomSecteur']+'</option>')
+                    })
+
+                    $('#selectSecteur').select2({
+                        dropdownParent: $("#modalFicheClient")
+                    })
+
+                    // Select banque
+                    $('#selectBanque').html('')
+                    $('#selectBanque').append('<option class="optionBanque" value="0">SELECTIONNER BANQUE</>')
+                    $.each(response.listeBanque, function(key, value){
+                        
+                        $('#selectBanque').append('<option class="optionBanque" value="'+value['IDBANQUE']+'">'+value['NomBanque']+'</option>')
+                    })
+
+                    $('#selectBanque').select2({
+                        dropdownParent: $("#modalFicheClient")
+                    })
+
+                    // Select mode de paiement
+                    $('#selectModePaiement').html('')
+                    $('#selectModePaiement').append('<option class="optionMode" value="0">SELECTIONNER MODE</>')
+                    $.each(response.listeModePaiement, function(key, value){
+                        
+                        $('#selectModePaiement').append('<option class="optionMode" value="'+value['IDMODEPAIEMENT']+'">'+value['LibelleModePaiement']+'</option>')
+                    })
+
+                    $('#selectModePaiement').select2({
+                        dropdownParent: $("#modalFicheClient")
+                    })
+
+                    // Select delai paiement
+                    $('#selectDelaiPaiement').html('')
+                    $('#selectDelaiPaiement').append('<option class="optionDelai" value="0">SELECTIONNER DÉLAI</>')
+                    $.each(response.listeDelaiPaiement, function(key, value){
+                        
+                        $('#selectDelaiPaiement').append('<option class="optionDelai" value="'+value['IDDELAI_PAIEMENT']+'">'+value['LibelleDelaiPaiement']+'</option>')
+                    })
+
+                    $('#selectDelaiPaiement').select2({
+                        dropdownParent: $("#modalFicheClient")
+                    })
+
+                    // Select commercial
+                    $('#selectCommercial').html('')
+                    $('#selectCommercial').append('<option class="optionCommercial" value="0">SELECTIONNER COMMERCIAL</>')
+                    $.each(response.listeCommercial, function(key, value){
+                        
+                        $('#selectCommercial').append('<option class="optionCommercial" value="'+value['IDPERSONNEL']+'">'+value['NomPrenomPersonnel']+'</option>')
+                    })
+
+                    $('#selectCommercial').select2({
+                        dropdownParent: $("#modalFicheClient")
+                    })
+
+                    // Select regime fiscal
+                    $('#selectRegimeFiscal').html('')
+                    $('#selectRegimeFiscal').append('<option class="optionRegime" value="0">SELECTIONNER REGIME</>')
+                    $.each(response.listeRegimeFiscal, function(key, value){
+                        
+                        $('#selectRegimeFiscal').append('<option class="optionRegime" value="'+value['IDREGIME_FISCAL']+'">'+value['NomRegimeFiscal']+'</option>')
+                    })
+
+                    $('#selectRegimeFiscal').select2({
+                        dropdownParent: $("#modalFicheClient")
+                    })
+                }
+            })
+        }
+
+        chargerSelect()
         chargerTableListingClient()
     </script>
 
@@ -1218,6 +1301,88 @@
 
         // ouverture de la modal 
         _('bntModalNewClient').addEventListener('click', function(){
+
+            _('btnNewClient').style.display = ''
+            _('btnEditClient').style.display = 'none'
+
+            _('IDCLIENT').value = ''
+            _('CodeClient').value = ''
+            _('CodeClient').removeAttribute('disabled')
+            _('NomClient').value = ''
+            _('TypeClient').selectedIndex = ''
+            _('RepresentantLegalClient').value = ''
+            _('AdresseGeoClient').value = ''
+
+            _('AdressePostaleClient').value = ''
+            _('PositionLongitude').value = ''
+            _('PositionLatitude').value = ''
+            _('TelephoneFixeClient').value = ''
+            _('TelephoneMobileClient').value = ''
+            _('TelephoneTelemarketiste').value = ''
+            _('AdresseEmailClient').value = ''
+
+            _('CodeAgenceBanque').value = ''
+            _('NumeroCompte').value = ''
+            _('DivisionFiscale').value = ''
+            _('ClePharmaML').value = ''
+            _('CodeSecretLivraison').value = ''
+            _('TauxBICClient').value = ''
+            _('MiniCommandeClient').value = ''
+            _('PlafondCreditClient').value = ''
+            _('CreditMaxExploitaton').value = ''
+
+            _('ProtocoleStock').checked = false
+            _('RemiseCommercial').checked = false
+            _('ClientGrilleSpeciale').checked = false
+            _('MiseEnAttenteRetour').checked = false
+            _('MiniCommandeClientsurLaJournee').checked = false
+            _('EtiquetteIntegrationBL').checked = false
+            _('AbonneEtatRecapitulatifBLV').checked = false
+            _('NePasFusionnerCommande').checked = false
+            _('ClientRecupereCommande').checked = false
+            _('ClientEscompte').checked = false
+
+            _('NumeroRC').value = ''
+            _('NumeroCC').value = ''
+            _('NumeroCompteTiers').value = ''
+            _('NumeroCompteTiersRistourne').value = ''
+            _('NumeroCompteTiersEscompte').value = ''
+            _('MontantAssistanceMedicel').value = ''
+
+            _('AssistanceMediciel').checked = false
+            _('AbonneEtiquette').checked = false
+            _('CompteTiersUnique').checked = false
+            _('ObservationsClient').value = false
+
+            _('valEnCour').innerHTML = '0 F'
+            _('valSoldeFactureClient').innerHTML = '0 F'
+            _('valSoldeTotal').innerHTML = '0 F'
+            _('valSoldeProto').innerHTML = '0 F'
+            _('valSoldeGlobal').innerHTML = '0 F'
+            _('valSoldeDispo').innerHTML = '0 F'
+
+            _('labelEscompte').value = 'PAS D\'ESCOMPTE'
+            _('labelEscompte').style.color = 'red'
+
+            _('montantPrevisionnel1').value = 0
+            _('tauxPrevisionnel1').value = 0
+            _('montantPrevisionnel2').value = 0
+            _('tauxPrevisionnel2').value = 0
+            _('montantAnnuel').value = 0
+            _('tauxAnnuel').value = 0
+
+            $('#TypeClient').val(0).trigger('change')
+            $('#selectFormeJuridique').val(0).trigger('change')
+            $('#selectTourne').val(0).trigger('change')
+            $('#selectVille').val(0).trigger('change')
+            $('#selectSecteur').val(0).trigger('change')
+            $('#selectBanque').val(0).trigger('change')
+            $('#selectModePaiement').val(0).trigger('change')
+            $('#selectDelaiPaiement').val(0).trigger('change')
+            $('#selectCommercial').val(0).trigger('change')
+            $('#selectRegimeFiscal').val(0).trigger('change')
+            $('#selectDelaiPaiementRistourne').val(0).trigger('change')
+            $('#selectNotation').val(0).trigger('change')
 
             $('#modalFicheClient').modal('show')
         })
@@ -1241,18 +1406,19 @@
                 dataType : 'json',
                 success : function(response){
 
+                    _('btnNewClient').style.display = 'none'
+                    _('btnEditClient').style.display = ''
+
                     _('IDCLIENT').value = IDCLIENT
+
                     _('CodeClient').value = response.data.CodeClient
+                    _('CodeClient').setAttribute('disabled', '')
+
                     _('NomClient').value = response.data.NomClient
                     _('TypeClient').selectedIndex = response.data.TypeClient
-                    
-                    // Select forme juridique
-                    
                     _('RepresentantLegalClient').value = response.data.RepresentantLegalClient
-
-                    // Select tournée
-
                     _('AdresseGeoClient').value = response.data.AdresseGeoClient
+
                     _('AdressePostaleClient').value = response.data.AdressePostaleClient
                     _('PositionLongitude').value = response.data.PositionLongitude
                     _('PositionLatitude').value = response.data.PositionLatitude
@@ -1261,63 +1427,114 @@
                     _('TelephoneTelemarketiste').value = response.data.TelephoneTelemarketiste
                     _('AdresseEmailClient').value = response.data.AdresseEmailClient
 
-                    // Select Ville
-
-                    // Select Banque
-
                     _('CodeAgenceBanque').value = response.data.CodeAgenceBanque
                     _('NumeroCompte').value = response.data.NumeroCompte
-
-                    // Select mode de paiement
-
-                    // Select delai de paiement Ristourne
-
-                    // Select notation client
-
-                    // Select commercial
-
-                    // Select regime fiscal
-
                     _('DivisionFiscale').value = response.data.DivisionFiscale
                     _('ClePharmaML').value = response.data.ClePharmaML
                     _('CodeSecretLivraison').value = response.data.CodeSecretLivraison
-                    _('TauxBICClient').value = response.data.TauxBICClient
-                    _('MiniCommandeClient').value = response.data.MiniCommandeClient
-                    _('PlafondCreditClient').value = response.data.PlafondCreditClient
-                    _('CreditMaxExploitaton').value = response.data.CreditMaxExploitaton
+                    _('TauxBICClient').value = Math.round(response.data.TauxBICClient)
+                    _('MiniCommandeClient').value = parseInt(response.data.MiniCommandeClient)
+                    _('PlafondCreditClient').value = parseInt(response.data.PlafondCreditClient)
+                    _('CreditMaxExploitaton').value = parseInt(response.data.CreditMaxExploitaton)
 
-                    // CreditMaxExploitaton => SoldeProtocoleStock
-                    // Remise commerciale => RemiseCommercial
-                    // Grille spéciale Escompte / Ristourne => ClientGrilleSpeciale
-                    // Valider AVOIR mannuellement => MiseEnAttenteRetour
-                    // Minimum sur le total de la journée => MiniCommandeClientsurLaJournee
-                    // Etiquette integration BL => EtiquetteIntegrationBL
-                    // Abonné recapitulatif BLV => TamponNumerique1
-                    // Ne pas fusionner cdes => NePasFusionnerCommande
-                    // NePasFusionnerCommande => ClientRecupereCommande
-                    // ClientRecupereCommande => ClientEscompte
-                    
+                    _('ProtocoleStock').checked = response.data.ProtocoleStock
+                    _('RemiseCommercial').checked = response.data.RemiseCommercial
+                    _('ClientGrilleSpeciale').checked = response.data.ClientGrilleSpeciale
+                    _('MiseEnAttenteRetour').checked = response.data.MiseEnAttenteRetour
+                    _('MiniCommandeClientsurLaJournee').checked = response.data.MiniCommandeClientsurLaJournee
+                    _('EtiquetteIntegrationBL').checked = response.data.EtiquetteIntegrationBL
+                    _('AbonneEtatRecapitulatifBLV').checked = response.data.AbonneEtatRecapitulatifBLV
+                    _('NePasFusionnerCommande').checked = response.data.NePasFusionnerCommande
+                    _('ClientRecupereCommande').checked = response.data.ClientRecupereCommande
+                    _('ClientEscompte').checked = response.data.ClientEscompte
+
                     _('NumeroRC').value = response.data.NumeroRC
-                    _('NumeroCC').value = response.date.NumeroCC
-                    _('NumeroCompteTiers').value = respone.NumeroCompteTiers
+                    _('NumeroCC').value = response.data.NumeroCC
+                    _('NumeroCompteTiers').value = response.data.NumeroCompteTiers
                     _('NumeroCompteTiersRistourne').value = response.data.NumeroCompteTiersRistourne
                     _('NumeroCompteTiersEscompte').value = response.data.NumeroCompteTiersEscompte
                     _('MontantAssistanceMedicel').value = response.data.MontantAssistanceMedicel
 
-                    // Assistance mediciel => AssistanceMediciel
+                    _('labelEscompte').value = 'PAS D\'ESCOMPTE'
+                    _('labelEscompte').style.color = 'red'
 
-                    // Abonné etiquette => AbonneEtiquette
+                    if(response.data.BeneficieEscompte == true){
 
-                    // AbonneEtiquette => CompteTiersUnique
+                        _('labelEscompte').value = 'ESCOMPTE'
+                        _('labelEscompte').style.color = 'green'
+                    }
 
-                    // Commentaire => ObservationsClient
+                    _('AssistanceMediciel').checked = response.data.AssistanceMediciel
+                    _('AbonneEtiquette').checked = response.data.AbonneEtiquette
+                    _('CompteTiersUnique').checked = response.data.CompteTiersUnique
+                    _('ObservationsClient').value = response.data.ObservationsClient
+
+                    _('valEnCour').innerHTML = separateurMilliers(parseInt(response.data.EncoursClientTheoriq))+' F'
+                    _('valSoldeFactureClient').innerHTML = separateurMilliers(parseInt(response.data.SoldeFactureClient))+' F'
+                    let soldeTotal = parseInt(response.data.SoldeFactureClient) + parseInt(response.data.EncoursClientTheoriq)
+                    _('valSoldeTotal').innerHTML = separateurMilliers(soldeTotal)+' F'
+                    _('valSoldeProto').innerHTML = separateurMilliers(parseInt(response.data.soldeProtocole))+' F'
+                    _('valSoldeGlobal').innerHTML = separateurMilliers( parseInt(response.data.soldeProtocole) + soldeTotal)+ ' F'
+
+                    _('montantPrevisionnel1').value = parseInt(response.data.previsionnelS1, 2)
+                    _('tauxPrevisionnel1').value = Math.round(response.data.tauxS1, 2)
+                    _('montantPrevisionnel2').value = parseInt(response.data.previsionnelS2, 2)
+                    _('tauxPrevisionnel2').value = Math.round(response.data.tauxS2, 2)
+                    _('montantAnnuel').value = parseInt(response.data.previsionnelAnnuel, 2)
+                    _('tauxAnnuel').value = Math.round(response.data.tauxAnnuel, 2)
+
+                    if(response.data.NbreJoursDelai == 0){
+
+                        _('valSoldeDispo').innerHTML = separateurMilliers( parseInt(response.data.CreditMaxExploitaton) - soldeTotal )+' F'
+                    }else{
+
+                        _('valSoldeDispo').innerHTML = separateurMilliers( parseInt(response.data.PlafondCreditClient) - soldeTotal)+' F'
+                    }
+
+                    $('#TypeClient').val(response.data.TypeClient).trigger('change')
+                    $('#selectFormeJuridique').val(response.data.IDFORMEJURIDIQUE_CLIENT).trigger('change')
+                    $('#selectTourne').val(response.data.IDTOURNEE).trigger('change')
+                    $('#selectVille').val(response.data.IDVILLES).trigger('change')
+                    $('#selectSecteur').val(response.data.IDSECTEUR).trigger('change')
+                    $('#selectBanque').val(response.data.IDBANQUE).trigger('change')
+                    $('#selectModePaiement').val(response.data.IDMODEPAIEMENT).trigger('change')
+                    $('#selectDelaiPaiement').val(response.data.IDDELAI_PAIEMENT).trigger('change')
+                    $('#selectCommercial').val(response.data.IDPERSONNEL).trigger('change')
+                    $('#selectRegimeFiscal').val(response.data.IDREGIME_FISCAL).trigger('change')
+                    $('#selectDelaiPaiementRistourne').val(response.data.ModeGestionEscompteRistourne).trigger('change')
+                    $('#selectNotation').val(response.data.NotationClient).trigger('change')
+
+                    $('#modalFicheClient').modal('show')
                 },
                 error : function(response){
                     console.log(response)
                 }
             })
+        })
 
-            $('#modalFicheClient').modal('show')
+        // Modification du client
+        _('btnEditClient').addEventListener('click', function(){
+
+            let formulaire = new FormData(_('formClient'))
+            // formulaire.append('IDCLIENT', "{{csrf_token()}}")
+
+            $.ajax({
+
+                url : '{{ route('modifierClient')}}',
+                type : 'POST',
+                data : formulaire,
+                processData: false,
+                contentType: false,
+                dataType : 'json',
+                success : function(response){
+
+                    if(response.success == 1){
+
+                        alert('MODIFICATION EFFECTUEE ...')
+                        $('#modalFicheClient').modal('hide')
+                    }
+                }
+            })
         })
     </script>
 
