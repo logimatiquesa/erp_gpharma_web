@@ -20,88 +20,133 @@
                             </nav>
                         </div>
 
-                        <div class="col-xl-5 col-md-8">
-                            <div class="row">
-                                <div class="col-xl-6 col-md-8 mt-md-0 mt-3">
-                                    <div class="d-flex">
-                                        <div class="col-xl-9 col-lg-6 col-sm-6 col-8">
-                                            <button type="button" class="btn btn-secondary-light btn-wave d-flex" id="bntModalNewClient">
-                                                <i class=" ri ri-add-circle-line me-1"></i>Nouveau client
-                                            </button>
-                                        </div>
-                                        <div class="col-xl-3 col-lg-6 col-sm-6 col-4">
-                                            <div class="btn-group" style="margin-top : 1px;">
-                                                <button type="button" class="btn btn-primary-light dropdown-toggle"
-                                                    data-bs-toggle="dropdown" data-bs-auto-close="inside" aria-expanded="false">
-                                                    Action
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li>
-                                                        <div class="dropdown1">
-                                                            <button class="dropbtn1 text-start dropdown-toggle">Imprimer les
-                                                                étiquettes</button>
-                                                            <div class="dropdown-content1">
-                                                                <a href="#">Format classique</a>
-                                                                <a href="#">Format Bac</a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <hr class="dropdown-divider">
-                                                    </li>
-                                                    <li>
-                                                        <a class="dropdown-item" href="javascript:void(0);">
-                                                            Générer Code PIN Livraison
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <hr class="dropdown-divider">
-                                                    </li>
-                                                    <li>
-                                                        <a class="dropdown-item" href="javascript:void(0);">
-                                                            Générer les clés Pharma-ML
-                                                        </a>
-                                                    </li>
-    
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-md-4 mt-md-0 mt-3">
-                                    <div class=" d-flex justify-content-end">
-                                        <span class="badge bg-light pt-2" style="width:40px;">
-                                            <i class="ri-printer-line text-dark" style="font-size:20px; cursor:pointer;"></i>
-                                        </span>
-                                        <div class="dropdown">
-                                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                Plus de menus
-                                            </button>
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                <li><a class="dropdown-item" href="javascript:void(0);">Historique des ventes</a></li>
-                                                <li><a class="dropdown-item" href="javascript:void(0);">Réclamation du client</a></li>
-                                                <li><a class="dropdown-item" href="javascript:void(0);">Compte du client</a></li>
-                                                <li><a class="dropdown-item" href="javascript:void(0);">Compte extranet</a></li>
-                                                <li><a class="dropdown-item" href="javascript:void(0);">Horaires d'appel</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {{-- </div> --}}
-            {{-- </div> --}}
-        </div>
-    </div>
-    <!-- Page Header Close -->
+
 
 
     <!-- Start:: row-7 -->
     <div class="row">
         <div class="col-xl-12">
             <div class="card custom-card">
+                <div class="card-body">
+                    <div class="d-flex flex-wrap justify-content-between">
+                        <div class="col-xl-3 col-lg-3 col-sm-3 col-6 mt-3 d-flex align-items-center">
+                            <div class="me-2">
+                                <span class="avatar avatar-rounded bg-primary-transparent text-primary"><i
+                                        class="ri-user-3-line fs-16"></i></span>
+                            </div>
+                            <div class="flex-fill">
+                                <p class="fs-18 mb-0 text-primary fw-semibold">25,350</p>
+                                <span class="text-muted fs-12">Nbre client</span>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-sm-3 col-6 mt-3 d-flex align-items-center">
+                            <div class="me-2">
+                                <span class="avatar avatar-rounded bg-light text-default"><i
+                                        class="ri-user-3-line fs-16"></i></span>
+                            </div>
+                            <div class="flex-fill">
+                                <p class="fs-18 mb-0 fw-semibold">19,200</p>
+                                <span class="text-muted fs-12">Total en cours</span>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-sm-3 col-12 mt-3 d-flex align-items-center">
+                            <div class="me-2">
+                                <span class="avatar avatar-rounded bg-success-transparent"><i
+                                        class="ri-user-3-line fs-16"></i></span>
+                            </div>
+                            <div class="flex-fill">
+                                <p class="fs-18 mb-0 text-success fw-semibold">1,24,890</p>
+                                <span class="text-muted fs-12">Total crédit max</span>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-sm-3 col-12 mt-3 d-flex align-items-center">
+                            <div class="row w-100">
+                                <div class="col-xl-7 col-lg-6 col-sm-6 col-6">
+                                    <button type="button" class="btn btn-secondary-light btn-wave"
+                                        data-bs-effect="effect-slide-in-right" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModalScrollable2">
+                                        <i class=" ri ri-add-circle-line"></i> Nouveau client
+                                    </button>
+                                </div>
+                                <div class="col-xl-5 col-lg-6 col-sm-6 col-6">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary-light dropdown-toggle"
+                                            data-bs-toggle="dropdown" data-bs-auto-close="inside" aria-expanded="false">
+                                            Action
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <div class="dropdown1">
+                                                    <button class="dropbtn1 text-start dropdown-toggle">Imprimer les
+                                                        étiquettes</button>
+                                                    <div class="dropdown-content1">
+                                                        <a href="#">Format classique</a>
+                                                        <a href="#">Format Bac</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="javascript:void(0);">
+                                                    Générer Code PIN Livraison
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="javascript:void(0);">
+                                                    Générer les clés Pharma-ML
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End:: row-7 -->
+
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card custom-card">
+                <div class="card-header"
+                    style="background: rgb(231,220,236); background: linear-gradient(90deg, rgba(231,220,236,0.8184523809523809) 4%, rgba(194,160,226,0.8016456582633054) 32%, rgba(196,13,232,0.33665966386554624) 58%);">
+                    <div class="row w-100">
+                        <div class="col-md-3 col-xl-3 d-flex">
+                            <span class=" badge bg-light text-dark pt-3 "
+                                style="border-radius:5px 0px 0px 5px">Garde&nbsp;:</span>
+                            <input type="text" class="form-control text-center" name="daterange" value="01/01/2018 - 01/15/2018"
+                                style="border-radius:0px 5px 5px 0px" />
+                        </div>
+                        <div class="offset-md-5 offset-sm-6 offset-xl-7 col-md-4 col-sm-3 col-xl-2 d-flex justify-content-between"
+                            style="margin-top : -14px">
+                            <span class="badge bg-light mt-3 pt-2" style="width:60px;">
+                                <i class="ri-printer-line text-dark" style="font-size:20px; cursor:pointer;"></i>
+                            </span>
+                            <div class="dropdown mt-3">
+                                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Plus de menus
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="javascript:void(0);">Historique des ventes</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0);">Réclamation du client</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0);">Compte du client</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0);">Compte extranet</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0);">Horaires d'appel</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="card-body">
                     <div class="row px-4">
                         <div class="col-xl-4 col-lg-4 col-sm-4 col-6 d-flex align-items-center">
@@ -177,7 +222,7 @@
                                     <div class="accordion-body bg-tabs">
 
                                         <div class="row">
-                                            
+
                                             <div class="col-xl-4 col-md-2 mb-2">
                                                 <p class="mb-0 text-muted">Type de client</p>
                                                 <select class="form-select">
@@ -989,7 +1034,7 @@
                     obj = response.data
 
                     tableClient = $("#tableclient").DataTable({
-                        
+
                         bFilter : false,
                         language: {
                             // dom: 'Bfrtip',
@@ -1170,7 +1215,7 @@
             {
                 /* Get the DataTables object again - this is not a recreation, just a get of the object */
                 var oTable = $('#tableclient').dataTable();
-                
+
                 var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
                 oTable.fnSetColumnVis( iCol, bVis ? false : true );
             }
@@ -1299,7 +1344,7 @@
     {{-- Script new client --}}
     <script>
 
-        // ouverture de la modal 
+        // ouverture de la modal
         _('bntModalNewClient').addEventListener('click', function(){
 
             _('btnNewClient').style.display = ''

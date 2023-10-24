@@ -164,16 +164,16 @@ class clientController extends Controller
 
                 // LibelleFormeJuridique
                 if ($value -> LibelleFormeJuridiqueClient == null) {
-                    
+
                     $client[$key] -> LibelleFormeJuridiqueClient = '';
                 }
 
                 // LibelleTournee
                 if ($value -> LibelleTournee == null) {
-                    
+
                     $client[$key] -> LibelleTournee = '';
                 }
-                
+
                 // SoldeDispo
                 if($value -> NbreJoursDelai == 0  && $value -> DelaiPaiement){
 
@@ -186,7 +186,7 @@ class clientController extends Controller
 
                 // EtatCompteClient
                 if ($value -> EtatCompteClient != 1) {
-                    
+
                     $client[$key] -> EtatCompteClient = '<span class="badge bg-danger-transparent" style="font-size:.78rem">BLOQUÉ</span>';
                 }else{
 
@@ -198,7 +198,7 @@ class clientController extends Controller
 
                     $client[$key] -> AbonneEtiquette = '<input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" disabled="" checked>';
                 }else{
-                    
+
                     $client[$key] -> AbonneEtiquette = '<input class="form-check-input form-checked-dark" type="checkbox" value="" id="flexCheckDisabled"  disabled="">';
                 }
 
@@ -207,7 +207,7 @@ class clientController extends Controller
 
                     $client[$key] -> EtiquetteIntegrationBL = '<input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" disabled="" checked>';
                 }else{
-                    
+
                     $client[$key] -> EtiquetteIntegrationBL = '<input class="form-check-input form-checked-dark" type="checkbox" value="" id="flexCheckDisabled" disabled="">';
                 }
 
@@ -216,7 +216,7 @@ class clientController extends Controller
 
                     $client[$key] -> RemiseCommercial = '<input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" disabled="" checked>';
                 }else{
-                    
+
                     $client[$key] -> RemiseCommercial = '<input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" disabled="">';
                 }
 
@@ -225,7 +225,7 @@ class clientController extends Controller
 
                     $client[$key] -> TamponNumerique1 = '<input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" disabled="" checked>';
                 }else{
-                    
+
                     $client[$key] -> TamponNumerique1 = '<input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" disabled="">';
                 }
 
@@ -234,7 +234,7 @@ class clientController extends Controller
 
                     $client[$key] -> SoldeProtocoleStock = '<input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" disabled="" checked>';
                 }else{
-                    
+
                     $client[$key] -> SoldeProtocoleStock = '<input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" disabled="">';
                 }
 
@@ -243,13 +243,13 @@ class clientController extends Controller
 
                     $client[$key] -> NotationClient = 'A';
                 }else if($value -> NotationClient == "2"){
-                    
+
                     $client[$key] -> NotationClient = 'B';
                 }else if($value -> NotationClient == "3"){
-                    
+
                     $client[$key] -> NotationClient = 'C';
                 }else if($value -> NotationClient == "4"){
-                    
+
                     $client[$key] -> NotationClient = 'D';
                 }
 
@@ -261,9 +261,9 @@ class clientController extends Controller
                 $client[$key] -> tauxAnnuel = '0.00 %';
 
                 foreach ($listePrevisionnel as $cle => $previ) {
-                    
+
                     if ($previ -> IDCLIENT == $value -> IDCLIENT) {
-                        
+
                         // Previsionnel 1
                         if($previ ->ObjectifSemestre1 != 0){
 
@@ -317,10 +317,164 @@ class clientController extends Controller
         } catch (\Throwable $th) {
 
             // echo json_encode(array('error' => true, 'message' => getMessageErreur($th -> getCode())));
-            echo json_encode(array('error' => true, 'message' => $th -> getMessage()));
-
+            echo json_encode(array('error' => true, 'message' => $th->getMessage()));
         }
     }
+
+    // Client garde
+
+
+    public function clientGarde()
+    {
+
+        session()->put("idUser", 1);
+        session()->put("NomUser", "Anderson");
+        session()->put("mdpUser", "andi");
+
+        $resultats = DB::table('CLIENT')
+            ->select("CLIENT.IDCLIENT", "CLIENT.NomClient")
+            ->get();
+        return view('pages.clients.clientsgarde', ["listeClient" => $resultats]);
+    }
+
+    public function listeClientGarde(Request $request)
+    {
+
+        try {
+
+            $resultats = DB::table('GARDECLIENT')
+                ->select("GARDECLIENT.IDGARDECLIENT", "GARDECLIENT.DateDebutGarde", "GARDECLIENT.DateFinGarde", "CLIENT.NomClient", "CLIENT.IDCLIENT")
+                ->leftJoin("CLIENT", "GARDECLIENT.IDCLIENT", "CLIENT.IDCLIENT")
+                ->whereBetween("GARDECLIENT.DateDebutGarde", [$request->date["dateDebut"] == null ? date("Y-m-d") : $request->date["dateDebut"],  $request->date["dateFin"] == null ? date("Y-m-d") :  $request->date["dateFin"]])
+                ->whereBetween("GARDECLIENT.DateFinGarde", [$request->date["dateDebut"] == null ? date("Y-m-d") : $request->date["dateDebut"],  $request->date["dateFin"] == null ? date("Y-m-d") :  $request->date["dateFin"]])
+
+                ->get();
+
+            echo json_encode(array('error' => false, 'data' => $resultats, "date" => $request->all()));
+        } catch (\Throwable $th) {
+
+            echo json_encode(array('error' => true, 'messages' => $th->getMessage(), 'message' => getMessageErreur($th->getCode())));
+
+            // echo json_encode(array('error' => true, 'message' => $th->getMessage()));
+        }
+    }
+
+    public function listeClient()
+    {
+        try {
+
+            $resultats = DB::table('CLIENT')
+                ->select("CLIENT.IDCLIENT", "CLIENT.NomClient")
+                ->get();
+
+            echo json_encode(array('error' => false, 'data' => $resultats));
+        } catch (\Throwable $th) {
+
+            echo json_encode(array('error' => true, 'message' => getMessageErreur($th->getCode())));
+
+            // echo json_encode(array('error' => true, 'message' => $th->getMessage()));
+        }
+    }
+
+    public function addClientGarde(Request $request)
+    {
+
+        // dd($request->all());
+        if (isset($request->dateInterval)) {
+            $resultats = [];
+
+            $dateDebut = date_format(date_create($request->dateInterval['dateDebut']), "Y-m-d");
+            $dateFin = date_format(date_create($request->dateInterval['dateFin']), "Y-m-d");
+
+            try {
+                foreach ($request->clients as $value) {
+
+                    $count = DB::table("GARDECLIENT")
+                        ->whereBetween("DateDebutGarde", [$dateDebut, $dateFin])
+                        ->whereBetween("DateFinGarde", [$dateDebut, $dateFin])
+                        ->where("IDCLIENT", $value)
+                        ->count();
+
+                    if ($count == 0) {
+                        $resultats = DB::table("GARDECLIENT")
+                        ->insert(["DateDebutGarde" => $dateDebut, "DateFinGarde" => $dateFin, "IDCLIENT" => $value, "CreePar"=>session()->get("idUser")]);
+                    }
+                }
+                echo json_encode(array('error' => false, 'data' => $resultats));
+            } catch (\Throwable $th) {
+                echo json_encode(array('error' => true, 'message' => getMessageErreur($th->getCode())));
+            }
+        }
+    }
+
+    public function updateClientGarde(Request $request)
+    {
+
+        // dd($request->all());
+        if (isset($request->dateInterval)) {
+            $resultats = [];
+
+            $dateDebut = date_format(date_create($request->dateInterval['dateDebut']), "Y-m-d");
+            $dateFin = date_format(date_create($request->dateInterval['dateFin']), "Y-m-d");
+
+            try {
+                foreach ($request->clients as $value) {
+
+                    $count = DB::table("GARDECLIENT")
+                        ->whereBetween("DateDebutGarde", [$dateDebut, $dateFin])
+                        ->whereBetween("DateFinGarde", [$dateDebut, $dateFin])
+                        ->where("IDCLIENT","=" ,$value)
+                        ->where("IDGARDECLIENT","<>" ,$request->garde)
+                        ->count();
+
+                    if ($count == 0) {
+                        $resultats = DB::table("GARDECLIENT")
+                            ->where("IDCLIENT", $value)
+                            ->where("IDGARDECLIENT","=" ,$request->garde)
+                            ->update(["DateDebutGarde" => $dateDebut, "DateFinGarde" => $dateFin, "updated_at"=>Carbon::now(), "ModifiePar"=>session()->get("")]);
+
+                        echo json_encode(['error' => false, 'edit'=> true, 'data' => $resultats]);
+                        return;
+                    }
+
+                    echo json_encode(['error' => false, 'edit'=> false, 'data' => $resultats, "nbr"=>$count]);
+                }
+            } catch (\Throwable $th) {
+                echo json_encode(array('error' => true, 'message' => getMessageErreur($th->getCode())));
+            }
+        }
+    }
+
+    public function deleteClientGarde(Request $request)
+    {
+        // echo json_encode($request->all());
+        // return;
+
+        if ($this->compareMdp($request->mdp)) {
+            try {
+                $count = DB::table("GARDECLIENT")
+                    ->where("IDGARDECLIENT", $request->idClientGarde)
+                    ->delete();
+
+                echo json_encode(['error' => false, 'data' => $count]);
+                return;
+            } catch (\Throwable $th) {
+                echo json_encode(['error' => true, 'message' => getMessageErreur($th->getCode()), "messages" => $th->getMessage()]);
+                return;
+            }
+        }
+
+        echo json_encode(['error' => false, 'ok' => false]);
+    }
+
+    public function compareMdp(String $mdp)
+    {
+        if ($mdp == session()->get("mdpUser")) {
+            return true;
+        }
+        return false;
+    }
+
 
     public function infoClient(Request $request){
 

@@ -21,8 +21,6 @@
     <!-- Color Picker JS -->
     <script src="{{ asset('assets/libs/@simonwep/pickr/pickr.es5.min.js')}}"></script>
 
-
-
     <!-- JSVector Maps JS -->
     <script src="{{ asset('assets/libs/jsvectormap/js/jsvectormap.min.js')}}"></script>
 
@@ -43,10 +41,6 @@
     <script src="{{ asset('assets/js/custom-switcher.min.js')}}"></script>
 
     <script src="{{ asset('assets/js/jquery-3.6.1.min.js')}}" ></script>
-
-    <!-- Bootstrap Tables js -->
-    {{-- <script src="{{ asset('assets/libs/bootstrap-table/bootstrap-table.min.js') }}"></script> --}}
-    
     <!-- Date pickerRange -->
 
     <script type="text/javascript" src="{{ asset('assets/js/moment.min.js')}}"></script>
