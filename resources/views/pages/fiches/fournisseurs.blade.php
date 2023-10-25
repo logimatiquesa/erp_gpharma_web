@@ -19,54 +19,17 @@
 
                 <div class="col-xl-5 col-md-8">
                     <div class="row">
-                        <div class="col-xl-6 col-md-8 mt-md-0 mt-3">
-                            <div class="d-flex">
-                                <div class="col-xl-9 col-lg-6 col-sm-6 col-8">
-                                    <button type="button" class="btn btn-secondary-light btn-wave d-flex"
-                                        id="bntModalNewClient">
-                                        <i class=" ri ri-add-circle-line me-1"></i>Nouveau fournisseur
-                                    </button>
-                                </div>
-                                <div class="col-xl-3 col-lg-6 col-sm-6 col-4">
-                                    <div class="btn-group" style="margin-top : 1px;">
-                                        <button type="button" class="btn btn-primary-light dropdown-toggle"
-                                            data-bs-toggle="dropdown" data-bs-auto-close="inside" aria-expanded="false">
-                                            Action
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <div class="dropdown1">
-                                                    <button class="dropbtn1 text-start dropdown-toggle">Imprimer les
-                                                        étiquettes</button>
-                                                    <div class="dropdown-content1">
-                                                        <a href="#">Format classique</a>
-                                                        <a href="#">Format Bac</a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="javascript:void(0);">
-                                                    Générer Code PIN Livraison
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="javascript:void(0);">
-                                                    Générer les clés Pharma-ML
-                                                </a>
-                                            </li>
+                        <div class="offset-xl-2  col-xl-6 col-md-8 mt-md-0 mt-3 d-flex justify-content-end">
 
-                                        </ul>
-                                    </div>
-                                </div>
+                            <div class="col-xl-9 col-lg-6 col-sm-6 col-8">
+                                <button type="button" class="btn btn-secondary-light btn-wave d-flex"
+                                    id="bntModalNewClient">
+                                    <i class=" ri ri-add-circle-line me-1"></i>Nouveau fournisseur
+                                </button>
                             </div>
+
                         </div>
-                        <div class="col-xl-6 col-md-4 mt-md-0 mt-3">
+                        <div class="col-xl-4 col-md-4 mt-md-0 mt-3">
                             <div class=" d-flex justify-content-end">
                                 <span class="badge bg-light pt-2" style="width:40px;">
                                     <i class="ri-printer-line text-dark" style="font-size:20px; cursor:pointer;"></i>
@@ -103,26 +66,20 @@
                 <div class="card-header pe-0 pe-0">
                     <div class="row w-100">
                         <div class="col-md-3 col-md-3 mb-2">
-                            <p class="mb-0 text-muted">Code ou non du client</p>
-                            <input type="text" class="form-control" />
-                        </div>
-                        <div class="col-xl-3 col-md-3 mb-2">
-                            <p class="mb-0 text-muted">Période de garde&nbsp;:</p>
-                            <input type="text" class="form-control text-center" name="daterange" />
+                            <p class="mb-0 text-muted">Code ou nom du fournisseur récherché </p>
+                            <input type="text" class="form-control p-input" name="codeFour" id="codeFour"
+                                placeholder=" Ex : 014580 / MAYDAY" />
                         </div>
                         <div class="col-xl-3 col-md-2 mb-2">
-                            <p class="mb-0 text-muted">Notation</p>
-                            <select class="form-select">
-                                <option value="paul">Paul</option>
-                            </select>
-                        </div>
-                        <div class="col-xl-3 col-md-2 mb-0">
-                            <p class="mb-0 text-muted">Tournée</p>
-                            <select class="form-select">
-                                <option value="paul">Paul</option>
-                            </select>
-                        </div>
+                            <p class="mb-0 text-muted">Bureau achat</p>
+                            <select class="form-select p-input" name="bureauSearch" id="bureauSearch">
 
+                            </select>
+                        </div>
+                        <div class="col-xl-3 col-md-2 mb-0 mt-3">
+                            <button class=" btn btn-icon btn-primary mb-0" title="Rechercher" id="btnSearch"><i
+                                    class='bx bx-search-alt'></i></button>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body">
@@ -137,12 +94,12 @@
                                     </th>
                                     <th class="text-center">Code</th>
                                     <th class="text-center">Nom fournissseur</th>
+                                    <th class="text-center">Bureau d'achat</th>
+                                    <th class="text-center">Etat</th>
                                     <th class="text-center">Adresse</th>
                                     <th class="text-center">Téléphone fixe</th>
                                     <th class="text-center">Telephone mobile</th>
-                                    <th class="text-center">Etat du compte</th>
                                     <th class="text-center">Email</th>
-                                    <th class="text-center">Bureau d'achat</th>
                                     <th class="text-center">Pays</th>
                                 </tr>
                             </thead>
@@ -197,7 +154,8 @@
                                                     name="codeFournissuer" readonly>
                                             </div>
                                             <div class="col-xl-6 mb-2">
-                                                <p class="mb-0 text-muted">Nom du fournisseur : <span class=" text-danger">*</span> </p>
+                                                <p class="mb-0 text-muted">Nom du fournisseur : <span
+                                                        class=" text-danger">*</span> </p>
                                                 <input type="text" class="form-control" id="nomFournisseur"
                                                     name="nomFournisseur" required>
                                             </div>
@@ -210,7 +168,8 @@
                                             </div>
 
                                             <div class="col-xl-3 mb-2">
-                                                <p class="mb-0 text-muted">Bureau d'achat : <span class=" text-danger">*</span></p>
+                                                <p class="mb-0 text-muted">Bureau d'achat : <span
+                                                        class=" text-danger">*</span></p>
                                                 <select class="form-select" name="bureauAchat" id="bureauAchat" required>
 
                                                 </select>
@@ -331,11 +290,13 @@
                                     </div>
 
                                 </div>
-                                <input type="submit" value="" id="inputSubmit" hidden>
+                                <input type="hidden" name="idFournisseur" value="" id="idFournisseur">
+                                <input type="hidden" name="method" value="create" id="method" hidden>
+                                <input type="submit" name="method" value="create" id="inputSubmit" hidden>
                             </form>
                         </div>
                     </div>
-                    <div class=" row d-flex justify-content-end">
+                    <div class=" row d-flex justify-content-end" hidden>
                         <div class=" btn btn-primary btn-sm col-md-2 m-2">Historique <br> des achats</div>
                         <div class=" btn btn-primary btn-sm col-md-2 m-2">Historique <br> des réliquats</div>
                     </div>
@@ -382,18 +343,31 @@
                     },
                     search: "Rechercher&nbsp;:",
                 },
+                columnDef: [{
+                    targets: [0],
+                    "bSortable": false
+                }],
                 pageLength: 10,
+                order: []
             })
 
+
             //******************* Execution ********************/
-            // getDataFournisseur()
+            getDataFournisseur()
 
             listePays()
             listeBureau()
 
+
             $("#bntModalNewClient").click(function() {
                 $("#modalFicheClient").modal("show")
             })
+
+            $('#modalFicheClient').on('hidden.bs.modal', function() {
+
+                $("#formFournisseur").get(0).reset()
+                $('#method').val("create")
+            });
 
             $("#formFournisseur").on("submit", function(e) {
 
@@ -412,6 +386,95 @@
                     contentType: false,
                     success: function(response, statut) {
                         console.log(response)
+                        if (response.error == false) {
+                            notif("success", "Success !!", "Opération éffectutée !!!")
+                            getDataFournisseur()
+                            $("#modalFicheClient").modal("hide")
+                            return
+                        }
+                        notif("danger", "Attention !!", "Opération non éffectutée !!!")
+
+                    },
+                    error: function(response, statut, error) {
+                        notif("warning", "Attention !!", "Une erreur s'est produite !!!")
+
+                        console.log(response)
+                    }
+                })
+            })
+
+            $("#tablefournisseur tbody").on("click", "#btnTrash", function() {
+                var data_id = $(this).attr("data-id")
+
+                alert(() => $.ajax({
+
+                    url: '{{ route('fournisseur.delete') }}',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {
+                        data: data_id
+                    },
+                    success: function(response, statut) {
+                        // console.log(response)
+                        if (response.error == true) {
+                            notif("warning", "Attention !!", response.message)
+                            return;
+                        }
+                        getDataFournisseur()
+                        notif("success", "Félicitaion !!", response.message)
+                    },
+                    error: function(response, statut, error) {
+                        console.log(response)
+                    }
+                }))
+
+
+            })
+
+            $("#tablefournisseur tbody").on("click", "#btnEdit", function() {
+                var data_id = $(this).attr("data-id")
+
+                $.ajax({
+
+                    url: '{{ route('fournisseur.detail') }}',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {
+                        data: data_id
+                    },
+                    success: function(response, statut) {
+                        // console.log(response)
+
+                        $('#codeFournissuer').val(response.CodeFournisseur)
+                        $('#nomFournisseur').val(response.NomFournisseur)
+                        $('#etatCompte').val(response.EtatCompteFournisseur).change()
+                        $('#bureauAchat').val(response.IDBUREAUACHAT).change()
+                        $('#rib').val(response.RibCodeBanqueFournisseur)
+                        $('#numCompteTiers').val(response.CompteTiersFournisseur)
+                        $('#numCC').val(response.NccFournisseur)
+                        $('#delaiEcheance').val(response.DelaiEcheanceFournisseur)
+                        $('#delaiLivraison').val(response.DelaiTransport)
+                        $('#valeurMiniCommande').val(response.ValeurMiniCommande)
+                        $('#civilite').val(response.CiviliteInterlocuteur).change()
+                        $('#nomInterlocuteur').val(response.NomInterlocuteur)
+                        $('#dateNAissance').val(response.DateNaissanceInterlocuteur)
+                        $('#pays').val(response.IDPAYS).change()
+                        $('#AdresseFournisseur').val(response.AdresseFourniseur)
+                        $('#contact1').val(response.ObservationsContact1)
+                        $('#telFixe1').val(response.TelephoneFixeFseur1)
+                        $('#telMobile1').val(response.TelephoneMobileFseur1)
+                        $('#mailFournisseur1').val(response.EmailFournisseur1)
+                        $('#contact2').val(response.ObservationsContact2)
+                        $('#telFixe2').val(response.TelephoneFixeFseur2)
+                        $('#telMobile2').val(response.TelephoneMobileFseur2)
+                        $('#mailFournisseur2').val(response.EmailFournisseur2)
+
+                        $('#method').val("update")
+
+                        $('#idFournisseur').val(data_id)
+
+                        $("#modalFicheClient").modal("show")
+
                     },
                     error: function(response, statut, error) {
                         console.log(response)
@@ -419,31 +482,58 @@
                 })
             })
 
+            $("#btnSearch").click(function() {
+                getDataFournisseur($("#codeFour").val(), $("#bureauSearch").val())
+            })
+
             //******************* Fonctions ********************/
-            function getDataFournisseur() {
+            function getDataFournisseur(code = "", bureau = 0) {
                 $.ajax({
 
                     url: '{{ route('fournisseur.liste') }}',
                     type: 'GET',
                     dataType: 'json',
+                    data: {
+                        code: code,
+                        bureau: bureau
+                    },
                     success: function(response, statut) {
+
+                        // console.log(response)
+
                         tableFournisseur.clear().draw()
                         $.each(response, function(key, value) {
+                            var etat =
+                                '<span class="badge bg-danger-transparent" style="font-size:.78rem">INACTIF</span>'
+                            if (value.EtatCompteFournisseur == 1) {
+                                etat =
+                                    '<span class="badge bg-success-transparent px-3" style="font-size:.78rem">ACTIF</span>'
+                            }
+
                             tableFournisseur.row.add([
-                                `${value.}`,
+                                ` <input class="form-check-input me-3" data-id="'.$identifiant.'" type="checkbox" id="checkboxNoLabel1" value="" aria-label="..." style="height : 19px; width:19px;cursor : pointer;">
+                                    <a class="btn btn-sm btn-icon btn-outline-danger" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-primary" data-bs-placement="top" title="Supprimer ce client"  data-id="${value.IDFOURNISSEUR}" id="btnTrash">
+                                        <i class="bx bxs-trash"style="font-size : 14px;cursor : pointer;"></i>
+                                    </a>
+                                    <a class="btn btn-sm btn-icon btn-outline-warning" data-id="${value.IDFOURNISSEUR}"  data-bs-toggle="tooltip" data-bs-custom-class="tooltip-primary" data-bs-placement="top" title="Modifier ce client" id="btnEdit">
+                                        <i class="bx bxs-edit" style="font-size : 17px;cursor : pointer;"></i>
+                                    </a>
+                                `,
                                 `${value.CodeFournisseur}`,
                                 `${value.NomFournisseur}`,
-                                `${value.}`,
-                                `${value.}`,
-                                `${value.}`,
-                                `${value.}`,
-                                `${value.}`,
-                                `${value.}`,
-                                `${value.}`,
-                                `${value.}`,
-                                `${value.}`,
+                                `${value.NomBureauAchat}`,
+                                `${etat}`,
+                                `${value.AdresseFourniseur}`,
+                                `${value.TelephoneFixeFseur1 == null ? value.TelephoneFixeFseur2 : value.TelephoneFixeFseur1}`,
+                                `${value.TelephoneMobileFseur1 == null ? value.TelephoneMobileFseur2 : value.TelephoneMobileFseur1}`,
+                                `${value.EmailFournisseur1}`,
+                                `${value.NomPays == null ? "" : value.NomPays}`
                             ])
                         })
+
+                        tableFournisseur.draw()
+
+                        completeHandler()
                     },
                     error: function(response, statut, error) {
 
@@ -480,8 +570,13 @@
                     success: function(response, statut) {
                         // console.log(response)
                         $("#bureauAchat").html("")
+                        $("#bureauSearch").html("")
+                        $("#bureauSearch").append(`<option value="0">TOUS</option>`)
                         $.each(response, function(key, value) {
                             $("#bureauAchat").append(
+                                `<option value="${value.IDBUREAUACHAT}">${value.NomBureauAchat}</option>`
+                            )
+                            $("#bureauSearch").append(
                                 `<option value="${value.IDBUREAUACHAT}">${value.NomBureauAchat}</option>`
                             )
                         })

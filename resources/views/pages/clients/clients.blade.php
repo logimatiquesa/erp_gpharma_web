@@ -20,133 +20,88 @@
                             </nav>
                         </div>
 
-
+                        <div class="col-xl-5 col-md-8">
+                            <div class="row">
+                                <div class="col-xl-6 col-md-8 mt-md-0 mt-3">
+                                    <div class="d-flex">
+                                        <div class="col-xl-9 col-lg-6 col-sm-6 col-8">
+                                            <button type="button" class="btn btn-secondary-light btn-wave d-flex" id="bntModalNewClient">
+                                                <i class=" ri ri-add-circle-line me-1"></i>Nouveau client
+                                            </button>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-6 col-sm-6 col-4">
+                                            <div class="btn-group" style="margin-top : 1px;">
+                                                <button type="button" class="btn btn-primary-light dropdown-toggle"
+                                                    data-bs-toggle="dropdown" data-bs-auto-close="inside" aria-expanded="false">
+                                                    Action
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <div class="dropdown1">
+                                                            <button class="dropbtn1 text-start dropdown-toggle">Imprimer les
+                                                                étiquettes</button>
+                                                            <div class="dropdown-content1">
+                                                                <a href="#">Format classique</a>
+                                                                <a href="#">Format Bac</a>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <hr class="dropdown-divider">
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="javascript:void(0);">
+                                                            Générer Code PIN Livraison
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <hr class="dropdown-divider">
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="javascript:void(0);">
+                                                            Générer les clés Pharma-ML
+                                                        </a>
+                                                    </li>
+    
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-md-4 mt-md-0 mt-3">
+                                    <div class=" d-flex justify-content-end">
+                                        <span class="badge bg-light pt-2" style="width:40px;">
+                                            <i class="ri-printer-line text-dark" style="font-size:20px; cursor:pointer;"></i>
+                                        </span>
+                                        <div class="dropdown">
+                                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                Plus de menus
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                <li><a class="dropdown-item" href="javascript:void(0);">Historique des ventes</a></li>
+                                                <li><a class="dropdown-item" href="javascript:void(0);">Réclamation du client</a></li>
+                                                <li><a class="dropdown-item" href="javascript:void(0);">Compte du client</a></li>
+                                                <li><a class="dropdown-item" href="javascript:void(0);">Compte extranet</a></li>
+                                                <li><a class="dropdown-item" href="javascript:void(0);">Horaires d'appel</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {{-- </div> --}}
+            {{-- </div> --}}
+        </div>
+    </div>
+    <!-- Page Header Close -->
 
 
     <!-- Start:: row-7 -->
     <div class="row">
         <div class="col-xl-12">
             <div class="card custom-card">
-                <div class="card-body">
-                    <div class="d-flex flex-wrap justify-content-between">
-                        <div class="col-xl-3 col-lg-3 col-sm-3 col-6 mt-3 d-flex align-items-center">
-                            <div class="me-2">
-                                <span class="avatar avatar-rounded bg-primary-transparent text-primary"><i
-                                        class="ri-user-3-line fs-16"></i></span>
-                            </div>
-                            <div class="flex-fill">
-                                <p class="fs-18 mb-0 text-primary fw-semibold">25,350</p>
-                                <span class="text-muted fs-12">Nbre client</span>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-sm-3 col-6 mt-3 d-flex align-items-center">
-                            <div class="me-2">
-                                <span class="avatar avatar-rounded bg-light text-default"><i
-                                        class="ri-user-3-line fs-16"></i></span>
-                            </div>
-                            <div class="flex-fill">
-                                <p class="fs-18 mb-0 fw-semibold">19,200</p>
-                                <span class="text-muted fs-12">Total en cours</span>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-sm-3 col-12 mt-3 d-flex align-items-center">
-                            <div class="me-2">
-                                <span class="avatar avatar-rounded bg-success-transparent"><i
-                                        class="ri-user-3-line fs-16"></i></span>
-                            </div>
-                            <div class="flex-fill">
-                                <p class="fs-18 mb-0 text-success fw-semibold">1,24,890</p>
-                                <span class="text-muted fs-12">Total crédit max</span>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-sm-3 col-12 mt-3 d-flex align-items-center">
-                            <div class="row w-100">
-                                <div class="col-xl-7 col-lg-6 col-sm-6 col-6">
-                                    <button type="button" class="btn btn-secondary-light btn-wave"
-                                        data-bs-effect="effect-slide-in-right" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModalScrollable2">
-                                        <i class=" ri ri-add-circle-line"></i> Nouveau client
-                                    </button>
-                                </div>
-                                <div class="col-xl-5 col-lg-6 col-sm-6 col-6">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary-light dropdown-toggle"
-                                            data-bs-toggle="dropdown" data-bs-auto-close="inside" aria-expanded="false">
-                                            Action
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <div class="dropdown1">
-                                                    <button class="dropbtn1 text-start dropdown-toggle">Imprimer les
-                                                        étiquettes</button>
-                                                    <div class="dropdown-content1">
-                                                        <a href="#">Format classique</a>
-                                                        <a href="#">Format Bac</a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="javascript:void(0);">
-                                                    Générer Code PIN Livraison
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="javascript:void(0);">
-                                                    Générer les clés Pharma-ML
-                                                </a>
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End:: row-7 -->
-
-    <div class="row">
-        <div class="col-xl-12">
-            <div class="card custom-card">
-                <div class="card-header"
-                    style="background: rgb(231,220,236); background: linear-gradient(90deg, rgba(231,220,236,0.8184523809523809) 4%, rgba(194,160,226,0.8016456582633054) 32%, rgba(196,13,232,0.33665966386554624) 58%);">
-                    <div class="row w-100">
-                        <div class="col-md-3 col-xl-3 d-flex">
-                            <span class=" badge bg-light text-dark pt-3 "
-                                style="border-radius:5px 0px 0px 5px">Garde&nbsp;:</span>
-                            <input type="text" class="form-control text-center" name="daterange" value="01/01/2018 - 01/15/2018"
-                                style="border-radius:0px 5px 5px 0px" />
-                        </div>
-                        <div class="offset-md-5 offset-sm-6 offset-xl-7 col-md-4 col-sm-3 col-xl-2 d-flex justify-content-between"
-                            style="margin-top : -14px">
-                            <span class="badge bg-light mt-3 pt-2" style="width:60px;">
-                                <i class="ri-printer-line text-dark" style="font-size:20px; cursor:pointer;"></i>
-                            </span>
-                            <div class="dropdown mt-3">
-                                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Plus de menus
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="javascript:void(0);">Historique des ventes</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0);">Réclamation du client</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0);">Compte du client</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0);">Compte extranet</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0);">Horaires d'appel</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="card-body">
                     <div class="row px-4">
                         <div class="col-xl-4 col-lg-4 col-sm-4 col-6 d-flex align-items-center">
@@ -192,24 +147,33 @@
                 <div class="card-header pe-0 pe-0">
                     <div class="row w-100">
                         <div class="col-md-3 col-md-3 mb-2">
-                            <p class="mb-0 text-muted">Code ou non du client</p>
-                            <input type="text" class="form-control" />
+                            <p class="mb-0 text-muted">Code ou nom du client</p>
+                            <input type="text" class="form-control" id="filtreNomCode"/>
                         </div>
                         <div class="col-xl-3 col-md-3 mb-2">
                             <p class="mb-0 text-muted">Période de garde&nbsp;:</p>
-                            <input type="text" class="form-control text-center" name="daterange"/>
+                            <input type="text" class="form-control text-center" name="daterange" id="filtrePeriode"/>
                         </div>
-                        <div class="col-xl-3 col-md-2 mb-2">
+                        <div class="col-xl-2 col-md-2 mb-2">
                             <p class="mb-0 text-muted">Notation</p>
-                            <select class="form-select">
-                                <option value="paul">Paul</option>
+                            <select class="form-select" id="filtreNotation">
+                                <option value="0"></option>
+                                <option value="1">A</option>
+                                <option value="2">B</option>
+                                <option value="3">C</option>
+                                <option value="3">D</option>
                             </select>
                         </div>
                         <div class="col-xl-3 col-md-2 mb-0">
                             <p class="mb-0 text-muted">Tournée</p>
-                            <select class="form-select">
-                                <option value="paul">Paul</option>
+                            <select class="form-select" id="filtreTournee">
+
                             </select>
+                        </div>
+                        <div class="col-xl-1 col-md-2 mb-0 d-flex justify-content-end pt-1">
+                            <button type="button" class="btn btn-primary btn-wave mt-2" id="btnFiltreTable">
+                                <i class="ri-search-line" style="font-size:13px; cursor:pointer;"></i>
+                            </button>
                         </div>
                         <div class="accordion accordion-flush mt-2" id="accordionFlushExample">
                             <div class="accordion-item">
@@ -222,7 +186,7 @@
                                     <div class="accordion-body bg-tabs">
 
                                         <div class="row">
-
+                                            
                                             <div class="col-xl-4 col-md-2 mb-2">
                                                 <p class="mb-0 text-muted">Type de client</p>
                                                 <select class="form-select">
@@ -243,12 +207,6 @@
                                                     <option value="paul">Paul</option>
                                                 </select>
                                             </div>
-
-                                            <div class="col-xl-3 col-md-2 mb-2 pt-1">
-                                                <button type="button" class="btn btn-primary btn-wave mt-2">
-                                                    <i class="ri-search-line" style="font-size:13px; cursor:pointer;"></i>
-                                                </button>
-                                            </div>
                                         </div>
 
                                     </div>
@@ -267,51 +225,51 @@
                                             value="" aria-label="...">
                                         Actions
                                     </th>
-                                    <th class="text-center">Code client</th>
-                                    <th class="text-center">Raison sociale</th>
-                                    <th class="text-center">Etat du compte</th>
-                                    <th class="text-center">Représentant légal</th>
-                                    <th class="text-center">Garde</th>
-                                    <th class="text-center">Téléphone Fixe</th>
-                                    <th class="text-center">Téléphone Mobile</th>
-                                    <th class="text-center">Forme Juridique</th>
-                                    <th class="text-center">Email</th>
-                                    <th class="text-center">Crédit max</th>
-                                    <th class="text-center">Crédit Max Exploitation</th>
-                                    <th class="text-center">Encours</th>
-                                    <th class="text-center">Encours Théorique</th>
-                                    <th class="text-center">Solde Facture</th>
-                                    <th class="text-center">Solde Dispo.</th>
-                                    <th class="text-center">Mode de paiement</th>
-                                    <th class="text-center">Délais de Paiement</th>
-                                    <th class="text-center">Abonné tournée</th>
-                                    <th class="text-center">Etiquette</th>
-                                    <th class="text-center">Abonné Recap. BLV</th>
-                                    <th class="text-center">N° Compte tiers</th>
-                                    <th class="text-center">N° Compte tiers escompte</th>
-                                    <th class="text-center">N° Compte tiers Ristourne</th>
-                                    <th class="text-center">N° RC</th>
-                                    <th class="text-center">N° CC</th>
-                                    <th class="text-center">Etiquette Facture</th>
-                                    <th class="text-center">Remise Commerciale</th>
-                                    <th class="text-center">Ville</th>
-                                    <th class="text-center">Agence</th>
-                                    <th class="text-center">Liste Positive</th>
-                                    <th class="text-center">Notation</th>
-                                    <th class="text-center">Intention Commande</th>
-                                    <th class="text-center">Taux BIC</th>
-                                    <th class="text-center">Commercial</th>
-                                    <th class="text-center">Previsionnel S1</th>
-                                    <th class="text-center">CA Semestre 1</th>
-                                    <th class="text-center">Taux S1</th>
-                                    <th class="text-center">Previsionnel S2</th>
-                                    <th class="text-center">CA Semestre 2</th>
-                                    <th class="text-center">Taux S2</th>
-                                    <th class="text-center">CA Annuel</th>
-                                    <th class="text-center">Previsionnel Annuel</th>
-                                    <th class="text-center">Taux Annuel</th>
-                                    <th class="text-center">Régime fiscal</th>
-                                    <th class="text-center">Division fiscale</th>
+                                    <th class="text-center colTable">Code client</th>
+                                    <th class="text-center colTable">Raison sociale</th>
+                                    <th class="text-center colTable">Etat du compte</th>
+                                    <th class="text-center colTable">Représentant légal</th>
+                                    <th class="text-center colTable">Garde</th>
+                                    <th class="text-center colTable">Téléphone Fixe</th>
+                                    <th class="text-center colTable">Téléphone Mobile</th>
+                                    <th class="text-center colTable">Forme Juridique</th>
+                                    <th class="text-center colTable">Email</th>
+                                    <th class="text-center colTable">Crédit max</th>
+                                    <th class="text-center colTable">Crédit Max Exploitation</th>
+                                    <th class="text-center colTable">Encours</th>
+                                    <th class="text-center colTable">Encours Théorique</th>
+                                    <th class="text-center colTable">Solde Facture</th>
+                                    <th class="text-center colTable">Solde Dispo.</th>
+                                    <th class="text-center colTable">Mode de paiement</th>
+                                    <th class="text-center colTable">Délais de Paiement</th>
+                                    <th class="text-center colTable">Abonné tournée</th>
+                                    <th class="text-center colTable">Etiquette</th>
+                                    <th class="text-center colTable">Abonné Recap. BLV</th>
+                                    <th class="text-center colTable">N° Compte tiers</th>
+                                    <th class="text-center colTable">N° Compte tiers escompte</th>
+                                    <th class="text-center colTable">N° Compte tiers Ristourne</th>
+                                    <th class="text-center colTable">N° RC</th>
+                                    <th class="text-center colTable">N° CC</th>
+                                    <th class="text-center colTable">Etiquette Facture</th>
+                                    <th class="text-center colTable">Remise Commerciale</th>
+                                    <th class="text-center colTable">Ville</th>
+                                    <th class="text-center colTable">Agence</th>
+                                    <th class="text-center colTable">Liste Positive</th>
+                                    <th class="text-center colTable">Notation</th>
+                                    <th class="text-center colTable">Intention Commande</th>
+                                    <th class="text-center colTable">Taux BIC</th>
+                                    <th class="text-center colTable">Commercial</th>
+                                    <th class="text-center colTable">Previsionnel S1</th>
+                                    <th class="text-center colTable">CA Semestre 1</th>
+                                    <th class="text-center colTable">Taux S1</th>
+                                    <th class="text-center colTable">Previsionnel S2</th>
+                                    <th class="text-center colTable">CA Semestre 2</th>
+                                    <th class="text-center colTable">Taux S2</th>
+                                    <th class="text-center colTable">CA Annuel</th>
+                                    <th class="text-center colTable">Previsionnel Annuel</th>
+                                    <th class="text-center colTable">Taux Annuel</th>
+                                    <th class="text-center colTable">Régime fiscal</th>
+                                    <th class="text-center colTable">Division fiscale</th>
                                 </tr>
                             </thead>
                         </table>
@@ -612,7 +570,7 @@
                                                 <input type="text" class="form-control p-input text-center" id="labelEscompte" disabled>
                                             </div>
 
-                                            <div class="col-xl-4 mb-2">
+                                            <div class="col-xl-3 mb-2">
                                                 <p for="input-label" class="mb-0 text-muted">Délai de paiement ristourne : </p>
                                                 <select class="form-control form-select" name="ModeGestionEscompteRistourne" id="selectDelaiPaiementRistourne">
                                                     <option value="0">SELECTIONNER DELAI RISTOURNE</option>
@@ -622,7 +580,7 @@
                                                 </select>
                                             </div>
 
-                                            <div class="col-xl-4 mb-2">
+                                            <div class="col-xl-1 mb-2">
                                                 <p for="input-label" class="mb-0 text-muted">Notation : </p>
                                                 <select class="form-select p-select" name="NotationClient" id="selectNotation">
                                                     <option value="0"></option>
@@ -640,18 +598,6 @@
                                                 </select>
                                             </div>
 
-                                            <div class="col-xl-4 mb-2">
-                                                <p for="input-label" class="mb-0 text-muted">Regime fiscal : </p>
-                                                <select class="js-example-basic-single" name="IDREGIME_FISCAL" id="selectRegimeFiscal">
-                                                    
-                                                </select>
-                                            </div>
-
-                                            <div class="col-xl-4 mb-2">
-                                                <p for="input-label" class="mb-0 text-muted">Divison fiscale : </p>
-                                                <input type="text" class="form-control p-input" id="DivisionFiscale" name="DivisionFiscale" style="text-transform: uppercase;">
-                                            </div>
-
                                             <div class="col-xl-4 mb-2 ">
                                                 <div class=" row">
                                                     <div class="col-5">
@@ -666,6 +612,18 @@
                                                         <input type="text" class="form-control p-input text-center" id="CodeSecretLivraison" name="CodeSecretLivraison" style="text-transform: uppercase;">
                                                     </div>
                                                 </div>
+                                            </div>
+
+                                            <div class="col-xl-4 mb-2">
+                                                <p for="input-label" class="mb-0 text-muted">Regime fiscal : </p>
+                                                <select class="js-example-basic-single" name="IDREGIME_FISCAL" id="selectRegimeFiscal">
+                                                    
+                                                </select>
+                                            </div>
+
+                                            <div class="col-xl-8 mb-2">
+                                                <p for="input-label" class="mb-0 text-muted">Divison fiscale : </p>
+                                                <input type="text" class="form-control p-input" id="DivisionFiscale" name="DivisionFiscale" style="text-transform: uppercase;">
                                             </div>
 
                                             <div class="col-xl-3 mb-2">
@@ -773,7 +731,7 @@
                                                                     <label class="d-flex">Prévisionnel&nbsp;S1</label>
                                                                 </td>
                                                                 <td>
-                                                                    <input type="number" class="form-control text-end" name="montantPrevisionnel1" id="montantPrevisionnel1">
+                                                                    <input type="number" class="form-control text-end" name="ObjectifSemestre1" id="montantPrevisionnel1">
                                                                 </td>
                                                                 <td>
                                                                     <input type="number" class="form-control text-center" name="tauxPrevisionnel1" id="tauxPrevisionnel1">
@@ -784,7 +742,7 @@
                                                                     <label class="d-flex">Prévisionnel&nbsp;S2</label>
                                                                 </td>
                                                                 <td>
-                                                                    <input type="number" class="form-control text-end" name="montantPrevisionnel2" id="montantPrevisionnel2">
+                                                                    <input type="number" class="form-control text-end" name="ObjectifSemestre2" id="montantPrevisionnel2">
                                                                 </td>
                                                                 <td>
                                                                     <input type="number" class="form-control text-center" name="tauxPrevisionnel2" id="tauxPrevisionnel2">
@@ -795,7 +753,7 @@
                                                                     <label class="d-flex">Annuel</label>
                                                                 </td>
                                                                 <td>
-                                                                    <input type="number" class="form-control text-end" name="montantAnnuel" id="montantAnnuel">
+                                                                    <input type="number" class="form-control text-end" name="ObjectifAnnuelle" id="montantAnnuel">
                                                                 </td>
                                                                 <td>
                                                                     <input type="number" class="form-control text-center" name="tauxAnnuel" id="tauxAnnuel">
@@ -985,41 +943,49 @@
     {{-- Script executé au chargement de la page --}}
     <script>
 
+        listeColonnes = $('.colTable')
+
         var tableClient
 
-        $(function() {
-
-            // console.log( new Date())
-            document.querySelector('input[name="daterange"]').value = new Date()+' '+new Date()
-            $('input[name="daterange"]').daterangepicker({
-                "locale": {
-                    "format": "DD/MM/YYYY",
-                    "separator": " - ",
-                    "applyLabel": "Appliquer",
-                    "cancelLabel": "Annuler",
-                    "fromLabel": "From",
-                    "toLabel": "To",
-                    "customRangeLabel": "Custom",
-                    "weekLabel": "W",
-                    "daysOfWeek": [
-                        "Dim",
-                        "Lun",
-                        "Mar",
-                        "Mer",
-                        "Jeu",
-                        "Ven",
-                        "Sam"
-                    ],
-                    "firstDay": 2
-                },
-                opens: 'center'
-            }, function(start, end, label) {
-                console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end
-                    .format('YYYY-MM-DD'));
-            })
+        document.querySelector('input[name="daterange"]').value = new Date()+' '+new Date()
+        $('input[name="daterange"]').daterangepicker({
+            "locale": {
+                "format": "DD/MM/YYYY",
+                "separator": " - ",
+                "applyLabel": "Appliquer",
+                "cancelLabel": "Annuler",
+                "fromLabel": "From",
+                "toLabel": "To",
+                "customRangeLabel": "Custom",
+                "weekLabel": "W",
+                "daysOfWeek": [
+                    "Dim",
+                    "Lun",
+                    "Mar",
+                    "Mer",
+                    "Jeu",
+                    "Ven",
+                    "Sam"
+                ],
+                "firstDay": 2
+            },
+            opens: 'center'
+        }, function(start, end, label) {
+            console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end
+                .format('YYYY-MM-DD'));
         })
 
+        function fnShowHide( iCol )
+        {
+            /* Get the DataTables object again - this is not a recreation, just a get of the object */
+            var oTable = $('#tableclient').dataTable();
+                
+            var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
+            oTable.fnSetColumnVis( iCol, bVis ? false : true );
+        }
+
         function chargerTableListingClient(){
+            progressHandler()
 
             $.ajax({
 
@@ -1027,14 +993,19 @@
                 type : 'GET',
                 data : {
 
+                    filtreNomCode : _('filtreNomCode').value,
+                    filtrePeriode : _('filtrePeriode').value,
+                    filtreNotation : _('filtreNotation').value,
+                    filtreTournee : _('filtreTournee').value
                 },
                 dataType : 'json',
                 success : function(response){
 
                     obj = response.data
 
+                    $("#tableclient").DataTable().destroy()
                     tableClient = $("#tableclient").DataTable({
-
+                        
                         bFilter : false,
                         language: {
                             // dom: 'Bfrtip',
@@ -1068,7 +1039,8 @@
                                 data : 'action'
                             },
                             {
-                                data : 'CodeClient'
+                                data : 'CodeClient',
+                                className : 'text-center'
                             },
                             {
                                 data : 'NomClient'
@@ -1205,20 +1177,33 @@
                             }
                         ]
                     })
+
+                    divShowPer = $('#tableclient_length')
+                    divShowPerBro = $('#tableclient_length').parent().next()
+
+                    divShowPerBro.append('<div class=" d-flex justify-content-end">\
+                                        <div class="dropdown">\
+                                            <button class="btn btn-sm btn-icon btn-outline-dark" type="button" id="dropdownMenuButton1"\
+                                                data-bs-toggle="dropdown" aria-expanded="false">\
+                                                <i class="bx bx-dots-horizontal-rounded " style="font-size : 17px;cursor : pointer;" ></i>\
+                                            </button>\
+                                            <ul class="dropdown-menu overflow-auto" aria-labelledby="dropdownMenuButton1" id="dropChoixCol"  style="max-height: 300px;">\
+                                            </ul>\
+                                        </div>\
+                                    </div>')
+                                    $.each(listeColonnes, function(key, value){
+                                        
+                                        $('#dropChoixCol').append('\
+                                            <li class="d-flex p-2"> <input type="checkbox" valeur="'+(key+1)+'" class="me-2 showCol" checked>'+value.innerHTML+'</a></li>\
+                                        ')
+                                    })
+
+                    completeHandler()
                 },
                 error : function(response){
                     console.log(response)
                 }
             })
-
-            function fnShowHide( iCol )
-            {
-                /* Get the DataTables object again - this is not a recreation, just a get of the object */
-                var oTable = $('#tableclient').dataTable();
-
-                var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
-                oTable.fnSetColumnVis( iCol, bVis ? false : true );
-            }
         }
 
         function chargerSelect(){
@@ -1249,6 +1234,16 @@
                     $('#selectTourne').select2({
                         dropdownParent: $("#modalFicheClient")
                     })
+
+                    // Select filtre tourne 
+                    $('#filtreTournee').html('')
+                    $('#filtreTournee').append('<option value="0">SELECTIONNER TOURNÉE</>')
+                    $.each(response.listeTourne, function(key, value){
+                        
+                        $('#filtreTournee').append('<option value="'+value['IDTOURNEE']+'">'+value['LibelleTournee']+'</option>')
+                    })
+
+                    $('#filtreTournee').select2()
 
                     // Select des villes ....
                     $('#selectVille').html('')
@@ -1300,10 +1295,10 @@
 
                     // Select delai paiement
                     $('#selectDelaiPaiement').html('')
-                    $('#selectDelaiPaiement').append('<option class="optionDelai" value="0">SELECTIONNER DÉLAI</>')
+                    $('#selectDelaiPaiement').append('<option class="optionDelai" value="0" nbreJrs="0">SELECTIONNER DÉLAI</>')
                     $.each(response.listeDelaiPaiement, function(key, value){
                         
-                        $('#selectDelaiPaiement').append('<option class="optionDelai" value="'+value['IDDELAI_PAIEMENT']+'">'+value['LibelleDelaiPaiement']+'</option>')
+                        $('#selectDelaiPaiement').append('<option class="optionDelai" value="'+value['IDDELAI_PAIEMENT']+'" nbreJrs="'+value['NbreJoursDelai']+'">'+value['LibelleDelaiPaiement']+'</option>')
                     })
 
                     $('#selectDelaiPaiement').select2({
@@ -1337,6 +1332,48 @@
             })
         }
 
+        $('#selectDelaiPaiement').on('change', function(){
+
+            if ($('#selectDelaiPaiement').find(':selected').attr('nbreJrs')  != 0) {
+                
+                _('CreditMaxExploitaton').setAttribute('disabled', '')
+            }else{
+
+                _('CreditMaxExploitaton').removeAttribute('disabled')
+            }
+        })
+
+        $(document).on('click', '.showCol', function(){
+
+            fnShowHide($(this).attr('valeur'))
+        })
+
+        _('PlafondCreditClient').addEventListener('input', function(){
+
+            if ($('#selectDelaiPaiement').find(':selected').attr('nbreJrs')  != 0) {
+                
+                _('valSoldeDispo').innerHTML = separateurMilliers(_('PlafondCreditClient').value)+' F'
+
+                if (_('PlafondCreditClient').value.replace(/\s/g,'') == '') {
+                    
+                    _('valSoldeDispo').innerHTML = '0 F'
+                }
+            }
+        })
+
+        _('CreditMaxExploitaton').addEventListener('input', function(){
+
+            if ($('#selectDelaiPaiement').find(':selected').attr('nbreJrs')  == 0) {
+                
+                _('valSoldeDispo').innerHTML = separateurMilliers(_('CreditMaxExploitaton').value)+' F'
+
+                if (_('CreditMaxExploitaton').value.replace(/\s/g,'') == '') {
+                    
+                    _('valSoldeDispo').innerHTML = '0 F'
+                }
+            }
+        })
+
         chargerSelect()
         chargerTableListingClient()
     </script>
@@ -1344,7 +1381,7 @@
     {{-- Script new client --}}
     <script>
 
-        // ouverture de la modal
+        // ouverture de la modal 
         _('bntModalNewClient').addEventListener('click', function(){
 
             _('btnNewClient').style.display = ''
@@ -1371,10 +1408,10 @@
             _('DivisionFiscale').value = ''
             _('ClePharmaML').value = ''
             _('CodeSecretLivraison').value = ''
-            _('TauxBICClient').value = ''
-            _('MiniCommandeClient').value = ''
-            _('PlafondCreditClient').value = ''
-            _('CreditMaxExploitaton').value = ''
+            _('TauxBICClient').value = 0
+            _('MiniCommandeClient').value = 0
+            _('PlafondCreditClient').value = 0
+            _('CreditMaxExploitaton').value = 0
 
             _('ProtocoleStock').checked = false
             _('RemiseCommercial').checked = false
@@ -1430,6 +1467,43 @@
             $('#selectNotation').val(0).trigger('change')
 
             $('#modalFicheClient').modal('show')
+        })
+
+        // Ajout du client
+        _('btnNewClient').addEventListener('click', function(){
+
+            let formulaire = new FormData(_('formClient'))
+
+            if (_('NomClient').value.replace(/\s/g,'') != '') {
+                
+                $.ajax({
+
+                    url : '{{ route('ajouterClient')}}',
+                    type : 'POST',
+                    data : formulaire,
+                    processData: false,
+                    contentType: false,
+                    dataType : 'json',
+                    success : function(response){
+
+                        if(response.success == 2){
+
+                            alert('AJOUT ÉFFECTUÉ ...')
+                            chargerTableListingClient()
+                            $('#modalFicheClient').modal('hide')
+                        }else if(response.success == 0){
+
+                            alert('CE NOM DE CLIENT EST DEJA ATTRIBUÉ ...')
+                        }else{
+
+                            alert('CE CODE DE CLIENT EST DEJA ATTRIBUÉ ...')
+                        }
+                    }
+                })
+            }else{
+
+                notif('danger', 'Erreur', 'VEUILLEZ SAISIR LA RAISON SOCIALE')
+            }
         })
     </script>
 
@@ -1521,12 +1595,12 @@
                     _('valSoldeProto').innerHTML = separateurMilliers(parseInt(response.data.soldeProtocole))+' F'
                     _('valSoldeGlobal').innerHTML = separateurMilliers( parseInt(response.data.soldeProtocole) + soldeTotal)+ ' F'
 
-                    _('montantPrevisionnel1').value = parseInt(response.data.previsionnelS1, 2)
-                    _('tauxPrevisionnel1').value = Math.round(response.data.tauxS1, 2)
-                    _('montantPrevisionnel2').value = parseInt(response.data.previsionnelS2, 2)
-                    _('tauxPrevisionnel2').value = Math.round(response.data.tauxS2, 2)
-                    _('montantAnnuel').value = parseInt(response.data.previsionnelAnnuel, 2)
-                    _('tauxAnnuel').value = Math.round(response.data.tauxAnnuel, 2)
+                    _('montantPrevisionnel1').value = parseInt(response.data.previsionnelS1)
+                    _('tauxPrevisionnel1').value = arrondirValeurs(response.data.tauxS1)
+                    _('montantPrevisionnel2').value = parseInt(response.data.previsionnelS2)
+                    _('tauxPrevisionnel2').value = arrondirValeurs(response.data.tauxS2)
+                    _('montantAnnuel').value = parseInt(response.data.previsionnelAnnuel)
+                    _('tauxAnnuel').value = arrondirValeurs(response.data.tauxAnnuel)
 
                     if(response.data.NbreJoursDelai == 0){
 
@@ -1561,7 +1635,7 @@
         _('btnEditClient').addEventListener('click', function(){
 
             let formulaire = new FormData(_('formClient'))
-            // formulaire.append('IDCLIENT', "{{csrf_token()}}")
+            // formulaire.append('_token', "{{csrf_token()}}")
 
             $.ajax({
 
@@ -1575,8 +1649,12 @@
 
                     if(response.success == 1){
 
+                        // chargerTableListingClient()
                         alert('MODIFICATION EFFECTUEE ...')
-                        $('#modalFicheClient').modal('hide')
+                        // $('#modalFicheClient').modal('hide')
+                    }else{
+
+                        alert('CE NOM DE CLIENT EST DEJA ATTRIBUÉ ...')
                     }
                 }
             })

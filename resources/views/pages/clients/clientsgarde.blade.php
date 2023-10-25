@@ -15,21 +15,21 @@
                 <div class="modal-body">
 
                     <div class=" row ">
-                        <div class=" col-sm-1" style="padding-left: 2rem;  padding-top: 2rem;">
+                        <div class=" col-sm-1" style="padding-left: 1rem;  padding-top: 1.5rem;">
                             <i class='bx bxs-info-circle  fs-10' style='color:#696969; font-size:16pt'
                                 data-bs-toggle="tooltip" data-bs-custom-class="tooltip-light" data-bs-placement="bottom"
                                 title="Les données affichées sont fonctions de la période de garde."></i>
 
                         </div>
-                        <div class="col-xl-3 mb-2">
+                        <div class="col-xl-3 col-sm-3 mb-2">
                             <p for="input-label" class="mb-0 text-muted">Période de garde : </p>
                             <input type="text" name="daterange" class="form-control"
                                 style="width: 14em !important; padding :6px" id="daterange">
                         </div>
-                        <div class="col-xl-6 mb-2">
+                        <div class="col-xl-6 col-sm-6 mb-2">
                             <p for="input-label" class="mb-0 text-muted">Client : </p>
 
-                            <select class="js-example-basic-multiple" name="listeClient[]" id="listeClient"
+                            <select class="js-example-basic-multiple form-control" name="listeClient[]" id="listeClient"
                                 multiple="multiple">
                                 <option value="">Selectionner le client</option>
                                 @foreach ($listeClient as $item)
@@ -37,7 +37,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-xl-2 mb-2 float-end " style="padding-top: 1.2rem; padding-left: 4rem ;"
+                        <div class="col-xl-2 col-sm-2 mb-2 float-end " style="padding-top: 1.2rem; padding-left: 5rem ;"
                             id="zoneAdd">
                             {{-- <button class=" btn btn-primary" id=""><i class="ri-restart-line"></i></i></button> --}}
                             <button class=" btn btn-secondary pb-1" id="addGarde" title=" Ajouter un client de garde"><i
@@ -58,7 +58,7 @@
                         </div>
                     </div>
                     <div class="row justify-content-end">
-                        <div class=" offset-xl-8 col-4 mb-2 float-end" style="padding-left: 13em !important;">
+                        <div class=" offset-xl-8 col-4 mb-2 float-end" style="padding-left: 11.4rem !important;">
                             <i class="ri-file-excel-2-fill fs-32 text-success" title=" Exporter en excel"></i>
                             <i class='bx bxs-file-pdf fs-32 text-danger' title=" Exporter en PDF"></i>
                         </div>
@@ -257,33 +257,6 @@
 
                 alert(id, alertAjax)
             })
-
-            function alert(id, callback) {
-                Swal.fire({
-                    title: 'Saisissez votre mot de passe pour supprimer ',
-                    input: 'password',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Oui je supprime !',
-                    // showLoaderOnConfirm: true,
-                    reverseButtons: true,
-                    cancelButtonText: 'Annuler',
-                    text: "Cette action est irreversible !",
-                    customClass: {
-                        input: 'border-black border-1 text-center',
-                    }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        if ($.trim(document.getElementById('swal2-input').value) != "") {
-                            callback(id)
-                            return
-                        }
-                        notif("warning", "Information !",
-                            "Veuillez entrer votre mot de passe pour continuer !!")
-                    }
-                })
-
-            }
 
             function alertAjax(id) {
                 $.ajax({

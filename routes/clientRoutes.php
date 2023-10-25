@@ -7,10 +7,11 @@ use App\Http\Controllers\loginController;
 Route::prefix('client')->group(function () {
 
     Route::get('/listing', [clientController::class,'listingView']);
-    Route::get('/listing/listingClient', [clientController::class,'listingClient']) -> name('listingClient');
+    // Route::get('/listing/listingClient', [clientController::class,'listingClient']) -> name('listingClient');
     Route::get('/listing/infoClient', [clientController::class,'infoClient']) -> name('infoClient');
     Route::get('/listing/chargerSelect', [clientController::class,'chargerSelect']) -> name('chargerSelect');
     Route::post('/listing/modifierClient', [clientController::class,'modifierClient']) -> name('modifierClient');
+    Route::post('/listing/ajouterClient', [clientController::class,'ajouterClient']) -> name('ajouterClient');
     Route::get('/listing/get', [clientController::class,'listingClient']) -> name('listingClient');
 
 

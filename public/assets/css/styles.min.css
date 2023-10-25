@@ -16827,7 +16827,7 @@ span.flatpickr-weekday {
 
 .select2-container--default .select2-selection--single .select2-selection__rendered {
     color: var(--default-text-color) !important;
-    line-height: 2.33rem !important;
+    line-height: 2rem !important;
     border: 1px solid var(--input-border) !important;
     border-radius: .5rem !important
 }

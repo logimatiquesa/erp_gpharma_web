@@ -13,19 +13,25 @@ class clientController extends Controller
         return view('pages.clients.clients');
     }
 
-    public function listingClient(){
+    public function listingClient(Request $request){
         
         try {
 
+            $Preriode = explode(' - ', $request -> filtrePeriode);
+            $dDebut = explode('/',$Preriode[0]);
+            $dFin = explode('/',$Preriode[1]);
+
+            // dd($dDebut);
+
             // Paramètres (remplacez ces valeurs par les valeurs réelles)
-            $dateDebut = "2020-01-01";
-            $dateFin = "2022-12-12";
+            $dateDebut = date('Y-m-d', strtotime($dDebut[2].$dDebut[1].$dDebut[0]));
+            $dateFin = date('Y-m-d', strtotime($dFin[2].$dFin[1].$dFin[0]));
             $typSelect = '';
             $commercialSelect = '';
-            $tournSelect = '';
+            $tournSelect = $request -> filtreTournee;
             $noteSelect = '';
-            $etatCompSelect = '';
-            $codNomClientRech = '';
+            $etatCompSelect = $request -> filtreNotation;
+            $codNomClientRech = $request -> filtreNomCode;
 
             function coloneOption($identifiant){
 
@@ -44,9 +50,6 @@ class clientController extends Controller
 
                 return $btnAction;
             }
-
-            // $verifGarde = 'SELECT COALESCE(COUNT(GARDECLIENT.IDGARDECLIENT), 0) AS nbreGarde FROM GARDECLIENT WHERE GARDECLIENT.IDCLIENT = 1 AND ((GARDECLIENT.DateDebutGarde >= '.$dateDebut.' AND GARDECLIENT.DateFinGarde >= '.$dateDebut.') OR (GARDECLIENT.DateDebutGarde >= "2022-12-01" AND GARDECLIENT.DateFinGarde >= "2022-12-01"))';
-            $verifGarde = '(SELECT COALESCE(COUNT(GARDECLIENT.IDGARDECLIENT), 0) FROM GARDECLIENT WHERE GARDECLIENT.IDCLIENT = CLIENT.IDCLIENT AND ( GARDECLIENT.DateDebutGarde <= "'.$dateDebut.'" AND GARDECLIENT.DateFinGarde >= "'.$dateFin.'" )) AS nbreGarde';
 
             // Exécution de la requête avec le Query Builder
             $query = DB::table('CLIENT')
@@ -112,8 +115,7 @@ class clientController extends Controller
                     'TOURNEE.LibelleTournee as LibelleTournee',
                     'VILLES.NomVille as NomVille',
                     'PERSONNEL.NomPrenomPersonnel as NomPrenomPersonnel',
-                    DB::raw("0 as garde")
-                    // DB::raw($verifGarde)
+                    // DB::raw("0 as garde")
                 ]);
 
             // Ajouter des clauses WHERE uniquement si les valeurs ne sont pas vides ou nulles
@@ -123,10 +125,10 @@ class clientController extends Controller
             if ($commercialSelect) {
                 $query->where('CLIENT.IDPERSONNEL', '=', $commercialSelect);
             }
-            if ($tournSelect) {
+            if ($tournSelect != 0) {
                 $query->where('CLIENT.IDTOURNEE', '=', $tournSelect);
             }
-            if ($noteSelect) {
+            if (str_replace(' ', '', $noteSelect) != '' && $noteSelect != 0) {
                 $query->where('CLIENT.NotationClient', '=', $noteSelect);
             }
             if ($etatCompSelect) {
@@ -155,9 +157,28 @@ class clientController extends Controller
                 ])
                 ->where('OBJECTIFCLIENT.AnneeObjectifClient', $anneeObjectifClient)
                 ->get();
-
+            
+            // Liste des gardes des client
+            $listeGarde = DB::table('GARDECLIENT')
+                ->select(DB::raw('COALESCE(COUNT("GARDECLIENT"."IDGARDECLIENT"), 0) AS nbreGarde, "GARDECLIENT"."IDCLIENT"'))
+                ->where('GARDECLIENT.DateDebutGarde', '>=', $dateDebut)
+                ->where('GARDECLIENT.DateFinGarde', '>=', $dateFin)
+                ->groupBy('GARDECLIENT.IDCLIENT')
+                ->get();
 
             foreach ($client as $key => $value) {
+
+                // option de garde
+                $client[$key] -> garde = '<span class="badge bg-dark-transparent" style="font-size:.78rem">NON</span>';
+                foreach ($listeGarde as $num => $ligne) {
+                    
+                    if ($ligne -> IDCLIENT == $value -> IDCLIENT) {
+
+                        $client[$key] -> garde = '<span class="badge bg-warning-transparent" style="font-size:.78rem">OUI</span>';
+
+                        unset($listeGarde[$key]);
+                    }
+                }
 
                 // option de colonne
                 $client[$key] -> action = coloneOption($value -> IDCLIENT);
@@ -292,6 +313,8 @@ class clientController extends Controller
                         $client[$key] -> tauxAnnuel = number_format($client[$key] -> tauxS1 + $client[$key] -> tauxS2, 2, '.', ' ').' %';
                         $client[$key] -> tauxS1 = number_format($client[$key] -> tauxS1, 2, '.', ' ').' %';
                         $client[$key] -> tauxS2 = number_format($client[$key] -> tauxS2, 2, '.', ' ').' %';
+
+                        unset($listePrevisionnel[$cle]);
                     }
                 }
 
@@ -307,27 +330,18 @@ class clientController extends Controller
                 $client[$key] -> ConsommationSemestre2 = number_format($value -> ConsommationSemestre2, 0, '', ' ');
             }
 
-            // $condi = [];
-            // $condi [] = ['IDAGENCE', '=' , '2'];
-            // $condi [] = ['ModifiePar', '=' , '2'];
-
-            // $listeTournee = selectAllTable('TOURNEE', ['TOURNEE.IDTOURNEE', 'TOURNEE.LibelleTournee']i);
-
             echo json_encode(array('success' => 1, 'error' => false, 'data' => $client));
         } catch (\Throwable $th) {
 
-            // echo json_encode(array('error' => true, 'message' => getMessageErreur($th -> getCode())));
-            echo json_encode(array('error' => true, 'message' => $th->getMessage()));
+            echo json_encode(array('error' => true, 'message' => getMessageErreur($th -> getCode())));
+            // echo json_encode(array('error' => true, 'message' => $th->getMessage()));
         }
     }
-
-    // Client garde
-
 
     public function clientGarde()
     {
 
-        session()->put("idUser", 1);
+        session()->put("IDPERSONNEL", 1);
         session()->put("NomUser", "Anderson");
         session()->put("mdpUser", "andi");
 
@@ -397,7 +411,7 @@ class clientController extends Controller
 
                     if ($count == 0) {
                         $resultats = DB::table("GARDECLIENT")
-                        ->insert(["DateDebutGarde" => $dateDebut, "DateFinGarde" => $dateFin, "IDCLIENT" => $value, "CreePar"=>session()->get("idUser")]);
+                        ->insert(["DateDebutGarde" => $dateDebut, "DateFinGarde" => $dateFin, "IDCLIENT" => $value, "CreePar"=>session()->get("IDPERSONNEL")]);
                     }
                 }
                 echo json_encode(array('error' => false, 'data' => $resultats));
@@ -469,12 +483,11 @@ class clientController extends Controller
 
     public function compareMdp(String $mdp)
     {
-        if ($mdp == session()->get("mdpUser")) {
+        if ($mdp == session()->get("MPssePersonnel")) {
             return true;
         }
         return false;
     }
-
 
     public function infoClient(Request $request){
 
@@ -546,12 +559,12 @@ class clientController extends Controller
     public function chargerSelect(){
 
         $listeFormeJuridique = selectAllTable('FORMEJURIDIQUE_CLIENT', ['FORMEJURIDIQUE_CLIENT.IDFORMEJURIDIQUE_CLIENT', 'FORMEJURIDIQUE_CLIENT.LibelleFormeJuridiqueClient']);
-        $listeTournee = selectAllTable('TOURNEE', ['TOURNEE.IDTOURNEE', 'TOURNEE.LibelleTournee']);
+        $listeTournee = selectAllTable('TOURNEE', ['TOURNEE.IDTOURNEE', 'TOURNEE.LibelleTournee'], '', [["TOURNEE.LibelleTournee", "ASC"]]);
         $listeVille = selectAllTable('VILLES', ['VILLES.IDVILLES', 'VILLES.NomVille']);
         $listeSecteur = selectAllTable('SECTEUR', ['SECTEUR.IDSECTEUR', 'SECTEUR.NomSecteur']);
         $listeBanque = selectAllTable('BANQUE', ['BANQUE.IDBANQUE', 'BANQUE.NomBanque']);
         $listeModePaiement = selectAllTable('MODEPAIEMENT', ['MODEPAIEMENT.IDMODEPAIEMENT', 'MODEPAIEMENT.LibelleModePaiement']);
-        $listeDelaiPaiement = selectAllTable('DELAI_PAIEMENT', ['DELAI_PAIEMENT.IDDELAI_PAIEMENT', 'DELAI_PAIEMENT.LibelleDelaiPaiement']);
+        $listeDelaiPaiement = selectAllTable('DELAI_PAIEMENT', ['DELAI_PAIEMENT.IDDELAI_PAIEMENT', 'DELAI_PAIEMENT.LibelleDelaiPaiement', 'DELAI_PAIEMENT.NbreJoursDelai']);
         $listeCommercial = selectAllTable('PERSONNEL', ['PERSONNEL.IDPERSONNEL', 'PERSONNEL.NomPrenomPersonnel']);
         $listeRegimeFiscal = selectAllTable('REGIME_FISCAL', ['REGIME_FISCAL.IDREGIME_FISCAL', 'REGIME_FISCAL.NomRegimeFiscal']);
 
@@ -568,57 +581,193 @@ class clientController extends Controller
                             ));
     }
 
-
     public function modifierClient(Request $request){
 
-        DB::table("CLIENT")
-            ->where("IDCLIENT", $request -> IDCLIENT)
-            -> update([
-                "NomClient" => $request -> NomClient,
-                "TypeClient" => $request -> TypeClient,
-                "IDFORMEJURIDIQUE_CLIENT" => $request -> IDFORMEJURIDIQUE_CLIENT,
-                "RepresentantLegalClient" => $request -> RepresentantLegalClient,
-                "IDTOURNEE" => $request -> IDTOURNEE,
-                "AdresseGeoClient" => $request -> AdresseGeoClient,
-                "AdressePostaleClient" => $request -> AdressePostaleClient,
-                "PositionLongitude" => $request -> PositionLongitude,
-                "PositionLatitude" => $request -> PositionLatitude,
-                "TelephoneFixeClient" => $request -> TelephoneFixeClient,
-                "TelephoneMobileClient" => $request -> TelephoneMobileClient,
-                "TelephoneTelemarketiste" => $request -> TelephoneTelemarketiste,
-                "AdresseEmailClient" => $request -> AdresseEmailClient,
-                "IDVILLES" => $request -> IDVILLES,
-                "IDSECTEUR" => $request -> IDSECTEUR,
-                "IDBANQUE" => $request -> IDBANQUE,
-                "CodeAgenceBanque" => $request -> CodeAgenceBanque,
-                "NumeroCompte" => $request -> NumeroCompte,
-                "IDMODEPAIEMENT" => $request -> IDMODEPAIEMENT,
-                "IntentionCommande" => $request -> IntentionCommande,
-                "IDDELAI_PAIEMENT" => $request -> IDDELAI_PAIEMENT,
-                "ModeGestionEscompteRistourne" => $request -> ModeGestionEscompteRistourne,
-                "NotationClient" => $request -> NotationClient,
-                "IDPERSONNEL" => $request -> IDPERSONNEL,
-                "IDREGIME_FISCAL" => $request -> IDREGIME_FISCAL,
-                "DivisionFiscale" => $request -> DivisionFiscale,
-                "ClePharmaML" => $request -> ClePharmaML,
-                "CodeSecretLivraison" => $request -> CodeSecretLivraison,
-                "TauxBICClient" => $request -> TauxBICClient,
-                "MiniCommandeClient" => $request -> MiniCommandeClient,
-                "PlafondCreditClient" => $request -> PlafondCreditClient,
-                "CreditMaxExploitaton" => $request -> CreditMaxExploitaton,
-                "NumeroRC" => $request -> NumeroRC,
-                "NumeroCC" => $request -> NumeroCC,
-                "NumeroCompteTiers" => $request -> NumeroCompteTiers,
-                "NumeroCompteTiersRistourne" => $request -> NumeroCompteTiersRistourne,
-                "NumeroCompteTiersEscompte" => $request -> NumeroCompteTiersEscompte,
-                "MontantAssistanceMedicel" => $request -> MontantAssistanceMedicel,
-                "CompteTiersUnique" => $request -> CompteTiersUnique,
-                "ObservationsClient" => $request -> ObservationsClient,
-                "ModifiePar" => session()->get("IDPERSONNEL"),
-                "ModifieLe" => Carbon::now()
-            ]);
+        $success = 0;
 
-        echo json_encode(array('success' => 1));
+        $verifExistanceDuNomClient = selectAllTable('CLIENT', 'CLIENT.IDCLIENT', [['CLIENT.NomClient', '=', $request -> NomClient], ['CLIENT.IDCLIENT', '<>', $request -> IDCLIENT]]);
+
+        $resultVerif = count($verifExistanceDuNomClient);
+
+        if ( $resultVerif == 0) {
+
+            DB::table("CLIENT")
+                ->where("IDCLIENT", $request -> IDCLIENT)
+                -> update([
+                    "NomClient" => strtoupper($request -> NomClient),
+                    "TypeClient" => $request -> TypeClient,
+                    "IDFORMEJURIDIQUE_CLIENT" => $request -> IDFORMEJURIDIQUE_CLIENT,
+                    "RepresentantLegalClient" => strtoupper($request -> RepresentantLegalClient),
+                    "IDTOURNEE" => $request -> IDTOURNEE,
+                    "AdresseGeoClient" => strtoupper($request -> AdresseGeoClient),
+                    "AdressePostaleClient" => strtoupper($request -> AdressePostaleClient),
+                    "PositionLongitude" => $request -> PositionLongitude,
+                    "PositionLatitude" => $request -> PositionLatitude,
+                    "TelephoneFixeClient" => $request -> TelephoneFixeClient,
+                    "TelephoneMobileClient" => $request -> TelephoneMobileClient,
+                    "TelephoneTelemarketiste" => $request -> TelephoneTelemarketiste,
+                    "AdresseEmailClient" => $request -> AdresseEmailClient,
+                    "IDVILLES" => $request -> IDVILLES,
+                    "IDSECTEUR" => $request -> IDSECTEUR,
+                    "IDBANQUE" => $request -> IDBANQUE,
+                    "CodeAgenceBanque" => strtoupper($request -> CodeAgenceBanque),
+                    "NumeroCompte" => strtoupper($request -> NumeroCompte),
+                    "IDMODEPAIEMENT" => $request -> IDMODEPAIEMENT,
+                    "IntentionCommande" => $request -> IntentionCommande,
+                    "IDDELAI_PAIEMENT" => $request -> IDDELAI_PAIEMENT,
+                    "ModeGestionEscompteRistourne" => $request -> ModeGestionEscompteRistourne,
+                    "NotationClient" => $request -> NotationClient,
+                    "IDPERSONNEL" => $request -> IDPERSONNEL,
+                    "IDREGIME_FISCAL" => $request -> IDREGIME_FISCAL,
+                    "DivisionFiscale" => strtoupper($request -> DivisionFiscale),
+                    "ClePharmaML" => $request -> ClePharmaML,
+                    "CodeSecretLivraison" => $request -> CodeSecretLivraison,
+                    "TauxBICClient" => $request -> TauxBICClient,
+                    "MiniCommandeClient" => $request -> MiniCommandeClient,
+                    "PlafondCreditClient" => $request -> PlafondCreditClient,
+                    "CreditMaxExploitaton" => $request -> CreditMaxExploitaton,
+                    "NumeroRC" => strtoupper($request -> NumeroRC),
+                    "NumeroCC" => strtoupper($request -> NumeroCC),
+                    "NumeroCompteTiers" => strtoupper($request -> NumeroCompteTiers),
+                    "NumeroCompteTiersRistourne" => strtoupper($request -> NumeroCompteTiersRistourne),
+                    "NumeroCompteTiersEscompte" => strtoupper($request -> NumeroCompteTiersEscompte),
+                    "MontantAssistanceMedicel" => $request -> MontantAssistanceMedicel,
+                    "CompteTiersUnique" => $request -> CompteTiersUnique,
+                    "ObservationsClient" => $request -> ObservationsClient,
+                    "ModifiePar" => session()->get("IDPERSONNEL"),
+                    "ModifieLe" => Carbon::now()
+                ]);
+
+            $anneeObjectifClient = date('Y');
+            
+            $listePrevisionnel = DB::table('OBJECTIFCLIENT')
+                                    ->select([
+                                        'OBJECTIFCLIENT.IDOBJECTIFCLIENT as IDOBJECTIFCLIENT'
+                                    ])
+                                    ->where('OBJECTIFCLIENT.AnneeObjectifClient', $anneeObjectifClient)
+                                    ->where('OBJECTIFCLIENT.IDCLIENT', $request -> IDCLIENT)
+                                    ->first();
+
+
+            if (gettype($listePrevisionnel) == "object") {
+
+                DB::table('OBJECTIFCLIENT')
+                    ->where("IDOBJECTIFCLIENT", $listePrevisionnel -> IDOBJECTIFCLIENT)
+                    -> update([
+                        "ObjectifAnnuelle" => $request -> ObjectifAnnuelle,
+                        "ObjectifSemestre1" => $request -> ObjectifSemestre1,
+                        "ObjectifSemestre2" => $request -> ObjectifSemestre2,
+                        "ModifiePar" => session()->get("IDPERSONNEL"),
+                        "ModifieLe" => Carbon::now()
+                    ]);
+            }else{
+
+                DB::table("OBJECTIFCLIENT")
+                    ->insert([
+                        "ObjectifAnnuelle" => $request -> ObjectifAnnuelle,
+                        "ObjectifSemestre1" => $request -> ObjectifSemestre1,
+                        "ObjectifSemestre2" => $request -> ObjectifSemestre2,
+                        "IDCLIENT" => $request -> IDCLIENT,
+                        "CreeLe" => Carbon::now(),
+                        "CreePar"=>session()->get("IDPERSONNEL")
+                    ]);
+            }
+            $success = 1;
+        }
+        echo json_encode(array('success' => $success));
+    }
+
+    public function ajouterClient(Request $request){
+
+        $success = 0;
+
+        $verifExistanceDuNomClient = selectAllTable('CLIENT', 'CLIENT.IDCLIENT', [['CLIENT.NomClient', '=', $request -> NomClient]]);
+
+        if (count($verifExistanceDuNomClient) == 0) {
+
+            $success = 1;
+
+            if (str_replace(' ', '', $request -> CodeClient) == '') {
+
+                $CodeClient = DB::table('CLIENT')
+                                    ->select(DB::raw('MAX("CodeClient"::integer) as max_code'))
+                                    ->first()
+                                    ->max_code;
+                $CodeClient ++;
+            }else{
+
+                $CodeClient = $request -> CodeClient;
+            }
+
+            $verifExistanceDuCode = selectAllTable('CLIENT', 'CLIENT.IDCLIENT', [['CLIENT.CodeClient', '=', $CodeClient]]);
+
+            if (count($verifExistanceDuCode) == 0) {
+
+                $IDCLIENT = DB::table("CLIENT")
+                    ->insertGetId([
+                        "NomClient" => strtoupper($request -> NomClient),
+                        "CodeClient" => $CodeClient,
+                        "TypeClient" => $request -> TypeClient,
+                        "IDFORMEJURIDIQUE_CLIENT" => $request -> IDFORMEJURIDIQUE_CLIENT,
+                        "RepresentantLegalClient" => strtoupper($request -> RepresentantLegalClient),
+                        "IDTOURNEE" => $request -> IDTOURNEE,
+                        "AdresseGeoClient" => strtoupper($request -> AdresseGeoClient),
+                        "AdressePostaleClient" => strtoupper($request -> AdressePostaleClient),
+                        "PositionLongitude" => $request -> PositionLongitude,
+                        "PositionLatitude" => $request -> PositionLatitude,
+                        "TelephoneFixeClient" => $request -> TelephoneFixeClient,
+                        "TelephoneMobileClient" => $request -> TelephoneMobileClient,
+                        "TelephoneTelemarketiste" => $request -> TelephoneTelemarketiste,
+                        "AdresseEmailClient" => $request -> AdresseEmailClient,
+                        "IDVILLES" => $request -> IDVILLES,
+                        "IDSECTEUR" => $request -> IDSECTEUR,
+                        "IDBANQUE" => $request -> IDBANQUE,
+                        "CodeAgenceBanque" => strtoupper($request -> CodeAgenceBanque),
+                        "NumeroCompte" => strtoupper($request -> NumeroCompte),
+                        "IDMODEPAIEMENT" => $request -> IDMODEPAIEMENT,
+                        "IntentionCommande" => $request -> IntentionCommande,
+                        "IDDELAI_PAIEMENT" => $request -> IDDELAI_PAIEMENT,
+                        "ModeGestionEscompteRistourne" => $request -> ModeGestionEscompteRistourne,
+                        "NotationClient" => $request -> NotationClient,
+                        "IDPERSONNEL" => $request -> IDPERSONNEL,
+                        "IDREGIME_FISCAL" => $request -> IDREGIME_FISCAL,
+                        "DivisionFiscale" => strtoupper($request -> DivisionFiscale),
+                        "ClePharmaML" => $request -> ClePharmaML,
+                        "CodeSecretLivraison" => $request -> CodeSecretLivraison,
+                        "TauxBICClient" => $request -> TauxBICClient,
+                        "MiniCommandeClient" => $request -> MiniCommandeClient,
+                        "PlafondCreditClient" => $request -> PlafondCreditClient,
+                        "CreditMaxExploitaton" => $request -> CreditMaxExploitaton,
+                        "NumeroRC" => strtoupper($request -> NumeroRC),
+                        "NumeroCC" => strtoupper($request -> NumeroCC),
+                        "NumeroCompteTiers" => strtoupper($request -> NumeroCompteTiers),
+                        "NumeroCompteTiersRistourne" => strtoupper($request -> NumeroCompteTiersRistourne),
+                        "NumeroCompteTiersEscompte" => strtoupper($request -> NumeroCompteTiersEscompte),
+                        "MontantAssistanceMedicel" => $request -> MontantAssistanceMedicel,
+                        "CompteTiersUnique" => $request -> CompteTiersUnique,
+                        "ObservationsClient" => $request -> ObservationsClient,
+                        "CreePar" => session()->get("IDPERSONNEL"),
+                        "CreeLe" => Carbon::now()
+                    ], 'IDCLIENT');
+
+                    $anneeObjectifClient = date('Y');
+
+                    DB::table("OBJECTIFCLIENT")
+                        ->insert([
+                            "AnneeObjectifClient" => $anneeObjectifClient,
+                            "ObjectifAnnuelle" => $request -> ObjectifAnnuelle,
+                            "ObjectifSemestre1" => $request -> ObjectifSemestre1,
+                            "ObjectifSemestre2" => $request -> ObjectifSemestre2,
+                            "IDCLIENT" => $IDCLIENT,
+                            "CreeLe" => Carbon::now(),
+                            "CreePar"=>session()->get("IDPERSONNEL")
+                        ]);
+
+                $success = 2;
+            }
+        }
+
+        echo json_encode(array('success' => $success));
     }
 
 }

@@ -16,3 +16,20 @@
     font-size: .75rem;
 }
 
+/* Barre de défilement */
+::-webkit-scrollbar {
+    width: 12px; /* Largeur de la barre de défilement */
+}
+
+/* Curseur de la barre de défilement */
+::-webkit-scrollbar-thumb {
+    background-color: #007bff; /* Couleur du curseur */
+    border-radius: 10px; /* Coins arrondis du curseur */
+}
+
+/* Fond de la barre de défilement */
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Couleur du fond */
+}
+
+
