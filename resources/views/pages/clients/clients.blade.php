@@ -110,7 +110,7 @@
                                         class="ri-user-3-line fs-16"></i></span>
                             </div>
                             <div class="flex-fill">
-                                <p class="fs-18 mb-0 text-primary fw-semibold">25,350</p>
+                                <p class="fs-18 mb-0 text-primary fw-semibold" id="nbreClient"></p>
                                 <span class="text-muted fs-12">Nbre client</span>
                             </div>
                         </div>
@@ -120,7 +120,7 @@
                                         class="ri-user-3-line fs-16"></i></span>
                             </div>
                             <div class="flex-fill">
-                                <p class="fs-18 mb-0 fw-semibold">19,200</p>
+                                <p class="fs-18 mb-0 fw-semibold" id="totalEnCours"></p>
                                 <span class="text-muted fs-12">Total encours</span>
                             </div>
                         </div>
@@ -130,7 +130,7 @@
                                         class="ri-user-3-line fs-16"></i></span>
                             </div>
                             <div class="flex-fill">
-                                <p class="fs-18 mb-0 text-success fw-semibold">1,24,890</p>
+                                <p class="fs-18 mb-0 text-success fw-semibold" id="totalCreditMax"></p>
                                 <span class="text-muted fs-12">Total crédit max</span>
                             </div>
                         </div>
@@ -164,13 +164,13 @@
                                 <option value="3">D</option>
                             </select>
                         </div>
-                        <div class="col-xl-3 col-md-2 mb-0">
+                        <div class="col-xl-3 col-md-3 mb-0">
                             <p class="mb-0 text-muted">Tournée</p>
                             <select class="form-select" id="filtreTournee">
 
                             </select>
                         </div>
-                        <div class="col-xl-1 col-md-2 mb-0 d-flex justify-content-end pt-1">
+                        <div class="col-xl-1 col-md-1 mb-0 d-flex justify-content-end pt-1">
                             <button type="button" class="btn btn-primary btn-wave mt-2" id="btnFiltreTable">
                                 <i class="ri-search-line" style="font-size:13px; cursor:pointer;"></i>
                             </button>
@@ -187,24 +187,31 @@
 
                                         <div class="row">
                                             
-                                            <div class="col-xl-4 col-md-2 mb-2">
+                                            <div class="col-xl-4 col-md-3 mb-2">
                                                 <p class="mb-0 text-muted">Type de client</p>
-                                                <select class="form-select">
-                                                    <option value="paul">Paul</option>
+                                                <select class="form-select" id="filtreTypeClient">
+                                                    <option value="0">TOUS</option>
+                                                    <option value="1">PHARMACIE</option>
+                                                    <option value="2">PARAPHARMACIE</option>
+                                                    <option value="3">CENTRE MEDICAL</option>
+                                                    <option value="4">LABORATOIRE</option>
+                                                    <option value="5">AUTRE</option>
                                                 </select>
                                             </div>
 
-                                            <div class="col-xl-4 col-md-2 mb-2">
+                                            <div class="col-xl-2 col-md-3 mb-2">
                                                 <p class="mb-0 text-muted">Etat du compte</p>
-                                                <select class="form-select">
-                                                    <option value="paul">Paul</option>
+                                                <select class="form-select" id="filtreEtatCompte">
+                                                    <option value="0">TOUS</option>
+                                                    <option value="1">ACTIF</option>
+                                                    <option value="2">BLOQUÉ</option>
                                                 </select>
                                             </div>
 
-                                            <div class="col-xl-4 col-md-2 mb-2">
+                                            <div class="col-xl-6 col-md-3 mb-2">
                                                 <p class="mb-0 text-muted">Commercial</p>
-                                                <select class="form-select">
-                                                    <option value="paul">Paul</option>
+                                                <select class="form-select" id="filtreCommercial">
+
                                                 </select>
                                             </div>
                                         </div>
@@ -220,9 +227,8 @@
                         <table class="table table-striped text-nowrap" id="tableclient">
                             <thead class="table-header-primary">
                                 <tr>
-                                    <th>
-                                        <input class="form-check-input me-4" type="checkbox" id="checkboxNoLabel1"
-                                            value="" aria-label="...">
+                                    <th data-orderable="false">
+                                        <input class="form-check-input me-4" type="checkbox" id="checkSelectAll">
                                         Actions
                                     </th>
                                     <th class="text-center colTable">Code client</th>
@@ -943,7 +949,11 @@
     {{-- Script executé au chargement de la page --}}
     <script>
 
+        // liste des colones masquables de la table liste des clients
         listeColonnes = $('.colTable')
+
+        //  liste des checkbox sur les lignes de la table liste des clients
+        listeCheckSelectLigne = []
 
         var tableClient
 
@@ -996,12 +1006,19 @@
                     filtreNomCode : _('filtreNomCode').value,
                     filtrePeriode : _('filtrePeriode').value,
                     filtreNotation : _('filtreNotation').value,
-                    filtreTournee : _('filtreTournee').value
+                    filtreTournee : _('filtreTournee').value,
+                    filtreTypeClient : _('filtreTypeClient').value,
+                    filtreEtatCompte : _('filtreEtatCompte').value,
+                    filtreCommercial : _('filtreCommercial').value
                 },
                 dataType : 'json',
                 success : function(response){
 
                     obj = response.data
+
+                    _('nbreClient').innerHTML = separateurMilliers(response.nbreClient)
+                    _('totalEnCours').innerHTML = separateurMilliers(response.totalEnCours)+' F'
+                    _('totalCreditMax').innerHTML = separateurMilliers(response.totalCreditMax)+' F'
 
                     $("#tableclient").DataTable().destroy()
                     tableClient = $("#tableclient").DataTable({
@@ -1194,10 +1211,10 @@
                                     $.each(listeColonnes, function(key, value){
                                         
                                         $('#dropChoixCol').append('\
-                                            <li class="d-flex p-2"> <input type="checkbox" valeur="'+(key+1)+'" class="me-2 showCol" checked>'+value.innerHTML+'</a></li>\
+                                            <li class="d-flex p-2"> <input type="checkbox" valeur="'+(key+1)+'" class="me-2 showCol form-check-input" checked>'+value.innerHTML+'</a></li>\
                                         ')
                                     })
-
+                    
                     completeHandler()
                 },
                 error : function(response){
@@ -1317,6 +1334,15 @@
                         dropdownParent: $("#modalFicheClient")
                     })
 
+                    $('#filtreCommercial').html('')
+                    $('#filtreCommercial').append('<option class="optionCommercial" value="0">TOUS</>')
+                    $.each(response.listeCommercial, function(key, value){
+                        
+                        $('#filtreCommercial').append('<option value="'+value['IDPERSONNEL']+'">'+value['NomPrenomPersonnel']+'</option>')
+                    })
+
+                    $('#filtreCommercial').select2()
+
                     // Select regime fiscal
                     $('#selectRegimeFiscal').html('')
                     $('#selectRegimeFiscal').append('<option class="optionRegime" value="0">SELECTIONNER REGIME</>')
@@ -1371,6 +1397,46 @@
                     
                     _('valSoldeDispo').innerHTML = '0 F'
                 }
+            }
+        })
+
+        _('btnFiltreTable').addEventListener('click', function(){
+
+            chargerTableListingClient()
+        })
+
+        $(document).on('change', '.checkSelectLigne', function(){
+
+            if(this.checked == true){
+
+                $(this).parent().parent().parent().css({'background' : '#C2E0E9'})
+            }else{
+
+                $(this).parent().parent().parent().css({'background' : ''})
+                _('tableclient').classList.remove('table-striped')
+                _('tableclient').classList.add('table-striped')
+            }
+        })
+
+        _('checkSelectAll').addEventListener('click', function(){
+
+            let value = this.checked
+
+            var cells =  tableClient.cells().nodes()
+
+            $(cells).find('.checkSelectLigne').prop('checked', value)
+
+            ligne = $(cells).find('.checkSelectLigne').parent().parent().parent()
+
+            if(value == true){
+
+                ligne.css({'background' : '#C2E0E9'})
+
+            }else if(value == false){
+
+                ligne.css({'background' : ''})
+                _('tableclient').classList.remove('table-striped')
+                _('tableclient').classList.add('table-striped')
             }
         })
 
@@ -1488,15 +1554,15 @@
 
                         if(response.success == 2){
 
-                            alert('AJOUT ÉFFECTUÉ ...')
+                            notif('success', 'Succès', 'AJOUT ÉFFECTUÉ')
                             chargerTableListingClient()
                             $('#modalFicheClient').modal('hide')
                         }else if(response.success == 0){
 
-                            alert('CE NOM DE CLIENT EST DEJA ATTRIBUÉ ...')
+                            notif('danger', 'Erreur', 'CE NOM DE CLIENT EST DEJA ATTRIBUÉ')
                         }else{
 
-                            alert('CE CODE DE CLIENT EST DEJA ATTRIBUÉ ...')
+                            notif('danger', 'Erreur', 'CE CODE DE CLIENT EST DEJA ATTRIBUÉ')
                         }
                     }
                 })

@@ -82,6 +82,13 @@
                         </div>
                     </div>
                 </div>
+                <style>
+                    #tablefournisseur td {
+                        padding-top: 5px !important;
+                        padding-bottom: 4px !important;
+                        /* text-wrap: wrap; */
+                    }
+                </style>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-striped text-nowrap" id="tablefournisseur">
@@ -97,8 +104,7 @@
                                     <th class="text-center">Bureau d'achat</th>
                                     <th class="text-center">Etat</th>
                                     <th class="text-center">Adresse</th>
-                                    <th class="text-center">Téléphone fixe</th>
-                                    <th class="text-center">Telephone mobile</th>
+                                    <th class="text-center">Téléphones</th>
                                     <th class="text-center">Email</th>
                                     <th class="text-center">Pays</th>
                                 </tr>
@@ -296,7 +302,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class=" row d-flex justify-content-end" hidden>
+                    <div class=" row d-flex justify-content-end d-none" id="zoneHistorique">
                         <div class=" btn btn-primary btn-sm col-md-2 m-2">Historique <br> des achats</div>
                         <div class=" btn btn-primary btn-sm col-md-2 m-2">Historique <br> des réliquats</div>
                     </div>
@@ -352,6 +358,10 @@
             })
 
 
+            tableFournisseur.rows().every(function(){
+                
+            })
+
             //******************* Execution ********************/
             getDataFournisseur()
 
@@ -367,6 +377,8 @@
 
                 $("#formFournisseur").get(0).reset()
                 $('#method').val("create")
+                $('#zoneHistorique').removeClass("d-none")
+                $('#zoneHistorique').addClass("d-none")
             });
 
             $("#formFournisseur").on("submit", function(e) {
@@ -384,10 +396,14 @@
                     data: formData,
                     processData: false,
                     contentType: false,
+                    beforeSend : function(){
+                        progressHandler()
+                    },
                     success: function(response, statut) {
-                        console.log(response)
+                        // console.log(response)
+                        completeHandler()
                         if (response.error == false) {
-                            notif("success", "Success !!", "Opération éffectutée !!!")
+                            notif("success", "Félicitation !!", response.message)
                             getDataFournisseur()
                             $("#modalFicheClient").modal("hide")
                             return
@@ -427,8 +443,6 @@
                         console.log(response)
                     }
                 }))
-
-
             })
 
             $("#tablefournisseur tbody").on("click", "#btnEdit", function() {
@@ -472,6 +486,7 @@
                         $('#method').val("update")
 
                         $('#idFournisseur').val(data_id)
+                        $('#zoneHistorique').removeClass("d-none")
 
                         $("#modalFicheClient").modal("show")
 
@@ -496,6 +511,9 @@
                     data: {
                         code: code,
                         bureau: bureau
+                    },
+                    beforeSend : function(){
+                        progressHandler()
                     },
                     success: function(response, statut) {
 
@@ -523,9 +541,10 @@
                                 `${value.NomFournisseur}`,
                                 `${value.NomBureauAchat}`,
                                 `${etat}`,
-                                `${value.AdresseFourniseur}`,
-                                `${value.TelephoneFixeFseur1 == null ? value.TelephoneFixeFseur2 : value.TelephoneFixeFseur1}`,
-                                `${value.TelephoneMobileFseur1 == null ? value.TelephoneMobileFseur2 : value.TelephoneMobileFseur1}`,
+                                `${value.AdresseFourniseur.length > 50 ? value.AdresseFourniseur.substring(0, 50)+"..." : value.AdresseFourniseur}`,
+                                `Fixe : ${value.TelephoneFixeFseur1 == null ? value.TelephoneFixeFseur2 : value.TelephoneFixeFseur1} </br>
+                                 Mobile : ${value.TelephoneMobileFseur1 == null ? value.TelephoneMobileFseur2 : value.TelephoneMobileFseur1}
+                                `,
                                 `${value.EmailFournisseur1}`,
                                 `${value.NomPays == null ? "" : value.NomPays}`
                             ])

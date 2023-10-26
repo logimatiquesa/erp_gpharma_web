@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Fournisseur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Throwable;
 
@@ -52,38 +53,42 @@ class fournisseursController extends Controller
             }
 
             try {
-                $order = DB::table('FOURNISSEUR')->max('CodeFournisseur');
+                // $order = DB::table('FOURNISSEUR')->max('CodeFournisseur');
+                $order = DB::table('FOURNISSEUR')->select(DB::raw('MAX("CodeFournisseur"::integer) as code'))->where("CodeFournisseur","<>","")->first()->code;
                 $codeFournissuer = intval($order) + 1;
+                // echo json_encode($codeFournissuer);
+                // return;
+
                 $fournisseur = new Fournisseur();
 
-                if($request->nomFournisseur != null) $fournisseur->NomFournisseur = $this->verifNull($request->nomFournisseur);
-                                                      $fournisseur->CodeFournisseur = $codeFournissuer;
-                if($fournisseur->AdresseFourniseur != null) $fournisseur->AdresseFourniseur = $this->verifNull($request->AdresseFournisseur);
-                if($fournisseur->TelephoneFixeFseur1 != null) $fournisseur->TelephoneFixeFseur1 = $this->verifNull($request->telFixe1);
-                if($fournisseur->TelephoneMobileFseur1 != null) $fournisseur->TelephoneMobileFseur1 = $this->verifNull($request->telMobile1);
-                if($fournisseur->EmailFournisseur1 != null) $fournisseur->EmailFournisseur1 = $this->verifNull($request->mailFournisseur1);
-                                                            $fournisseur->CreePar = session()->get("IDPERSONNEL");
-                if($fournisseur->IDBUREAUACHAT != null) $fournisseur->IDBUREAUACHAT = $this->verifNull($request->bureauAchat);
-                if($fournisseur->IDPAYS != null) $fournisseur->IDPAYS = $this->verifNull($request->pays);
-                if($fournisseur->ObservationsContact1 != null) $fournisseur->ObservationsContact1 = $this->verifNull($request->contact1);
-                if($fournisseur->RibCodeBanqueFournisseur != null) $fournisseur->RibCodeBanqueFournisseur = $this->verifNull($request->rib);
-                if($fournisseur->NccFournisseur != null) $fournisseur->NccFournisseur = $this->verifNull($request->numCC);
-                if($fournisseur->DelaiTransport != null) $fournisseur->DelaiTransport = $this->verifNull($request->delaiLivraison);
-                if($fournisseur->TelephoneFixeFseur2 != null) $fournisseur->TelephoneFixeFseur2 = $this->verifNull($request->telFixe2);
-                if($fournisseur->TelephoneMobileFseur2 != null) $fournisseur->TelephoneMobileFseur2 = $this->verifNull($request->telMobile2);
-                if($fournisseur->EmailFournisseur2 != null) $fournisseur->EmailFournisseur2 = $this->verifNull($request->mailFournisseur2);
-                if($fournisseur->ObservationsContact2 != null) $fournisseur->ObservationsContact2 = $this->verifNull($request->contact2);
-                if($fournisseur->ValeurMiniCommande != null) $fournisseur->ValeurMiniCommande = $this->verifNull($request->valeurMiniCommande);
-                if($fournisseur->CiviliteInterlocuteur != null) $fournisseur->CiviliteInterlocuteur = $this->verifNull($request->civilite);
-                if($fournisseur->NomInterlocuteur != null) $fournisseur->NomInterlocuteur = $this->verifNull($request->nomInterlocuteur);
-                if($fournisseur->DateNaissanceInterlocuteur != null) $fournisseur->DateNaissanceInterlocuteur = $this->verifNull($request->dateNAissance);
-                if($fournisseur->CompteTiersFournisseur != null) $fournisseur->CompteTiersFournisseur = $this->verifNull($request->numCompteTiers);
-                if($fournisseur->EtatCompteFournisseur != null) $fournisseur->EtatCompteFournisseur = $this->verifNull($request->etatCompte);
-                if($fournisseur->DelaiEcheanceFournisseur != null) $fournisseur->DelaiEcheanceFournisseur = $this->verifNull($request->delaiEcheance);
+                $fournisseur->NomFournisseur = Str::squish($this->verifNull($request->nomFournisseur));
+                $fournisseur->CodeFournisseur = $codeFournissuer;
+                $fournisseur->AdresseFourniseur = $this->verifNull($request->AdresseFournisseur);
+                $fournisseur->TelephoneFixeFseur1 = $this->verifNull($request->telFixe1);
+                $fournisseur->TelephoneMobileFseur1 = $this->verifNull($request->telMobile1);
+                $fournisseur->EmailFournisseur1 = $this->verifNull($request->mailFournisseur1);
+                $fournisseur->CreePar = session()->get("IDPERSONNEL");
+                $fournisseur->IDBUREAUACHAT = $this->verifNull($request->bureauAchat);
+                $fournisseur->IDPAYS = $this->verifNull($request->pays);
+                $fournisseur->ObservationsContact1 = $this->verifNull($request->contact1);
+                $fournisseur->RibCodeBanqueFournisseur = $this->verifNull($request->rib);
+                $fournisseur->NccFournisseur = $this->verifNull($request->numCC);
+                $fournisseur->DelaiTransport = $this->verifNull($request->delaiLivraison);
+                $fournisseur->TelephoneFixeFseur2 = $this->verifNull($request->telFixe2);
+                $fournisseur->TelephoneMobileFseur2 = $this->verifNull($request->telMobile2);
+                $fournisseur->EmailFournisseur2 = $this->verifNull($request->mailFournisseur2);
+                $fournisseur->ObservationsContact2 = $this->verifNull($request->contact2);
+                $fournisseur->ValeurMiniCommande = $this->verifNull($request->valeurMiniCommande);
+                $fournisseur->CiviliteInterlocuteur = $this->verifNull($request->civilite);
+                $fournisseur->NomInterlocuteur = $this->verifNull($request->nomInterlocuteur);
+                $fournisseur->DateNaissanceInterlocuteur = $this->verifNull($request->dateNAissance);
+                $fournisseur->CompteTiersFournisseur = $this->verifNull($request->numCompteTiers);
+                $fournisseur->EtatCompteFournisseur = $this->verifNull($request->etatCompte);
+                $fournisseur->DelaiEcheanceFournisseur = $this->verifNull($request->delaiEcheance);
 
                 $result = $fournisseur->save();
 
-                echo json_encode(['error' => false, 'data' =>"result", 'message' => "Enregistrement éffectué !"]);
+                echo json_encode(['error' => false, 'data' =>$result, 'message' => "Le fournisseur a été créé avec success !!"]);
             } catch (Throwable $th) {
 
                 echo json_encode(['error' => true, 'message' => $th->getMessage()]);
@@ -123,7 +128,7 @@ class fournisseursController extends Controller
                         'updated_at' => Carbon::now(),
                     ]);
 
-                echo json_encode(['error' => false, 'data' => $result]);
+                echo json_encode(['error' => false, 'data' => $result, 'message'=>"La modification a été éffectuée avec success !!"]);
             } catch (Throwable $th) {
 
                 echo json_encode(['error' => true, 'message' => $th->getMessage()]);

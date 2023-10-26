@@ -11176,7 +11176,7 @@ caption {
 }
 
 body {
-    font-size: .813rem;
+    font-size: .78rem;
     font-family: var(--default-font-family);
     font-weight: var(--default-font-weight);
     background-color: var(--default-body-bg-color);
@@ -11193,15 +11193,15 @@ body {
 
 ::-webkit-scrollbar {
     width: 0;
-    height: .25rem;
+    height: .50rem;
     -webkit-transition: all ease 50ms;
     transition: all ease 50ms;
-    background: rgb(var(--light-rgb))
+    /* background: rgb(var(--light-rgb)) */
 }
 
-:hover::-webkit-scrollbar-thumb {
-    background: rgb(var(--light-rgb))
-}
+/* :hover::-webkit-scrollbar-thumb { */
+    /* background: rgb(var(--light-rgb)) */
+/* } */
 
 a,
 button {

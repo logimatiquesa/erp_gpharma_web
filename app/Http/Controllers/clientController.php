@@ -21,22 +21,20 @@ class clientController extends Controller
             $dDebut = explode('/',$Preriode[0]);
             $dFin = explode('/',$Preriode[1]);
 
-            // dd($dDebut);
-
             // Paramètres (remplacez ces valeurs par les valeurs réelles)
             $dateDebut = date('Y-m-d', strtotime($dDebut[2].$dDebut[1].$dDebut[0]));
             $dateFin = date('Y-m-d', strtotime($dFin[2].$dFin[1].$dFin[0]));
-            $typSelect = '';
-            $commercialSelect = '';
+            $typSelect = $request -> filtreTypeClient;
+            $commercialSelect = $request -> filtreCommercial;
             $tournSelect = $request -> filtreTournee;
-            $noteSelect = '';
-            $etatCompSelect = $request -> filtreNotation;
+            $noteSelect = $request -> filtreNotation;
+            $etatCompSelect = $request -> filtreEtatCompte;
             $codNomClientRech = $request -> filtreNomCode;
 
             function coloneOption($identifiant){
 
                 $btnAction = '<div class="">
-                            <input class="form-check-input me-3" data-id="'.$identifiant.'" type="checkbox" id="checkboxNoLabel1" value="" aria-label="..." style="height : 19px; width:19px;cursor : pointer;">
+                            <input class="form-check-input me-3 checkSelectLigne" data-id="'.$identifiant.'" type="checkbox" style="height : 19px; width:19px;cursor : pointer;">
                             <a class="btn btn-sm btn-icon btn-outline-danger" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-primary" data-bs-placement="top" title="Supprimer ce client">
                                 <i class="bx bxs-trash" data-id="'.$identifiant.'" style="font-size : 14px;cursor : pointer;"></i>
                             </a>
@@ -114,25 +112,26 @@ class clientController extends Controller
                     'FORMEJURIDIQUE_CLIENT.LibelleFormeJuridiqueClient as LibelleFormeJuridiqueClient',
                     'TOURNEE.LibelleTournee as LibelleTournee',
                     'VILLES.NomVille as NomVille',
-                    'PERSONNEL.NomPrenomPersonnel as NomPrenomPersonnel',
-                    // DB::raw("0 as garde")
+                    'PERSONNEL.NomPrenomPersonnel as NomPrenomPersonnel'
                 ]);
 
             // Ajouter des clauses WHERE uniquement si les valeurs ne sont pas vides ou nulles
-            if ($typSelect) {
+            if ($typSelect != 0 && $typSelect != '') {
                 $query->where('CLIENT.TypeClient', '=', $typSelect);
             }
-            if ($commercialSelect) {
+            if (str_replace(' ', '', $commercialSelect) != '' && $commercialSelect != 0) {
                 $query->where('CLIENT.IDPERSONNEL', '=', $commercialSelect);
             }
-            if ($tournSelect != 0) {
+            if ($tournSelect != 0 && str_replace(' ', '', $tournSelect != '')) {
                 $query->where('CLIENT.IDTOURNEE', '=', $tournSelect);
             }
             if (str_replace(' ', '', $noteSelect) != '' && $noteSelect != 0) {
                 $query->where('CLIENT.NotationClient', '=', $noteSelect);
             }
-            if ($etatCompSelect) {
-                $query->where('CLIENT.EtatCompteClient', '=', $etatCompSelect);
+            if ($etatCompSelect == 1) {
+                $query->where('CLIENT.EtatCompteClient', '=', 1);
+            }elseif($etatCompSelect == 2) {
+                $query->where('CLIENT.EtatCompteClient', '<>', 1);
             }
             if ($codNomClientRech) {
                 $query->where(function($query) use ($codNomClientRech) {
@@ -143,6 +142,9 @@ class clientController extends Controller
 
             // Exécutez la requête et récupérez les résultats
             $client = $query->orderBy('NomClient', 'asc')->get();
+            $nbreClient = count($client);
+            $totalEnCours = 0;
+            $totalCreditMax = 0;
 
             $anneeObjectifClient = date('Y');
 
@@ -318,6 +320,7 @@ class clientController extends Controller
                     }
                 }
 
+                $totalEnCours += $value -> PlafondCreditClient;
                 $client[$key] -> SoldeDispo = $SoldeDispo;
                 $client[$key] -> PlafondCreditClient = number_format($value -> PlafondCreditClient, 0, '', ' ');
                 $client[$key] -> CreditMaxExploitaton = number_format($value -> CreditMaxExploitaton, 0, '', ' ');
@@ -328,9 +331,11 @@ class clientController extends Controller
                 $client[$key] -> CAAnnuel = $value -> ConsommationSemestre1 + $value -> ConsommationSemestre2;
                 $client[$key] -> ConsommationSemestre1 = number_format($value -> ConsommationSemestre1, 0, '', ' ');
                 $client[$key] -> ConsommationSemestre2 = number_format($value -> ConsommationSemestre2, 0, '', ' ');
+
+                
             }
 
-            echo json_encode(array('success' => 1, 'error' => false, 'data' => $client));
+            echo json_encode(array('success' => 1, 'error' => false, 'data' => $client, 'nbreClient' => $nbreClient, 'totalEnCours' => $totalEnCours, 'totalCreditMax' => $totalCreditMax));
         } catch (\Throwable $th) {
 
             echo json_encode(array('error' => true, 'message' => getMessageErreur($th -> getCode())));

@@ -23,7 +23,7 @@
 
 /* Curseur de la barre de défilement */
 ::-webkit-scrollbar-thumb {
-    background-color: #007bff; /* Couleur du curseur */
+    background-color: #182c37; /* Couleur du curseur */
     border-radius: 10px; /* Coins arrondis du curseur */
 }
 

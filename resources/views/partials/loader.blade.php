@@ -1,6 +1,6 @@
 	<style type="text/css">
 		.madiv{
-			/*display:none;*/
+			display:none;
 			background: rgb(255,241,241);
 			background: linear-gradient(72deg, rgba(255,241,241,1) 0%, rgba(29,51,101,0.5886729691876751) 0%, rgba(29,51,101,0.4598214285714286) 0%);
 			position: fixed;

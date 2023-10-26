@@ -19,6 +19,10 @@ function explodeDate(param, date = "") {
 
 function separateurMilliers(nombre) {
 
+	// Arrondit le nombre à l'entier supérieur si la partie décimale est supérieure ou égale à 0.5
+    nombre = Math.ceil(nombre);
+
+	// Convertit le nombre en chaîne de caractères et utilise une expression régulière pour ajouter des espaces en tant que séparateurs de milliers
 	return nombre.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
 
