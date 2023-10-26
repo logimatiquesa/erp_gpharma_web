@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 class connectController extends Controller
 {
     public function connect(){
+        
         $value = DB::table('AGENCE')->select()->get();
        
     }

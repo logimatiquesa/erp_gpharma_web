@@ -499,7 +499,7 @@
                                     <a href="javascript:void(0)">Administrations</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="accordions_collpase.html" class="side-menu__item">Infos Tedis</a>
+                                    <a href="{{ url('administration/info_administration') }}" class="side-menu__item">Infos Tedis</a>
                                 </li>
                                 </li>
                                 <li class="slide">

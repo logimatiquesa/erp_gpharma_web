@@ -611,7 +611,7 @@
                                                         <input type="text" class="form-control p-input" id="ClePharmaML" name="ClePharmaML" style="text-transform: uppercase;">
                                                     </div>
                                                     <div class="col-2 mt-3">
-                                                        <button class=" btn btn-primary">G</button>
+                                                        <button type="button" class=" btn btn-primary">G</button>
                                                     </div>
                                                     <div class="col-5">
                                                         <p for="input-label" class="mb-0 text-muted">Code PIN livraison : </p>
